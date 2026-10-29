@@ -145,7 +145,7 @@ git config --global user.email "te.neved@raiffeisen.hu"</pre><button type="butto
             <li><code>docs/uzleti-leiras.md</code>: az üzleti igény, ebből indulunk</li>
             <li><code>docs/arculat-ui.md</code>: hogyan nézzen ki a felület (színek, kártyák, varázsló)</li>
             <li><code>CLAUDE.md</code>: szabályok az ágensnek</li>
-            <li><code>data/munkatarsak.json</code>: 16 kitalált munkatárs, ez helyettesíti az AD-t</li>
+            <li><code>data/munkatarsak.json</code>: 17 kitalált munkatárs a board tagtól (B) a főosztályvezetőn (B-1) és az osztályvezetőkön (B-2) át az alkalmazottakig. Ez helyettesíti az AD-t.</li>
           </ul>
         </li>
       </ul>
@@ -211,7 +211,7 @@ claude</pre><button type="button">Másolás</button></div>
       <p>Olvasd el a <code>SPEC.md</code>-t, és pipáld végig:</p>
       <ul class="checks">
         <li><input type="checkbox" id="c3a" data-check="c3a"><label for="c3a">A „Kimarad” rész felsorolja, ami nincs benne (AD, e-mail, képfeltöltés, statisztika…).</label></li>
-        <li><input type="checkbox" id="c3b" data-check="c3b"><label for="c3b">A B-1 vezető definíciója egyértelmű (a címzett vezetőjének a vezetője).</label></li>
+        <li><input type="checkbox" id="c3b" data-check="c3b"><label for="c3b">A B-1 vezető definíciója egyértelmű: a címzett feletti láncban lévő főosztályvezető (<code>szint: B-1</code>), és az is, mi történik, ha a címzett osztályvezető vagy maga B-1.</label></li>
         <li><input type="checkbox" id="c3c" data-check="c3c"><label for="c3c">Az EK-k konkrétak, valódi nevekkel a JSON-ból (pl. Horváth Anna → Farkas Júlia).</label></li>
         <li><input type="checkbox" id="c3d" data-check="c3d"><label for="c3d">Vannak negatív esetek is: önmagának küldés, üres üzenet, kategória nélküli küldés, napi 3-as korlát, illetéktelen vezetői hozzáférés, privát köszönetre tapsolás.</label></li>
         <li><input type="checkbox" id="c3f" data-check="c3f"><label for="c3f">A privát / nyilvános láthatóság szabályai egyértelműek: ki mit lát a falon és a vezetői nézetben.</label></li>
@@ -358,6 +358,8 @@ python3 app.py</pre><button type="button">Másolás</button></div>
         <li><input type="checkbox" id="c7h" data-check="c7h"><label for="c7h"><b>Kovács Eszterként</b> (B-1): mindkét köszönetről van értesítés, a vezetői nézetben mindkettő látszik, és a statisztika a teljes körre számol.</label></li>
         <li><input type="checkbox" id="c7i" data-check="c7i"><label for="c7i"><b>Nagy Péterként</b> (Anna vezetője): <b>nincs</b> értesítés, de a vezetői nézetben <b>látja</b> mindkét üzenetet, mert a küldő az ő beosztottja.</label></li>
         <li><input type="checkbox" id="c7j" data-check="c7j"><label for="c7j"><b>Tóth Gáborként</b> (Nóra vezetője): Nóra köszönetéről kap értesítést, és azt látja. Júliáét <b>nem</b> látja, és a statisztikájában sem szerepel.</label></li>
+        <li><input type="checkbox" id="c7l" data-check="c7l"><label for="c7l"><b>Balogh Mátéként</b> küldj köszönetet <b>Szabó Katalinnak</b> (osztályvezető). <b>Kovács Eszter</b> erről <b>pontosan egy</b> értesítést kap, pedig közvetlen vezetőként és B-1-ként is érintett.</label></li>
+        <li><input type="checkbox" id="c7m" data-check="c7m"><label for="c7m"><b>Fehér Lászlóként</b> (board tag): a vezetői nézetben a főosztály összes köszönete látszik, de értesítést egyikről sem kapott.</label></li>
         <li><input type="checkbox" id="c7k" data-check="c7k"><label for="c7k">Nézd meg a felületet keskeny ablakban (vagy telefonon) is: kártyák egy oszlopban, a menü alul.</label></li>
       </ul>
       <p>Döntés: <b>elfogadod</b>, vagy <b>visszadobod</b> egy konkrét hibával, és kéred a javítást.</p>
