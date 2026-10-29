@@ -1,6 +1,6 @@
 # Levezetői forgatókönyv – Kudos demó (kb. 3,5 óra)
 
-> A [`wydrian1/b1-demo-koszonofal`](https://github.com/wydrian1/b1-demo-koszonofal) gyakorló repóhoz tartozik, de szándékosan **nincs benne**: a résztvevők gépén az ágens ne lássa az elvárt eredményeket. A fájlhivatkozások (pl. `docs/uzleti-leiras.md`) a gyakorló repón belül értendők.
+> A [`wydrian1/b1-demo-kudos`](https://github.com/wydrian1/b1-demo-kudos) gyakorló repóhoz tartozik, de szándékosan **nincs benne**: a résztvevők gépén az ágens ne lássa az elvárt eredményeket. A fájlhivatkozások (pl. `docs/uzleti-leiras.md`) a gyakorló repón belül értendők.
 > A résztvevőknek szóló útmutató: [lab guide](https://wydrian1.github.io/b1training/lab/).
 
 ## Cél
