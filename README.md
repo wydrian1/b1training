@@ -13,10 +13,16 @@ Statikus HTML, build és külső függőség nélkül: `index.html` + `style.css
 | S | előadói jegyzet + időmérő |
 | M | tartalomjegyzék |
 | F | teljes képernyő |
+| T | világos / sötét téma (a jobb felső gombbal is) |
 | Home / End | első / utolsó dia |
 
 - `#12`: közvetlen ugrás a 12. diára
 - `?all`: minden fokozatosan megjelenő elem eleve látszik (áttekintéshez, nyomtatáshoz)
+- `?theme=light` / `?theme=dark`: téma kényszerítése (alapból a rendszerbeállítást vagy a legutóbbi választást követi)
+
+## Arculat
+
+Raiffeisen színpaletta (RBI Primary Yellow `#FEE600`, Off Black `#2B2D33`, Warm Grey, másodlagos zöld/korall/lila), a hivatalos RBI RGB palettából. Betűtípus: Amalia, ha telepítve van; egyébként rendszerbetű.
 
 ## Helyi futtatás
 

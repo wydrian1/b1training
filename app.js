@@ -16,7 +16,9 @@
   // ---------------------------------------------------------------
   // Szekvencia diagramok (a teljes agentic loop lefutás)
   // ---------------------------------------------------------------
+  // A hex értékeket a style.css témához köti (attribútum-szelektorok); itt a HTML-részekhez a szerepnév kell.
   const C = { user: '#63b3ed', llm: '#a78bfa', tool: '#f6ad55', res: '#68d391', fin: '#4fd1c5', gw: '#9fb1d4' };
+  const ROLE = { '#63b3ed': 'blue', '#a78bfa': 'violet', '#f6ad55': 'amber', '#68d391': 'green', '#4fd1c5': 'teal' };
 
   const SEQS = {
     loop: {
@@ -93,8 +95,8 @@
         d.className = 'cap frag';
         d.dataset.s = i + 1;
         d.dataset.g = 'cap';
-        d.style.borderLeft = `5px solid ${s.c}`;
-        d.innerHTML = `<div class="no" style="color:${s.c}">${i + 1} / ${cfg.steps.length}</div><h3>${s.h}</h3><p>${s.p}</p>`;
+        d.style.borderLeft = `5px solid var(--${ROLE[s.c]})`;
+        d.innerHTML = `<div class="no" style="color:var(--${ROLE[s.c]}-ink)">${i + 1} / ${cfg.steps.length}</div><h3>${s.h}</h3><p>${s.p}</p>`;
         capbox.appendChild(d);
       }
     });
@@ -190,6 +192,20 @@
   }
   setInterval(() => { const c = $('#clock'); if (c) c.textContent = fmt(Date.now() - t0); }, 1000);
 
+  // világos / sötét téma (a kezdőértéket az index.html <head> scriptje állítja)
+  const themeBtn = $('#themeBtn');
+  function syncThemeBtn() {
+    themeBtn.textContent = document.documentElement.dataset.theme === 'light' ? '☾' : '☀';
+  }
+  function toggleTheme() {
+    const t = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+    document.documentElement.dataset.theme = t;
+    try { localStorage.setItem('b1-theme', t); } catch (e) { /* privát mód: csak erre a munkamenetre */ }
+    syncThemeBtn();
+  }
+  themeBtn.addEventListener('click', e => { e.stopPropagation(); toggleTheme(); themeBtn.blur(); });
+  syncThemeBtn();
+
   // menü
   const menu = $('#menu');
   slides.forEach((s, i) => {
@@ -216,6 +232,7 @@
         break;
       case 's': case 'S': notes.classList.toggle('open'); renderNotes(); break;
       case 'm': case 'M': menu.classList.toggle('open'); break;
+      case 't': case 'T': toggleTheme(); break;
       case 'Escape': menu.classList.remove('open'); notes.classList.remove('open'); break;
       default: return;
     }

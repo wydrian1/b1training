@@ -5,13 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI alapok B-1 vezetőknek</title>
 <meta name="description" content="Kétórás bevezető az LLM-ekről, a harnessről és az ágensekről, B-1 vezetőknek.">
+<script>
+  // téma beállítása még rajzolás előtt: mentett választás, különben a rendszer beállítása
+  (function () {
+    var t = new URLSearchParams(location.search).get('theme');
+    if (!t) try { t = localStorage.getItem('b1-theme'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    document.documentElement.dataset.theme = t;
+  })();
+</script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div id="stage">
 
 <!-- =========================================================== NYITÁS -->
-<section class="slide title-slide" data-title="Címlap">
+<section class="slide title-slide brand" data-title="Címlap">
   <div class="kicker">B-1 vezetői workshop · 2 óra</div>
   <h1>AI alapok<br><span class="hl">B-1 vezetőknek</span></h1>
   <p class="lead">Az LLM-től az ágensig: mi történik a motorháztető alatt, amikor „az AI dolgozik”?</p>
@@ -54,7 +63,7 @@
 </section>
 
 <!-- =========================================================== 01 ALAPFOGALMAK -->
-<section class="slide cover" data-title="Alapfogalmak" data-start="5">
+<section class="slide cover brand" data-title="Alapfogalmak" data-start="5">
   <div class="num">01</div>
   <h1>Alapfogalmak</h1>
   <p class="lead">Közös szókincs: mit jelent az AI, a gépi tanulás, a generatív AI és az LLM, és hogyan viszonyulnak egymáshoz?</p>
@@ -73,11 +82,11 @@
       <g class="frag" data-s="5"><circle cx="280" cy="462" r="54" fill="rgba(167,139,250,.25)" stroke="#a78bfa" stroke-width="2.5"/><text x="280" y="469" text-anchor="middle" fill="#e9effc" font-size="22" font-weight="800">LLM</text></g>
     </svg>
     <div class="capbox" style="height:260px">
-      <div class="cap frag" data-s="1" data-g="c" style="border-left:5px solid #63b3ed"><h3>Mesterséges intelligencia</h3><p>Gyűjtőfogalom: minden, amitől egy gép „intelligensnek” tűnik. A szabályalapú szakértői rendszerek is ide tartoznak.</p></div>
-      <div class="cap frag" data-s="2" data-g="c" style="border-left:5px solid #4fd1c5"><h3>Gépi tanulás</h3><p>A gép <b>példákból</b> tanul szabályt, nem mi programozzuk le. Csalásfelismerés, scoring, lemorzsolódás-előrejelzés: ezek a bankban évek óta jelen vannak.</p></div>
-      <div class="cap frag" data-s="3" data-g="c" style="border-left:5px solid #68d391"><h3>Mélytanulás</h3><p>Sokrétegű neurális hálók. Kép-, hang- és szövegfelismerés. Sok adat és sok számítási kapacitás (GPU) kell hozzá.</p></div>
-      <div class="cap frag" data-s="4" data-g="c" style="border-left:5px solid #f6ad55"><h3>Generatív AI</h3><p>Nem osztályoz, hanem <b>új tartalmat</b> hoz létre: szöveget, képet, kódot, hangot.</p></div>
-      <div class="cap frag" data-s="5" data-g="c" style="border-left:5px solid #a78bfa"><h3>LLM: nagy nyelvi modell</h3><p>Hatalmas mennyiségű szövegen tanított generatív modell. Ma ez a „motor” a chatbotok és az ágensek mögött. A mai nap nagy része erről szól.</p></div>
+      <div class="cap frag" data-s="1" data-g="c" style="border-left:5px solid var(--blue)"><h3>Mesterséges intelligencia</h3><p>Gyűjtőfogalom: minden, amitől egy gép „intelligensnek” tűnik. A szabályalapú szakértői rendszerek is ide tartoznak.</p></div>
+      <div class="cap frag" data-s="2" data-g="c" style="border-left:5px solid var(--teal)"><h3>Gépi tanulás</h3><p>A gép <b>példákból</b> tanul szabályt, nem mi programozzuk le. Csalásfelismerés, scoring, lemorzsolódás-előrejelzés: ezek a bankban évek óta jelen vannak.</p></div>
+      <div class="cap frag" data-s="3" data-g="c" style="border-left:5px solid var(--green)"><h3>Mélytanulás</h3><p>Sokrétegű neurális hálók. Kép-, hang- és szövegfelismerés. Sok adat és sok számítási kapacitás (GPU) kell hozzá.</p></div>
+      <div class="cap frag" data-s="4" data-g="c" style="border-left:5px solid var(--amber)"><h3>Generatív AI</h3><p>Nem osztályoz, hanem <b>új tartalmat</b> hoz létre: szöveget, képet, kódot, hangot.</p></div>
+      <div class="cap frag" data-s="5" data-g="c" style="border-left:5px solid var(--violet)"><h3>LLM: nagy nyelvi modell</h3><p>Hatalmas mennyiségű szövegen tanított generatív modell. Ma ez a „motor” a chatbotok és az ágensek mögött. A mai nap nagy része erről szól.</p></div>
     </div>
   </div>
   <aside class="notes"><p>Kívülről befelé haladunk, öt lépésben. Fontos üzenet: az „AI” szó a bankban már régóta jelen van (ML-modellek); az új hullám a generatív, azon belül az LLM.</p></aside>
@@ -158,7 +167,7 @@
 </section>
 
 <!-- =========================================================== 02 LLM -->
-<section class="slide cover" data-title="Hogyan működik az LLM?" data-start="20">
+<section class="slide cover brand" data-title="Hogyan működik az LLM?" data-start="20">
   <div class="num">02</div>
   <h1>Hogyan működik az LLM?</h1>
   <p class="lead">Egyetlen dolgot csinál, de azt elképesztően jól. Mit jelent ez a képességeire és a korlátaira nézve?</p>
@@ -367,7 +376,7 @@
 </section>
 
 <!-- =========================================================== 03 KONTEXTUS / TOOLOK / SKILLEK / MODELLEK -->
-<section class="slide cover" data-title="Kontextus, toolok, skillek, modellek" data-start="40">
+<section class="slide cover brand" data-title="Kontextus, toolok, skillek, modellek" data-start="40">
   <div class="num">03</div>
   <h1>Kontextus, toolok,<br>skillek, modellek</h1>
   <p class="lead">Ezekből az építőkockákból lesz a „szöveg be, szöveg ki” modellből hasznos munkatárs.</p>
@@ -392,7 +401,7 @@
       <div><i style="background:var(--blue)"></i><span><b>Utasítás-fájlok, skillek:</b> pl. <code>CLAUDE.md</code>, <code>AGENTS.md</code>, skill-leírások</span></div>
       <div><i style="background:var(--amber)"></i><span><b>Beszélgetés:</b> a felhasználó üzenetei és a modell válaszai</span></div>
       <div><i style="background:var(--green)"></i><span><b>Tool-eredmények:</b> jellemzően ez a legnagyobb, és gyorsan nő</span></div>
-      <div><i style="background:#1b2745;border:1px dashed var(--dim)"></i><span><b>Ablakméret:</b> modellenként eltér, ma jellemzően 100 ezer – 1 millió token</span></div>
+      <div><i style="background:var(--panel2);border:1px dashed var(--dim)"></i><span><b>Ablakméret:</b> modellenként eltér, ma jellemzően 100 ezer – 1 millió token</span></div>
     </div>
     <div class="callout t frag">A modell <b>csak ezt látja</b>, minden hívásnál. Az ágens minősége nagyban azon múlik, mi kerül ide, és mi marad ki.</div>
   </div>
@@ -535,7 +544,7 @@
       <tr class="frag"><td class="hl3">Tool</td><td>Egy képesség, amit a modell kérhet</td><td>A leírás mindig, az eredmény hívás után</td><td class="muted"><code>read_file</code>, <code>web_search</code></td></tr>
       <tr class="frag"><td class="hl2">MCP-szerver</td><td>Szabványos csatlakozó, ami toolokat ad</td><td>A tooljai mint toolok</td><td class="muted">Jira-, GitHub-, DB-csatlakozó</td></tr>
       <tr class="frag"><td class="hl5">Skill</td><td>Csomagolt szakértelem, munkafolyamat</td><td>Leírás mindig, tartalom igény szerint</td><td class="muted">„Havi riport a sablon szerint”</td></tr>
-      <tr class="frag"><td style="color:var(--blue)">Sub-agent</td><td>Segéd-ágens saját kontextussal</td><td>Csak az összefoglalója jön vissza</td><td class="muted">„Nézd át a kódbázist, és foglald össze”</td></tr>
+      <tr class="frag"><td class="hl6">Sub-agent</td><td>Segéd-ágens saját kontextussal</td><td>Csak az összefoglalója jön vissza</td><td class="muted">„Nézd át a kódbázist, és foglald össze”</td></tr>
     </table>
   </div>
   <aside class="notes"><p>Ökölszabály: <b>tool</b> = mit tud megtenni, <b>skill</b> = hogyan csinálja jól, <b>utasítás</b> = mit szabad és mit nem.</p></aside>
@@ -581,7 +590,7 @@
 </section>
 
 <!-- =========================================================== 04 CHATBOT VS ÁGENS -->
-<section class="slide cover" data-title="Chatbot vs. ágens · agentic loop" data-start="60">
+<section class="slide cover brand" data-title="Chatbot vs. ágens · agentic loop" data-start="60">
   <div class="num">04</div>
   <h1>Chatbot vs. ágens<br><span class="hl">az agentic loop</span></h1>
   <p class="lead">Mi a különbség aközött, hogy válaszol, és hogy elvégzi? És pontosan mi történik egy kérés mögött?</p>
@@ -757,7 +766,7 @@
 </section>
 
 <!-- =========================================================== 05 HARNESS -->
-<section class="slide cover" data-title="A harness" data-start="80">
+<section class="slide cover brand" data-title="A harness" data-start="80">
   <div class="num">05</div>
   <h1>A harness</h1>
   <p class="lead">A „hám” a modell körül: az alkalmazás, ami kontextust épít, eszközt futtat, engedélyt kér, és megáll, amikor kell.</p>
@@ -997,7 +1006,7 @@
 </section>
 
 <!-- =========================================================== 06 FEJLESZTÉS -->
-<section class="slide cover" data-title="Hogyan fejleszt az AI?" data-start="90">
+<section class="slide cover brand" data-title="Hogyan fejleszt az AI?" data-start="90">
   <div class="num">06</div>
   <h1>Hogyan fejleszt az AI?</h1>
   <p class="lead">A szoftverfejlesztés az a terület, ahol az ágensek a legmesszebbre jutottak. Miért itt, és mit tanulhatunk ebből?</p>
@@ -1088,10 +1097,10 @@
   <div class="body mid" style="gap:16px">
     <div class="flow" style="gap:6px;--fs:16px">
       <div class="node frag" style="border-top:4px solid var(--blue)"><b>Specifikáció</b>teljes, előre megírva, mielőtt bárki épít</div><div class="arr">→</div>
-      <div class="node frag" style="border-color:var(--amber);background:rgba(246,173,85,.08)"><b class="hl2">1. kapu</b>az ember jóváhagyja a specet</div><div class="arr">→</div>
+      <div class="node frag" style="border-color:var(--amber);background:var(--amber-t)"><b class="hl2">1. kapu</b>az ember jóváhagyja a specet</div><div class="arr">→</div>
       <div class="node frag" style="border-top:4px solid var(--violet)"><b>Építés</b>az ágens a kit eszközeivel dolgozik</div><div class="arr">→</div>
       <div class="node frag" style="border-top:4px solid var(--green)"><b>Kettős ellenőrzés</b>tesztek + független ellenőrzés</div><div class="arr">→</div>
-      <div class="node frag" style="border-color:var(--amber);background:rgba(246,173,85,.08)"><b class="hl2">2. kapu</b>az ember validálja a bizonyítékot (pl. tesztfutás felvétele)</div><div class="arr">→</div>
+      <div class="node frag" style="border-color:var(--amber);background:var(--amber-t)"><b class="hl2">2. kapu</b>az ember validálja a bizonyítékot (pl. tesztfutás felvétele)</div><div class="arr">→</div>
       <div class="node frag" style="flex:.7;border-top:4px solid var(--teal)"><b>Éles</b>emberi felelősséggel</div>
     </div>
     <div class="cols c3 tight" style="gap:16px">
@@ -1135,7 +1144,7 @@
 </section>
 
 <!-- =========================================================== 07 VEZETŐI -->
-<section class="slide cover" data-title="Vezetői szempontok" data-start="100">
+<section class="slide cover brand" data-title="Vezetői szempontok" data-start="100">
   <div class="num">07</div>
   <h1>Vezetői szempontok</h1>
   <p class="lead">Hol érdemes kezdeni, mire figyeljünk, és mit kérdezzünk, amikor valaki AI-megoldást hoz?</p>
@@ -1147,9 +1156,9 @@
   <h2>Hol érdemes kezdeni?</h2>
   <div class="matrix">
     <div class="ylab">Érték / ismétlődés →</div>
-    <div class="q frag" style="background:rgba(246,173,85,.08);border-color:var(--amber)"><h3 class="hl2">Emberrel együtt</h3><p>Értékes, de nehezen ellenőrizhető: döntés-előkészítés, stratégiai elemzés, ügyfélkommunikáció. → AI vázlatol, az ember dönt.</p></div>
-    <div class="q frag" style="background:rgba(104,211,145,.1);border-color:var(--green)"><h3 class="hl5">Kezdd itt ✔</h3><p>Értékes és ellenőrizhető: tesztírás, migráció, riport-előállítás, kódmegértés, incidens-elemzés, ticket-összefoglaló.</p></div>
-    <div class="q frag" style="background:rgba(248,113,113,.08);border-color:var(--red)"><h3 class="hl4">Kerüld</h3><p>Nehezen ellenőrizhető és nagy kárt okozhat: felügyelet nélküli éles változtatás, jogi kötelezettségvállalás.</p></div>
+    <div class="q frag" style="background:var(--amber-t);border-color:var(--amber)"><h3 class="hl2">Emberrel együtt</h3><p>Értékes, de nehezen ellenőrizhető: döntés-előkészítés, stratégiai elemzés, ügyfélkommunikáció. → AI vázlatol, az ember dönt.</p></div>
+    <div class="q frag" style="background:var(--green-t);border-color:var(--green)"><h3 class="hl5">Kezdd itt ✔</h3><p>Értékes és ellenőrizhető: tesztírás, migráció, riport-előállítás, kódmegértés, incidens-elemzés, ticket-összefoglaló.</p></div>
+    <div class="q frag" style="background:var(--red-t);border-color:var(--red)"><h3 class="hl4">Kerüld</h3><p>Nehezen ellenőrizhető és nagy kárt okozhat: felügyelet nélküli éles változtatás, jogi kötelezettségvállalás.</p></div>
     <div class="q frag"><h3>Gyors nyerés</h3><p>Kis érték, de könnyű: formázás, fordítás, jegyzetelés. Jó a tanuláshoz és az elfogadáshoz.</p></div>
     <div></div><div class="xlab">Ellenőrizhetőség →</div>
   </div>
@@ -1243,6 +1252,7 @@
   <div id="bar"></div>
 </div>
 
+<button id="themeBtn" type="button" title="Világos / sötét téma (T)" aria-label="Világos / sötét téma váltása"></button>
 <nav id="menu" aria-label="Diák"></nav>
 <div id="notes" aria-live="polite"></div>
 <script src="app.js"></script>
