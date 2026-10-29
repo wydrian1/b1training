@@ -26,9 +26,9 @@ kontextus és `CLAUDE.md`, toolok, skillek, az agentic loop (olvas → szerkeszt
 | 0:15 | **Az üzleti igény megértése** | Claude-dal összefoglaltatja a `docs/uzleti-leiras.md`-t, végigvezettet egy példát, rákérdez a hiányokra | Claude mint elemzőtárs. Első tool-használat: maga olvassa a fájlokat. A jóváhagyóknak érteniük kell, mit hagynak jóvá |
 | 0:30 | **Specifikáció** | `/spec`, válasz a kérdésekre | Skill működés közben: az ágens kérdez, nem találgat |
 | 0:55 | **🟡 1. kapu** | `SPEC.md` átnézése, javíttatás, majd **saját kézzel** `Státusz: JÓVÁHAGYVA` | Az ember dönt, az ágens nem hagyhatja jóvá saját magát |
-| 1:05 | **Tesztek** | „Írd meg a teszteket az EK-khoz, még implementáció nélkül.” | Minden kritérium ellenőrizhetővé válik. Futtatás → piros |
-| 1:25 | ☕ Szünet | | |
-| 1:35 | **Építés** | „Implementáld a jóváhagyott spec szerint, amíg minden teszt zöld.” | Az agentic loop élőben: tool-hívások, engedélykérések, piros → javít. A `docs/arculat-ui.md` mint kontextus: ettől lesz igényes a felület |
+| 1:05 | **Első story** | `/build S1` | Story = vertikális szelet. Előbb a tesztek (piros), utána a kód (zöld), majd megállás és böngészős ellenőrzés |
+| 1:30 | ☕ Szünet | | |
+| 1:40 | **További storyk** | `/build S2`, `/build S3`, … storynként ellenőrizve | Kis körök, az ember minden story után dönt. S1–S4 = MVP, a többi ráadás. Az agentic loop élőben: tool-hívások, engedélykérések, piros → javít. A `docs/arculat-ui.md` mint kontextus: ettől lesz igényes a felület |
 | 2:50 | **🟡 2. kapu** | `/verify`, `BIZONYITEK.md` elolvasása, kattintós forgatókönyv | Bizonyíték alapján fogadunk el, nem érzésre |
 | 3:10 | **Visszatekintés** | Kerekasztal | Lásd a kérdéseket lent |
 | – | **+ feladatok** (aki hamarabb végez) | Lásd lent és a lab guide-ban | A változás is a specen és a kapun megy át |
@@ -62,19 +62,13 @@ mindegyikhez egy javasolt döntéssel. Még ne írj specifikációt.
 /spec
 ```
 
-**Jóváhagyás után, tesztek:**
+**Jóváhagyás után, storynként** (a `/build` skill előbb a story tesztjeit írja meg, aztán a kódot, és a végén megáll):
 
 ```text
-A SPEC.md jóvá van hagyva. Írd meg a teszteket az összes EK-hoz a tests/ mappába,
-implementáció nélkül. Futtasd le őket, és mutasd meg, hogy pirosak.
+/build S1
 ```
 
-**Építés:**
-
-```text
-Implementáld az alkalmazást a jóváhagyott SPEC.md szerint. Haladj EK-ról EK-ra,
-minden lépés után futtasd a teszteket, és addig dolgozz, amíg minden zöld nem lesz.
-```
+Ellenőrzés a böngészőben a skill által adott lépések szerint, utána `/build S2`, `/build S3`, … A haladás a `HALADAS.md`-ben látszik.
 
 **Bizonyíték:**
 
