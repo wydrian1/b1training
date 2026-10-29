@@ -163,6 +163,8 @@ code, .mono { font-family: var(--mono); font-size: .9em; }
 .frag { opacity: 0; transform: translateY(8px); transition: opacity .35s ease, transform .35s ease; }
 .frag.on { opacity: 1; transform: none; }
 svg .frag { transform: none; }
+/* egymást váltó elemek (data-g): a régi azonnal tűnik el, ne látsszon az új alatt */
+.frag[data-g]:not(.on) { transition: none; visibility: hidden; }
 
 /* ---------- Címdia, szakaszcímlap ---------- */
 .title-slide { justify-content: center; gap: 22px; }
