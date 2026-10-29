@@ -297,11 +297,11 @@ svg .frag { transform: none; }
 .logo-on-light { display: none; }
 :root[data-theme="light"] .logo-on-dark { display: none; }
 :root[data-theme="light"] .logo-on-light { display: inline-block; }
-/* a PNG-k saját védőtérrel készültek, ezért a pozíció kicsit negatív eltolású */
-.logo-title { position: absolute; top: 26px; left: 46px; }
-.logo-title img { width: 300px; height: auto; }
-.hud-left { display: flex; align-items: center; gap: 8px; }
-.hud-left img { height: 26px; width: auto; margin: -6px 0 -6px -10px; }
+/* a Gable Cross PNG-k kb. 20% saját védőteret tartalmaznak, ezért a negatív eltolás */
+.logo-title { position: absolute; top: 20px; left: 44px; }
+.logo-title img { height: 110px; width: auto; }
+.hud-left { display: flex; align-items: center; gap: 6px; }
+.hud-left img { height: 34px; width: auto; margin: -10px 0 -10px -9px; }
 
 /* ---------- Témaváltó, jegyzet-panel és menü (a színpadon kívül) ---------- */
 #themeBtn {
