@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Köszönőfal lab guide</title>
+<meta name="description" content="Lépésről lépésre: spec-driven fejlesztés Claude Code-dal, két emberi kapuval. A B-1 vezetői AI-workshop délutáni gyakorlata.">
+<script>
+  // ugyanaz a témaválasztás, mint az előadásban (közös kulcs)
+  (function () {
+    var t = new URLSearchParams(location.search).get('theme');
+    if (!t) try { t = localStorage.getItem('b1-theme'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    document.documentElement.dataset.theme = t;
+  })();
+</script>
+<link rel="stylesheet" href="lab.css">
+</head>
+<body>
+
+<header class="top">
+  <img class="logo-on-dark" src="../assets/rbi-gable-yellow.png" alt="Raiffeisen">
+  <img class="logo-on-light" src="../assets/rbi-gable-squared.png" alt="Raiffeisen">
+  <div class="t">Köszönőfal lab guide<small>B-1 vezetői AI-workshop · délutáni gyakorlat</small></div>
+  <div class="sp"></div>
+  <div class="progress" title="Kész lépések"><div class="track"><div class="fill" id="fill"></div></div><span id="ptext">0 / 0</span></div>
+  <button class="btn" id="themeBtn" type="button" aria-label="Világos / sötét téma váltása">☀</button>
+</header>
+
+<div class="wrap">
+<nav class="toc" aria-label="Lépések">
+  <div class="grp">Bevezető</div>
+  <a href="#mit-epitunk"><span class="n">·</span>Mit építünk, és miért így?</a>
+  <a href="#menet"><span class="n">·</span>A délután menete</a>
+  <div class="grp">Lépések</div>
+  <a href="#s0" data-step="s0"><span class="n">0</span>Előkészítés</a>
+  <a href="#s1" data-step="s1"><span class="n">1</span>Ismerkedés a projekttel</a>
+  <a href="#s2" data-step="s2"><span class="n">2</span>Specifikáció</a>
+  <a href="#s3" data-step="s3"><span class="n">3</span>1. kapu: jóváhagyás</a>
+  <a href="#s4" data-step="s4"><span class="n">4</span>Tesztek előbb</a>
+  <a href="#s5" data-step="s5"><span class="n">5</span>Építés</a>
+  <a href="#s6" data-step="s6"><span class="n">6</span>Bizonyíték</a>
+  <a href="#s7" data-step="s7"><span class="n">7</span>2. kapu: elfogadás</a>
+  <a href="#s8" data-step="s8"><span class="n">8</span>Visszatekintés</a>
+  <div class="grp">Ha van még időd</div>
+  <a href="#plusz"><span class="n">+</span>Opcionális feladatok</a>
+  <div class="grp">Segítség</div>
+  <a href="#puska"><span class="n">·</span>Claude Code puska</a>
+  <a href="#hibak"><span class="n">·</span>Ha elakadsz</a>
+</nav>
+
+<main>
+
+<div class="hero" id="mit-epitunk">
+  <div class="kicker">Lab guide · kb. 3 óra</div>
+  <h1>Köszönőfal: spec-driven fejlesztés <span class="hl">Claude Code-dal</span></h1>
+  <p class="lead">Egy kis belső alkalmazást építesz a saját gépeden, ahol a munkatársak köszönetet küldhetnek egymásnak, a vezetők pedig látják a csapatukhoz tartozó köszöneteket. A kódot Claude Code írja. <b>A te dolgod a döntés:</b> mit építünk, és elfogadod-e, amit kaptál.</p>
+
+  <div class="grid">
+    <div class="card y"><h3>Mit építünk?</h3><p>Köszönet küldése ellenőrző lépéssel, kapott és küldött lista kereséssel, értesítés a címzettnek és a vezetőinek, vezetői nézet a saját szervezeti körre.</p></div>
+    <div class="card v"><h3>Miért így?</h3><p>Hogy élőben lásd, amiről délelőtt szó volt: a <code>CLAUDE.md</code>-t, a skilleket, az agentic loopot és az RBI SDLC két emberi kapuját.</p></div>
+    <div class="card a"><h3>Mi nem cél?</h3><p>Nem kell befejezned, és nem kell hibátlannak lennie. Az a cél, hogy megtapasztald a folyamatot, és lásd, hol kell az ember.</p></div>
+  </div>
+
+  <h3>Hogyan használd ezt az oldalt?</h3>
+  <p>Minden lépésnél leírjuk, <b>mit kell elérned</b> és <b>miért</b>. A pontos szöveget próbáld meg saját szavaiddal megfogalmazni Claude-nak, ez is a gyakorlat része. Ha elakadsz, nyisd le a lépés alján a <b>„Segítség”</b> dobozt: ott megtalálod a pontos promptot vagy parancsot.</p>
+
+  <h3>Spec-driven, nem „vibe coding”</h3>
+  <p>Vibe codingnál az ember egy mondatot ír, és elfogadja, ami jön. Itt előbb leírjuk és <b>jóváhagyjuk</b>, mit kell építeni, ellenőrizhető elfogadási kritériumokkal. Az ágens csak ezután ír tesztet és kódot, a végén pedig <b>bizonyítékkal</b> mutatja meg, hogy minden kritérium teljesül. Ez ugyanaz a minta, mint az <a href="../#45">RBI AI-native SDLC</a>-ben.</p>
+</div>
+
+<div id="menet">
+  <h2>A délután menete</h2>
+  <div class="flow">
+    <div class="node"><b>Specifikáció</b>az ágens kérdez és ír</div><div class="arr">→</div>
+    <div class="node gate"><b>🟡 1. kapu</b>te hagyod jóvá</div><div class="arr">→</div>
+    <div class="node"><b>Tesztek</b>előbb pirosak</div><div class="arr">→</div>
+    <div class="node"><b>Építés</b>amíg minden zöld</div><div class="arr">→</div>
+    <div class="node"><b>Bizonyíték</b>EK → teszt → eredmény</div><div class="arr">→</div>
+    <div class="node gate"><b>🟡 2. kapu</b>te fogadod el</div>
+  </div>
+  <table>
+    <tr><th>Idő</th><th>Lépés</th><th>Időtartam</th></tr>
+    <tr><td>0:00</td><td>0–1. Előkészítés, ismerkedés</td><td>15 perc</td></tr>
+    <tr><td>0:15</td><td>2. Specifikáció</td><td>30 perc</td></tr>
+    <tr><td>0:45</td><td>3. 1. kapu</td><td>10 perc</td></tr>
+    <tr><td>0:55</td><td>4. Tesztek előbb</td><td>20 perc</td></tr>
+    <tr><td>1:15</td><td>☕ Szünet</td><td>10 perc</td></tr>
+    <tr><td>1:25</td><td>5. Építés</td><td>60 perc</td></tr>
+    <tr><td>2:25</td><td>6–7. Bizonyíték és 2. kapu</td><td>20 perc</td></tr>
+    <tr><td>2:45</td><td>8. Visszatekintés</td><td>15 perc</td></tr>
+    <tr><td>–</td><td>+ Opcionális feladatok (aki hamarabb végez)</td><td>tetszés szerint</td></tr>
+  </table>
+  <p class="meta">Tipp: a lépéseket a jobb alsó „Kész” jelölővel pipálhatod ki. A böngésződ megjegyzi, hol tartasz.</p>
+</div>
+
+<!-- ======================================================= 0 -->
+<section class="step" id="s0">
+  <div class="step-head"><div class="step-no">0</div><div><h2>Előkészítés</h2><div class="meta">5 perc · WSL terminál</div></div></div>
+  <div class="cols2">
+    <div class="do">
+      <h3>▶ Mit csinálj</h3>
+      <ul>
+        <li>Nyiss egy WSL terminált.</li>
+        <li>Ellenőrizd, hogy megvan a <b>Python</b> (legalább 3.10), a <b>git</b> és a <b>Claude Code</b>.</li>
+        <li>Próbáld ki, hogy Claude <b>válaszol</b>-e egy egyszerű kérdésre, vagyis eléri-e a modellt.</li>
+      </ul>
+    </div>
+    <div class="why">
+      <h3>💡 Miért</h3>
+      <p>A <code>claude</code> parancs a <b>harness</b>: a te gépeden fut, ő olvassa a fájlokat és futtatja a parancsokat. A modellt (pl. Sonnet 5.5) az <b>RBI LLM gatewayen</b> keresztül éri el, ott van a security és a költségkontroll.</p>
+      <a class="slide" href="../#38">→ Dia: Nálunk: RBI AI-eszköztár</a>
+    </div>
+  </div>
+  <div class="see"><h3>✔ Mit kell látnod</h3><p>Mindhárom eszköz verziószáma megjelenik, és Claude válaszol.</p></div>
+  <details class="help"><summary>🆘 Segítség: pontos parancsok</summary><div class="inner">
+    <div class="code"><span class="lbl">bash</span><pre>python3 --version
+git --version
+claude --version</pre><button type="button">Másolás</button></div>
+    <div class="code"><span class="lbl">bash</span><pre>claude -p "Szia! Egy mondatban: melyik modell vagy?"</pre><button type="button">Másolás</button></div>
+    <p>Ha bármelyik hibát ad, nézd meg a <a href="#hibak">Ha elakadsz</a> részt, vagy szólj a levezetőnek.</p>
+  </div></details>
+  <div class="done-row"><label><input type="checkbox" data-done="s0"> Kész</label></div>
+</section>
+
+<!-- ======================================================= 1 -->
+<section class="step" id="s1">
+  <div class="step-head"><div class="step-no">1</div><div><h2>Ismerkedés a projekttel</h2><div class="meta">10 perc · terminál + Claude Code</div></div></div>
+  <div class="cols2">
+    <div class="do">
+      <h3>▶ Mit csinálj</h3>
+      <ul>
+        <li>Klónozd a gyakorló repót (<code>wydrian1/b1-demo-koszonofal</code>, a hozzáférést a levezető adja meg), és indítsd el Claude Code-ot a mappájában.</li>
+        <li>Kérdezd meg Claude-ot, <b>milyen szabályok szerint fog dolgozni</b> ebben a projektben.</li>
+        <li>Közben nézz bele te is a fontos fájlokba:
+          <ul>
+            <li><code>docs/uzleti-leiras.md</code>: az üzleti igény, ebből indulunk</li>
+            <li><code>CLAUDE.md</code>: szabályok az ágensnek</li>
+            <li><code>data/munkatarsak.json</code>: 16 kitalált munkatárs, ez helyettesíti az AD-t</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="why">
+      <h3>💡 Miért</h3>
+      <p>A <code>CLAUDE.md</code> egy <b>projekt-utasítás fájl</b>. A harness minden munkamenet elején betölti a kontextusba, ezért nem kell minden alkalommal újra elmondani a szabályokat. Ha Claude helyesen foglalja össze őket, az bizonyítja, hogy „látja” őket.</p>
+      <p>Figyeld meg a szabályok között: kódot csak jóváhagyott spec alapján írhat, és a jóváhagyás <b>a te dolgod</b>.</p>
+      <a class="slide" href="../#27">→ Dia: Mi van a kontextusban?</a>
+    </div>
+  </div>
+  <div class="see"><h3>✔ Mit kell látnod</h3><p>Claude a <code>CLAUDE.md</code> alapján felsorolja a folyamatot (spec → jóváhagyás → teszt → kód → bizonyíték), a technológiai keretet (csak Python standard library) és a tilalmakat.</p></div>
+  <details class="help"><summary>🆘 Segítség: pontos parancsok és prompt</summary><div class="inner">
+    <div class="code"><span class="lbl">bash</span><pre>git clone https://github.com/wydrian1/b1-demo-koszonofal.git koszonofal
+cd koszonofal
+claude</pre><button type="button">Másolás</button></div>
+    <div class="code"><span class="lbl">prompt</span><pre>Foglald össze 5 pontban, milyen szabályok szerint fogsz dolgozni ebben a projektben, és mi a teendőnk a munka elején.</pre><button type="button">Másolás</button></div>
+  </div></details>
+  <div class="done-row"><label><input type="checkbox" data-done="s1"> Kész</label></div>
+</section>
+
+<!-- ======================================================= 2 -->
+<section class="step" id="s2">
+  <div class="step-head"><div class="step-no">2</div><div><h2>Specifikáció</h2><div class="meta">30 perc · Claude Code</div></div></div>
+  <div class="cols2">
+    <div class="do">
+      <h3>▶ Mit csinálj</h3>
+      <ul>
+        <li>Kérd meg Claude-ot, hogy készítse el a specifikációt. A projektben van erre egy <b>skill</b>, a nevét a <code>README.md</code>-ben vagy a <code>CLAUDE.md</code>-ben találod.</li>
+        <li>Claude néhány <b>tisztázó kérdést</b> tesz fel, mindegyikhez javasolt alapértelmezéssel. Gondold át őket, és válaszolj. Ha a javaslat jó, elfogadhatod.</li>
+        <li>Ha kész a <code>SPEC.md</code>, Claude megáll. <b>Kódot még nem ír.</b></li>
+      </ul>
+    </div>
+    <div class="why">
+      <h3>💡 Miért</h3>
+      <p>A spec-készítés egy <b>skill</b>: elmentett szakértelem, ami csak akkor töltődik be teljesen, amikor szükség van rá. Mindenkinél ugyanazt a folyamatot és ugyanazt a szerkezetet adja.</p>
+      <p>Az ágens <b>kérdez, nem találgat</b>. Minden kérdés egy olyan döntés, amit különben csendben, helyetted hozott volna meg.</p>
+      <a class="slide" href="../#26">→ Dia: Skillek</a>
+    </div>
+  </div>
+  <div class="see"><h3>✔ Mit kell látnod</h3><p>Létrejön a <code>SPEC.md</code>, az elején <code>Státusz: TERVEZET</code> áll. Benne vannak a számozott üzleti szabályok (SZ-01…) és elfogadási kritériumok (EK-01…), valamint egy táblázat arról, melyik üzleti elvárást melyik EK fedi le.</p></div>
+  <details class="help"><summary>🆘 Segítség: pontos prompt</summary><div class="inner">
+    <div class="code"><span class="lbl">prompt</span><pre>/spec</pre><button type="button">Másolás</button></div>
+    <p>Ha nem tudod, mit válaszolj a kérdésekre, ez mindig elfogadható:</p>
+    <div class="code"><span class="lbl">prompt</span><pre>Mindegyik kérdésnél a javasolt alapértelmezés jó, mehet.</pre><button type="button">Másolás</button></div>
+  </div></details>
+  <div class="done-row"><label><input type="checkbox" data-done="s2"> Kész</label></div>
+</section>
+
+<!-- ======================================================= 3 -->
+<section class="step gate" id="s3">
+  <div class="step-head"><div class="step-no">3</div><div><h2>🟡 1. kapu: a spec jóváhagyása</h2><div class="meta">10 perc · te döntesz</div></div></div>
+  <div class="cols2">
+    <div class="do">
+      <h3>▶ Mit csinálj</h3>
+      <p>Olvasd el a <code>SPEC.md</code>-t, és pipáld végig:</p>
+      <ul class="checks">
+        <li><input type="checkbox" id="c3a" data-check="c3a"><label for="c3a">A „Kimarad” rész felsorolja, ami nincs benne (AD, e-mail, képfeltöltés, statisztika…).</label></li>
+        <li><input type="checkbox" id="c3b" data-check="c3b"><label for="c3b">A B-1 vezető definíciója egyértelmű (a címzett vezetőjének a vezetője).</label></li>
+        <li><input type="checkbox" id="c3c" data-check="c3c"><label for="c3c">Az EK-k konkrétak, valódi nevekkel a JSON-ból (pl. Horváth Anna → Farkas Júlia).</label></li>
+        <li><input type="checkbox" id="c3d" data-check="c3d"><label for="c3d">Vannak negatív esetek is: önmagának küldés, üres üzenet, illetéktelen vezetői hozzáférés.</label></li>
+        <li><input type="checkbox" id="c3e" data-check="c3e"><label for="c3e">A „Nyitott kérdések” rész üres, vagy minden ponthoz van döntés.</label></li>
+      </ul>
+      <ul>
+        <li>Ha valami nem tetszik, kérd meg Claude-ot, hogy <b>javítsa</b> a specet.</li>
+        <li>Ha minden rendben, <b>saját kezűleg</b> írd át a <code>SPEC.md</code> státuszát <code>JÓVÁHAGYVA</code>-ra.</li>
+      </ul>
+    </div>
+    <div class="why">
+      <h3>💡 Miért</h3>
+      <p>Ez az <b>RBI SDLC első kapuja</b>: az ember hagyja jóvá a specifikációt, mielőtt az ágens épít. A jóváhagyás felelősség, ezért azt <b>nem az ágens</b> állítja be, ezt a <code>CLAUDE.md</code> kifejezetten tiltja neki.</p>
+      <p>Egy hiba itt egy mondat javítása. Ugyanez a hiba a kódban már órák munkája.</p>
+      <a class="slide" href="../#45">→ Dia: RBI AI-native SDLC</a>
+    </div>
+  </div>
+  <div class="see"><h3>✔ Mit kell látnod</h3><p>A <code>SPEC.md</code> első sorai között <code>Státusz: JÓVÁHAGYVA</code> áll.</p></div>
+  <details class="help"><summary>🆘 Segítség: javíttatás és a státusz átírása</summary><div class="inner">
+    <p>Javíttatás, például:</p>
+    <div class="code"><span class="lbl">prompt</span><pre>Az értesítésekről szóló EK-ban legyen benne az is, hogy Nagy Péter és Tóth Gábor nem kap értesítést, amikor Horváth Anna köszönetet küld Farkas Júliának. Csak a SPEC.md-t módosítsd.</pre><button type="button">Másolás</button></div>
+    <p>A státusz átírása <b>Claude Code-ban</b> a <code>!</code> előtaggal. Ezt a parancsot te futtatod, nem az ágens:</p>
+    <div class="code"><span class="lbl">Claude Code</span><pre>! sed -i 's/^Státusz: TERVEZET/Státusz: JÓVÁHAGYVA/' SPEC.md</pre><button type="button">Másolás</button></div>
+    <p>Vagy szerkesztőben, egy másik terminálban:</p>
+    <div class="code"><span class="lbl">bash</span><pre>nano SPEC.md</pre><button type="button">Másolás</button></div>
+    <p>Ellenőrzés:</p>
+    <div class="code"><span class="lbl">Claude Code</span><pre>! head -3 SPEC.md</pre><button type="button">Másolás</button></div>
+  </div></details>
+  <div class="done-row"><label><input type="checkbox" data-done="s3"> Kész</label></div>
+</section>
+
+<!-- ======================================================= 4 -->
+<section class="step" id="s4">
+  <div class="step-head"><div class="step-no">4</div><div><h2>Tesztek előbb</h2><div class="meta">20 perc · Claude Code</div></div></div>
+  <div class="cols2">
+    <div class="do">
+      <h3>▶ Mit csinálj</h3>
+      <ul>
+        <li>Kérd meg Claude-ot, hogy <b>minden elfogadási kritériumhoz írjon tesztet</b>, de még <b>ne implementáljon</b> semmit.</li>
+        <li>Kérd, hogy a tesztek hivatkozzanak az EK-azonosítóra, és hogy futtassa is le őket.</li>
+        <li>Engedélykérésnél a tesztek futtatását nyugodtan engedélyezheted tartósan.</li>
+        <li>Nézz bele legalább egy tesztbe: érthető-e, mit ellenőriz?</li>
+      </ul>
+    </div>
+    <div class="why">
+      <h3>💡 Miért</h3>
+      <p>A teszt teszi az elfogadási kritériumot <b>ellenőrizhetővé</b>. Később ez lesz az ágens „bírója”: piros teszt esetén magától javít, emberi segítség nélkül.</p>
+      <p>Amíg nincs kód, minden tesztnek pirosnak kell lennie. Ha egy teszt kód nélkül is zöld, akkor valójában nem ellenőriz semmit.</p>
+      <a class="slide" href="../#43">→ Dia: Egy fejlesztési feladat az ágens kezében</a>
+    </div>
+  </div>
+  <div class="see"><h3>✔ Mit kell látnod</h3><p>Létrejön a <code>tests/</code> mappa, és a futtatás eredménye sok <code>FAILED</code> vagy <code>ERROR</code>. Ez így van rendjén.</p></div>
+  <details class="help"><summary>🆘 Segítség: pontos prompt</summary><div class="inner">
+    <div class="code"><span class="lbl">prompt</span><pre>A SPEC.md jóvá van hagyva. Írd meg a teszteket az összes EK-hoz a tests/ mappába, implementáció nélkül. Minden teszt hivatkozzon az EK-azonosítójára. Futtasd le őket, és mutasd meg, hogy pirosak.</pre><button type="button">Másolás</button></div>
+    <p>A tesztek kézi futtatása:</p>
+    <div class="code"><span class="lbl">Claude Code</span><pre>! python3 -m unittest discover -s tests -v</pre><button type="button">Másolás</button></div>
+  </div></details>
+  <div class="done-row"><label><input type="checkbox" data-done="s4"> Kész</label></div>
+</section>
+
+<!-- ======================================================= 5 -->
+<section class="step" id="s5">
+  <div class="step-head"><div class="step-no">5</div><div><h2>Építés</h2><div class="meta">60 perc · Claude Code dolgozik, te figyelsz</div></div></div>
+  <div class="cols2">
+    <div class="do">
+      <h3>▶ Mit csinálj</h3>
+      <ul>
+        <li>Kérd meg Claude-ot, hogy <b>implementálja az alkalmazást a jóváhagyott spec szerint</b>, kritériumról kritériumra haladva, és addig dolgozzon, amíg minden teszt zöld.</li>
+        <li>Ha minden zöld, indítsd el az alkalmazást egy <b>másik terminálban</b>, és nézd meg böngészőben.</li>
+      </ul>
+      <h3>👀 Mit figyelj meg közben</h3>
+      <ul>
+        <li>Milyen <b>toolokat</b> hív (fájl olvasása, szerkesztése, parancs futtatása)?</li>
+        <li>Mikor kér <b>engedélyt</b>, és mire?</li>
+        <li>Mit csinál, ha egy teszt <b>piros</b> marad? Hányadik próbálkozásra javítja?</li>
+        <li>Eltér-e valahol a spectől? Ha igen, szólj rá.</li>
+      </ul>
+    </div>
+    <div class="why">
+      <h3>💡 Miért</h3>
+      <p>Ez az <b>agentic loop</b> élőben: kontextus → az LLM dönt → a harness végrehajtja a toolt → az eredmény visszakerül a kontextusba, és így tovább, amíg kész nem lesz.</p>
+      <p>A modell soha nem nyúl közvetlenül a gépedhez. Minden parancsot a harness futtat, a te engedélyeddel.</p>
+      <a class="slide" href="../#33">→ Dia: Egy kérés útja lépésről lépésre</a>
+    </div>
+  </div>
+  <div class="warn"><b>Ne engedélyezd</b>, ha <code>pip install</code>-t, hálózati letöltést vagy a <code>data/</code>, <code>docs/</code> mappa módosítását kéri. Utasítsd el, és utalj a <code>CLAUDE.md</code>-re.</div>
+  <div class="see"><h3>✔ Mit kell látnod</h3><p>A tesztek végén <code>OK</code> áll, a böngészőben pedig működik az alkalmazás, „DEMO” belépési jelzéssel.</p></div>
+  <details class="help"><summary>🆘 Segítség: pontos prompt és parancsok</summary><div class="inner">
+    <div class="code"><span class="lbl">prompt</span><pre>Implementáld az alkalmazást a jóváhagyott SPEC.md szerint. Haladj EK-ról EK-ra, minden lépés után futtasd a teszteket, és addig dolgozz, amíg minden zöld nem lesz. Röviden írd ki, melyik EK-n dolgozol éppen.</pre><button type="button">Másolás</button></div>
+    <p>Ha körbe-körbe javít: nyomj <b>Esc</b>-et, majd:</p>
+    <div class="code"><span class="lbl">prompt</span><pre>Állj meg. Melyik teszt piros, és szerinted mi az oka? Javasolj egy javítást, de még ne hajtsd végre.</pre><button type="button">Másolás</button></div>
+    <p>Az alkalmazás indítása egy új terminálban:</p>
+    <div class="code"><span class="lbl">bash</span><pre>cd koszonofal
+python3 app.py</pre><button type="button">Másolás</button></div>
+    <p>Majd a böngészőben: <code>http://localhost:8000</code></p>
+  </div></details>
+  <div class="done-row"><label><input type="checkbox" data-done="s5"> Kész</label></div>
+</section>
+
+<!-- ======================================================= 6 -->
+<section class="step" id="s6">
+  <div class="step-head"><div class="step-no">6</div><div><h2>Bizonyíték</h2><div class="meta">5 perc · Claude Code</div></div></div>
+  <div class="cols2">
+    <div class="do">
+      <h3>▶ Mit csinálj</h3>
+      <ul>
+        <li>Kérd meg Claude-ot, hogy a projekt <b>ellenőrző skilljével</b> készítsen bizonyíték-összefoglalót.</li>
+        <li>Nyisd meg és olvasd el az elkészült <code>BIZONYITEK.md</code>-t.</li>
+      </ul>
+    </div>
+    <div class="why">
+      <h3>💡 Miért</h3>
+      <p>Nem az számít, hogy az ágens <i>azt mondja</i>, kész. Az számít, hogy <b>bizonyítékkal</b> mutatja meg: melyik kritériumot melyik teszt igazolja, és mi lett az eredmény. Ez készíti elő a második kaput.</p>
+      <a class="slide" href="../#35">→ Dia: Mikor áll meg a ciklus?</a>
+    </div>
+  </div>
+  <div class="see"><h3>✔ Mit kell látnod</h3><p>Egy táblázatot EK → teszt → ✅/❌ bontásban, a lefedetlen kritériumok listáját (jó esetben „Nincs.”), és egy kézi ellenőrző forgatókönyvet.</p></div>
+  <details class="help"><summary>🆘 Segítség: pontos prompt</summary><div class="inner">
+    <div class="code"><span class="lbl">prompt</span><pre>/verify</pre><button type="button">Másolás</button></div>
+    <div class="code"><span class="lbl">Claude Code</span><pre>! cat BIZONYITEK.md</pre><button type="button">Másolás</button></div>
+  </div></details>
+  <div class="done-row"><label><input type="checkbox" data-done="s6"> Kész</label></div>
+</section>
+
+<!-- ======================================================= 7 -->
+<section class="step gate" id="s7">
+  <div class="step-head"><div class="step-no">7</div><div><h2>🟡 2. kapu: elfogadás</h2><div class="meta">15 perc · böngésző · te döntesz</div></div></div>
+  <div class="cols2">
+    <div class="do">
+      <h3>▶ Mit csinálj</h3>
+      <p>Az alkalmazás fut. Kattints végig:</p>
+      <ul class="checks">
+        <li><input type="checkbox" id="c7a" data-check="c7a"><label for="c7a">Lépj be <b>Horváth Annaként</b>, és küldj köszönetet <b>Farkas Júliának</b> egy emojis üzenettel, a keresőt használva. Figyeld meg az ellenőrző nézetet és a visszaigazolást.</label></li>
+        <li><input type="checkbox" id="c7b" data-check="c7b"><label for="c7b">Annaként próbálj meg <b>saját magadnak</b>, majd <b>üres üzenetet</b> küldeni. Egyik sem mehet át.</label></li>
+        <li><input type="checkbox" id="c7c" data-check="c7c"><label for="c7c">Anna „Küldött” listájában ott az üzenet.</label></li>
+        <li><input type="checkbox" id="c7d" data-check="c7d"><label for="c7d"><b>Farkas Júliaként</b>: van értesítés, és a „Kapott” listában ott az üzenet.</label></li>
+        <li><input type="checkbox" id="c7e" data-check="c7e"><label for="c7e"><b>Szabó Katalinként</b> (Júlia vezetője): van értesítés, és a vezetői nézetben látja az üzenetet.</label></li>
+        <li><input type="checkbox" id="c7f" data-check="c7f"><label for="c7f"><b>Kovács Eszterként</b> (B-1): van értesítés, és a vezetői nézetben látja az üzenetet.</label></li>
+        <li><input type="checkbox" id="c7g" data-check="c7g"><label for="c7g"><b>Nagy Péterként</b> (Anna vezetője): <b>nincs</b> értesítés, de a vezetői nézetben <b>látja</b> az üzenetet, mert a küldő az ő beosztottja.</label></li>
+        <li><input type="checkbox" id="c7h" data-check="c7h"><label for="c7h"><b>Tóth Gáborként</b>: se értesítés, se üzenet a vezetői nézetben.</label></li>
+        <li><input type="checkbox" id="c7i" data-check="c7i"><label for="c7i"><b>Varga Benceként</b> (nem vezető): a vezetői nézet nem érhető el.</label></li>
+      </ul>
+      <p>Döntés: <b>elfogadod</b>, vagy <b>visszadobod</b> egy konkrét hibával, és kéred a javítást.</p>
+    </div>
+    <div class="why">
+      <h3>💡 Miért</h3>
+      <p>Ez az <b>RBI SDLC második kapuja</b>: élesítés előtt az ember a bizonyítékot validálja. A tesztek a szabályokat ellenőrzik, a kattintás azt, hogy valóban azt építettük-e, amit kértünk.</p>
+      <p>A Nagy Péter- és a Tóth Gábor-lépés a legérdekesebb: itt derül ki, hogy a jogosultsági logika tényleg a spec szerint működik-e. Ez az a fajta hiba, ami élesben adatvédelmi incidens lenne.</p>
+      <a class="slide" href="../#40">→ Dia: Biztonság és jogosultság</a>
+    </div>
+  </div>
+  <div class="see"><h3>✔ Mit kell látnod</h3><p>Minden pont kipipálva. Ha valami nem stimmel, az nem kudarc: pont ezért van a kapu.</p></div>
+  <details class="help"><summary>🆘 Segítség: példaüzenet és visszadobás</summary><div class="inner">
+    <p>Példaüzenet a küldéshez (a címzett keresőjébe írd be: <code>adat</code>):</p>
+    <div class="code"><span class="lbl">szöveg</span><pre>Köszönöm a gyors adatelemzést! 🙏🎉</pre><button type="button">Másolás</button></div>
+    <p>Visszadobás konkrét hibával, például:</p>
+    <div class="code"><span class="lbl">prompt</span><pre>A 2. kapun elakadtunk: Nagy Péterként belépve a vezetői nézetben nem látszik Horváth Anna köszönete Farkas Júliának, pedig a spec szerint látnia kellene, mert a küldő az ő beosztottja. Írj erre egy tesztet, ami most piros, javítsd a hibát, és futtasd újra a /verify-t.</pre><button type="button">Másolás</button></div>
+    <p>Ha az alkalmazás nem fut, indítsd el:</p>
+    <div class="code"><span class="lbl">bash</span><pre>python3 app.py</pre><button type="button">Másolás</button></div>
+  </div></details>
+  <div class="done-row"><label><input type="checkbox" data-done="s7"> Kész</label></div>
+</section>
+
+<!-- ======================================================= 8 -->
+<section class="step" id="s8">
+  <div class="step-head"><div class="step-no">8</div><div><h2>Visszatekintés</h2><div class="meta">15 perc · közösen</div></div></div>
+  <ul>
+    <li>Hol kellett beavatkoznod? Mit csinált volna rosszul az ágens, ha nincs spec?</li>
+    <li>Mennyi időt vitt el a spec, és mennyit spórolt meg később?</li>
+    <li>Mit láttál a „háttérben”: milyen toolokat hívott, mikor kért engedélyt?</li>
+    <li>Melyik saját területi feladatotoknál lenne használható ez a folyamat? Hol lenne a két kapu?</li>
+  </ul>
+  <a class="slide" href="../#49">→ Dia: Hol érdemes kezdeni?</a>
+  <div class="done-row"><label><input type="checkbox" data-done="s8"> Kész</label></div>
+</section>
+
+<!-- ======================================================= + feladatok -->
+<div id="plusz" style="margin-top:40px">
+  <div class="kicker">Ha van még időd</div>
+  <h2 style="margin-top:8px">+ Opcionális feladatok</h2>
+  <p>Ezek egymástól függetlenek, bármelyikkel kezdheted. Mindegyik egy-egy délelőtti fogalmat mutat meg közelebbről. <b>A szabály itt is ugyanaz:</b> ami új funkció, az előbb a specbe kerül, és csak jóváhagyás után épül meg.</p>
+
+  <div class="plus-grid">
+    <div class="plus">
+      <h3>+1 Statisztika a vezetői nézetben <span class="tag">változáskérés</span></h3>
+      <p>A vezetői nézet tetején jelenjen meg, hány köszönetet küldtek és kaptak a vezető körébe tartozók az elmúlt 30 napban. Kérd a specen keresztül, hagyd jóvá, majd építtesd meg.</p>
+      <p class="why-s"><b>Miért:</b> a változás is a specen és a kapun megy át. Figyeld meg, hogyan nő a spec verziója, és hogyan kerül be a változásnaplóba.</p>
+      <details class="help"><summary>🆘 Segítség</summary><div class="inner">
+        <div class="code"><span class="lbl">prompt</span><pre>/spec Változáskérés: a vezetői nézet tetején jelenjen meg, hány köszönetet küldtek és kaptak a vezető körébe tartozók az elmúlt 30 napban.</pre><button type="button">Másolás</button></div>
+        <p>Jóváhagyás után (státusz → <code>JÓVÁHAGYVA</code>):</p>
+        <div class="code"><span class="lbl">prompt</span><pre>A SPEC.md új verziója jóvá van hagyva. Írd meg az új és módosult EK-k tesztjeit, implementáld őket, futtasd az összes tesztet, majd /verify.</pre><button type="button">Másolás</button></div>
+      </div></details>
+    </div>
+
+    <div class="plus">
+      <h3>+2 Emoji-gyorsgombok <span class="tag">változáskérés</span></h3>
+      <p>Az üzenetíró mező alatt legyen 5 gyakori emoji (pl. 🙏 🎉 💛 👏 🚀), amelyek egy kattintással a szövegbe kerülnek, billentyűzettel is.</p>
+      <p class="why-s"><b>Miért:</b> egy kis, felületi változás is kaphat elfogadási kritériumot. Hogyan lehet tesztelni valamit, ami „csak” a felületen van?</p>
+      <details class="help"><summary>🆘 Segítség</summary><div class="inner">
+        <div class="code"><span class="lbl">prompt</span><pre>/spec Változáskérés: az üzenetíró mező alatt legyen 5 emoji-gyorsgomb (🙏 🎉 💛 👏 🚀), amelyek a kurzor helyére szúrják be az emojit. Billentyűzettel is használható legyen.</pre><button type="button">Másolás</button></div>
+      </div></details>
+    </div>
+
+    <div class="plus">
+      <h3>+3 Képfeltöltés <span class="tag">hatókörbővítés</span></h3>
+      <p>A köszönethez lehessen egy PNG vagy JPG képet csatolni (max. 2 MB). Ez ütközik a spec „Kimarad” részével. Figyeld meg, mit mond erre az ágens.</p>
+      <p class="why-s"><b>Miért:</b> a hatókör bővítése üzleti döntés, nem technikai. A jó ágens jelzi az ütközést, és rákérdez, nem csendben bővít.</p>
+      <details class="help"><summary>🆘 Segítség</summary><div class="inner">
+        <div class="code"><span class="lbl">prompt</span><pre>/spec Változáskérés: a köszönethez lehessen egy PNG vagy JPG képet csatolni, legfeljebb 2 MB méretben. A képet csak az láthatja, aki az üzenetet is láthatja.</pre><button type="button">Másolás</button></div>
+        <p>Ha rákérdez a „Kimarad” részre:</p>
+        <div class="code"><span class="lbl">prompt</span><pre>Igen, bővítsük a hatókört: a képfeltöltés kerüljön ki a „Kimarad” részből, a vírusellenőrzés maradjon ott.</pre><button type="button">Másolás</button></div>
+      </div></details>
+    </div>
+
+    <div class="plus">
+      <h3>+4 Biztonsági próba: XSS <span class="tag">biztonság</span></h3>
+      <p>Küldj egy olyan köszönetet, amelynek a szövege HTML-kódot tartalmaz. A felületen ennek <b>szövegként</b> kell megjelennie, nem szabad lefutnia. Ha lefut, kérj rá tesztet és javítást.</p>
+      <p class="why-s"><b>Miért:</b> az ágens által írt kód is lehet sérülékeny. A <code>CLAUDE.md</code> előírja az escape-elést, de ellenőrizni attól még kell.</p>
+      <details class="help"><summary>🆘 Segítség</summary><div class="inner">
+        <p>Üzenetszöveg a próbához:</p>
+        <div class="code"><span class="lbl">szöveg</span><pre>Köszi! &lt;b&gt;vastag&lt;/b&gt; &lt;img src=x onerror="alert('XSS')"&gt;</pre><button type="button">Másolás</button></div>
+        <p>Jó eredmény: a szöveg a jelekkel együtt, betű szerint látszik, és nem ugrik fel ablak. Ha mégis felugrik:</p>
+        <div class="code"><span class="lbl">prompt</span><pre>Biztonsági hiba: a köszönet szövegében lévő HTML lefut a felületen (XSS). Írj rá egy tesztet, ami most piros, javítsd úgy, hogy minden felhasználói szöveg escape-elve jelenjen meg, és futtasd újra az összes tesztet.</pre><button type="button">Másolás</button></div>
+      </div></details>
+    </div>
+
+    <div class="plus">
+      <h3>+5 Hook: automatikus tesztfuttatás <span class="tag">harness</span></h3>
+      <p>Állíts be egy hookot, ami minden fájlmódosítás után magától lefuttatja a teszteket, így az ágens azonnal látja, ha elrontott valamit.</p>
+      <p class="why-s"><b>Miért:</b> a hook <b>determinisztikus</b> szabály a harnessben. Nem a modellen múlik, hogy eszébe jut-e tesztelni: mindig lefut.</p>
+      <details class="help"><summary>🆘 Segítség</summary><div class="inner">
+        <div class="code"><span class="lbl">prompt</span><pre>Állíts be ebben a projektben egy Claude Code hookot a .claude/settings.json-ban: minden fájlszerkesztés vagy -írás után fusson le a python3 -m unittest discover -s tests -q parancs, és az eredményét lásd te is. Mutasd meg a beállítást, mielőtt elmented.</pre><button type="button">Másolás</button></div>
+        <p>Utána kérj egy apró módosítást, és figyeld meg, hogy a tesztek maguktól lefutnak.</p>
+      </div></details>
+    </div>
+
+    <div class="plus">
+      <h3>+6 Független ellenőr: sub-agent <span class="tag">sub-agent</span></h3>
+      <p>Kérd meg Claude-ot, hogy egy <b>külön sub-agenttel</b> nézesse át a kódot a <code>SPEC.md</code>-hez képest: van-e eltérés, kimaradt szabály, biztonsági gond. Az ellenőr ne javítson, csak jelentsen.</p>
+      <p class="why-s"><b>Miért:</b> a sub-agent saját, tiszta kontextusban dolgozik, és nem „elfogult” a fő ágens munkájával szemben. Ez a „kettős ellenőrzés” egyik formája.</p>
+      <details class="help"><summary>🆘 Segítség</summary><div class="inner">
+        <div class="code"><span class="lbl">prompt</span><pre>Indíts egy sub-agentet független ellenőrként: olvassa el a SPEC.md-t és a teljes kódot, és listázza ki az eltéréseket a spectől, a kimaradt szabályokat és a biztonsági kockázatokat (EK- vagy SZ-hivatkozással). Ne javítson semmit, csak jelentsen. Utána foglald össze nekem az eredményt.</pre><button type="button">Másolás</button></div>
+      </div></details>
+    </div>
+
+    <div class="plus">
+      <h3>+7 Saját skill <span class="tag">skill</span></h3>
+      <p>Írasd meg Claude-dal egy új skillt, ami egy ismétlődő feladatot csomagol be, pl. „kiadási jegyzet” készítését a spec változásnaplójából és a bizonyítékból.</p>
+      <p class="why-s"><b>Miért:</b> a skill a csapat tudásának újrahasznosítható formája. Amit egyszer jól leírtál, azt az ágens legközelebb magától követi.</p>
+      <details class="help"><summary>🆘 Segítség</summary><div class="inner">
+        <div class="code"><span class="lbl">prompt</span><pre>Hozz létre egy új skillt .claude/skills/release-notes/SKILL.md néven, a meglévő spec és verify skillek mintájára. Feladata: a SPEC.md változásnaplójából és a BIZONYITEK.md-ből egy rövid, üzleti nyelvű kiadási jegyzetet (KIADAS.md) készíteni. Utána próbáld is ki.</pre><button type="button">Másolás</button></div>
+      </div></details>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================= segítség -->
+<section class="step" id="puska" style="margin-top:40px">
+  <div class="step-head"><div class="step-no">?</div><div><h2>Claude Code puska</h2></div></div>
+  <table>
+    <tr><th>Mit</th><th>Hogyan</th><th>Mire jó</th></tr>
+    <tr><td>Megszakítás</td><td><b>Esc</b></td><td>Megállítja az ágenst, ha rossz irányba megy</td></tr>
+    <tr><td>Módváltás</td><td><b>Shift+Tab</b></td><td>Váltás a normál, az automatikus szerkesztés-elfogadó és a terv (plan) mód között</td></tr>
+    <tr><td>Fájl a kontextusba</td><td><code>@SPEC.md</code></td><td>Közvetlenül hivatkozol egy fájlra a promptban</td></tr>
+    <tr><td>Saját parancs</td><td><code>! &lt;parancs&gt;</code></td><td>Te futtatsz egy shell parancsot, nem az ágens</td></tr>
+    <tr><td>Skillek</td><td><code>/spec</code>, <code>/verify</code></td><td>A projekt előre megírt munkafolyamatai</td></tr>
+    <tr><td>Tiszta lap</td><td><code>/clear</code></td><td>Új kontextus, ha a beszélgetés túl hosszú lett vagy összezavarodott</td></tr>
+    <tr><td>Tömörítés</td><td><code>/compact</code></td><td>Összefoglalja az eddigi beszélgetést, így helyet szabadít fel</td></tr>
+  </table>
+  <p class="meta">Engedélykérésnél: <b>Yes</b> = most az egyszer, <b>Yes, don't ask again</b> = erre a parancsra többet nem kérdez, <b>No</b> = elutasítás (megadhatod, mit csináljon helyette).</p>
+</section>
+
+<section class="step" id="hibak">
+  <div class="step-head"><div class="step-no">!</div><div><h2>Ha elakadsz</h2></div></div>
+  <table>
+    <tr><th>Tünet</th><th>Teendő</th></tr>
+    <tr><td><code>claude</code> nem éri el a modellt</td><td>Szólj a levezetőnek: gateway-beállítás vagy proxy</td></tr>
+    <tr><td>Az ágens kódot akar írni a jóváhagyás előtt</td><td>Utasítsd el, és utalj a <code>CLAUDE.md</code> 2. pontjára</td></tr>
+    <tr><td><code>pip install</code>-t akar futtatni</td><td>Utasítsd el: csak standard library használható</td></tr>
+    <tr><td>Foglalt a 8000-es port</td><td>Állítsd le a másik <code>python3 app.py</code>-t (Ctrl+C abban a terminálban)</td></tr>
+    <tr><td>Körbe-körbe javít</td><td><b>Esc</b>, kérdezd meg, mit gondol a hibáról, és kérj egyetlen EK-ra szűkített javítást</td></tr>
+    <tr><td>Elakadtál a spec-lépésnél</td><td>Kérj a levezetőtől tartalék <code>SPEC.md</code>-t, és hagyd jóvá te magad</td></tr>
+    <tr><td>Túl hosszú, zavaros lett a beszélgetés</td><td><code>/compact</code>, vagy <code>/clear</code> és a következő lépés promptja újra (a „Segítség” dobozból)</td></tr>
+  </table>
+</section>
+
+<footer>
+  <p>Kapcsolódó előadás: <a href="../">AI alapok B-1 vezetőknek</a> · A gyakorló repó: <code>wydrian1/b1-demo-koszonofal</code> (hozzáférés a levezetőtől)</p>
+</footer>
+</main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var KEY = 'koszonofal-lab';
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { state = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) { /* privát mód: csak erre a munkamenetre */ } }
+
+  // lépések és ellenőrzőlisták pipái
+  var doneBoxes = Array.prototype.slice.call(document.querySelectorAll('[data-done]'));
+  var checkBoxes = Array.prototype.slice.call(document.querySelectorAll('[data-check]'));
+  function render() {
+    var n = 0;
+    doneBoxes.forEach(function (b) {
+      var id = b.dataset.done, on = !!state[id];
+      b.checked = on;
+      if (on) n++;
+      document.getElementById(id).classList.toggle('is-done', on);
+      var a = document.querySelector('nav.toc a[data-step="' + id + '"]');
+      if (a) a.classList.toggle('done', on);
+    });
+    checkBoxes.forEach(function (b) { b.checked = !!state[b.dataset.check]; });
+    document.getElementById('fill').style.width = (n / doneBoxes.length * 100) + '%';
+    document.getElementById('ptext').textContent = n + ' / ' + doneBoxes.length;
+  }
+  doneBoxes.forEach(function (b) { b.addEventListener('change', function () { state[b.dataset.done] = b.checked; save(); render(); }); });
+  checkBoxes.forEach(function (b) { b.addEventListener('change', function () { state[b.dataset.check] = b.checked; save(); }); });
+  render();
+
+  // másolás gombok
+  Array.prototype.forEach.call(document.querySelectorAll('.code button'), function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.parentElement.querySelector('pre').textContent;
+      function ok() { btn.textContent = 'Másolva ✓'; setTimeout(function () { btn.textContent = 'Másolás'; }, 1500); }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(ok, function () { btn.textContent = 'Jelöld ki kézzel'; });
+      } else {
+        btn.textContent = 'Jelöld ki kézzel';
+      }
+    });
+  });
+
+  // témaváltó (közös az előadással)
+  var tb = document.getElementById('themeBtn');
+  function sync() { tb.textContent = document.documentElement.dataset.theme === 'light' ? '☾' : '☀'; }
+  tb.addEventListener('click', function () {
+    var t = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+    document.documentElement.dataset.theme = t;
+    try { localStorage.setItem('b1-theme', t); } catch (e) {}
+    sync();
+  });
+  sync();
+})();
+</script>
+</body>
+</html>
