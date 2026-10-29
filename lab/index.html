@@ -555,7 +555,7 @@ HEADED=1 .venv/bin/python -m unittest discover -s tests/e2e -v</pre><button type
     <tr><td>A <code>git clone</code> időtúllépéssel vagy tanúsítványhibával áll le</td><td>Céges proxy vagy tanúsítvány: szólj a levezetőnek. Ne kapcsold ki a tanúsítvány-ellenőrzést.</td></tr>
     <tr><td>Az ágens kódot akar írni a jóváhagyás előtt</td><td>Utasítsd el, és utalj a <code>CLAUDE.md</code> 2. pontjára</td></tr>
     <tr><td><code>pip install</code>-t akar futtatni</td><td>Utasítsd el: az alkalmazás csak standard libraryt használ, a teszteszközöket a <code>scripts/setup-e2e.sh</code> telepíti</td></tr>
-    <tr><td>A <code>setup-e2e.sh</code> szerint hiányzik a <code>python3-venv</code></td><td><code>sudo apt install -y python3-venv</code>, majd futtasd újra a szkriptet</td></tr>
+    <tr><td>A <code>setup-e2e.sh</code> nem tudja telepíteni a <code>python3-venv</code>-et</td><td>A szkript magától próbálja <code>sudo</code>-val. Ha mégsem sikerül (pl. az <code>apt</code> nem éri el a csomagforrást), szólj a levezetőnek</td></tr>
     <tr><td>A <code>setup-e2e.sh</code> a pip-nél vagy a Chromium letöltésénél akad el</td><td>Valószínűleg a céges proxy vagy tűzfal. Szólj a levezetőnek (proxy-beállítás vagy belső tükör kell)</td></tr>
     <tr><td>A böngészős teszt hibát ad: hiányzó könyvtár (<code>lib….so</code>)</td><td>A szkript 4. lépése (<code>install-deps</code>) nem futott le: futtasd újra a szkriptet, és add meg a <code>sudo</code> jelszót</td></tr>
     <tr><td>Foglalt a 8000-es port</td><td>Állítsd le a másik <code>python3 app.py</code>-t (Ctrl+C abban a terminálban)</td></tr>
