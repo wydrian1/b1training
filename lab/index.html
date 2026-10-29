@@ -227,7 +227,7 @@ claude</pre><button type="button">Másolás</button></div>
       <a class="slide" href="../#45">→ Dia: RBI AI-native SDLC</a>
     </div>
   </div>
-  <div class="see"><h3>✔ Mit kell látnod</h3><p>A <code>SPEC.md</code> első sorai között <code>Státusz: JÓVÁHAGYVA</code> áll.</p></div>
+  <div class="see"><h3>✔ Mit kell látnod</h3><p>A <code>SPEC.md</code> első sorai között <code>Státusz: JÓVÁHAGYVA</code> áll. Claude ezt legfeljebb nyugtázza, de <b>nem kezd bele magától</b> a tesztírásba: a következő lépést neked kell kérned.</p></div>
   <details class="help"><summary>🆘 Segítség: javíttatás és a státusz átírása</summary><div class="inner">
     <p>Javíttatás, például:</p>
     <div class="code"><span class="lbl">prompt</span><pre>Az értesítésekről szóló EK-ban legyen benne az is, hogy Nagy Péter és Tóth Gábor nem kap értesítést, amikor Horváth Anna köszönetet küld Farkas Júliának. Csak a SPEC.md-t módosítsd.</pre><button type="button">Másolás</button></div>
@@ -237,6 +237,8 @@ claude</pre><button type="button">Másolás</button></div>
     <div class="code"><span class="lbl">bash</span><pre>nano SPEC.md</pre><button type="button">Másolás</button></div>
     <p>Ellenőrzés:</p>
     <div class="code"><span class="lbl">Claude Code</span><pre>! head -3 SPEC.md</pre><button type="button">Másolás</button></div>
+    <p>Ha a jóváhagyás után Claude magától elkezdené a teszteket vagy a kódot, nyomj <b>Esc</b>-et, és:</p>
+    <div class="code"><span class="lbl">prompt</span><pre>Állj meg. Egyszerre csak egy fázist csinálj, és csak akkor, ha kifejezetten kérem (lásd a CLAUDE.md „Egyszerre egy fázis” részét). Most várj a következő utasításomra.</pre><button type="button">Másolás</button></div>
   </div></details>
   <div class="done-row"><label><input type="checkbox" data-done="s3"> Kész</label></div>
 </section>
@@ -261,7 +263,7 @@ claude</pre><button type="button">Másolás</button></div>
       <a class="slide" href="../#43">→ Dia: Egy fejlesztési feladat az ágens kezében</a>
     </div>
   </div>
-  <div class="see"><h3>✔ Mit kell látnod</h3><p>Létrejön a <code>tests/</code> mappa, és a futtatás eredménye sok <code>FAILED</code> vagy <code>ERROR</code>. Ez így van rendjén.</p></div>
+  <div class="see"><h3>✔ Mit kell látnod</h3><p>Létrejön a <code>tests/</code> mappa, és a futtatás eredménye sok <code>FAILED</code> vagy <code>ERROR</code>. Ez így van rendjén. Claude itt <b>megáll</b>, és nem kezd bele az építésbe, amíg nem kéred.</p></div>
   <details class="help"><summary>🆘 Segítség: pontos prompt</summary><div class="inner">
     <div class="code"><span class="lbl">prompt</span><pre>A SPEC.md jóvá van hagyva. Írd meg a teszteket az összes EK-hoz a tests/ mappába, implementáció nélkül. Minden teszt hivatkozzon az EK-azonosítójára. Futtasd le őket, és mutasd meg, hogy pirosak.</pre><button type="button">Másolás</button></div>
     <p>A tesztek kézi futtatása:</p>
@@ -296,7 +298,7 @@ claude</pre><button type="button">Másolás</button></div>
     </div>
   </div>
   <div class="warn"><b>Ne engedélyezd</b>, ha <code>pip install</code>-t, hálózati letöltést vagy a <code>data/</code>, <code>docs/</code> mappa módosítását kéri. Utasítsd el, és utalj a <code>CLAUDE.md</code>-re.</div>
-  <div class="see"><h3>✔ Mit kell látnod</h3><p>A tesztek végén <code>OK</code> áll, a böngészőben pedig működik az alkalmazás, „DEMO” belépési jelzéssel.</p></div>
+  <div class="see"><h3>✔ Mit kell látnod</h3><p>A tesztek végén <code>OK</code> áll, a böngészőben pedig működik az alkalmazás, „DEMO” belépési jelzéssel. Claude a zöld tesztek után <b>megáll</b>, a bizonyítékot külön kérned kell.</p></div>
   <details class="help"><summary>🆘 Segítség: pontos prompt és parancsok</summary><div class="inner">
     <div class="code"><span class="lbl">prompt</span><pre>Implementáld az alkalmazást a jóváhagyott SPEC.md szerint. Haladj EK-ról EK-ra, minden lépés után futtasd a teszteket, és addig dolgozz, amíg minden zöld nem lesz. Röviden írd ki, melyik EK-n dolgozol éppen.</pre><button type="button">Másolás</button></div>
     <p>Ha körbe-körbe javít: nyomj <b>Esc</b>-et, majd:</p>
