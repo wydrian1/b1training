@@ -174,7 +174,7 @@ claude</pre><button type="button">Másolás</button></div>
       <h3>▶ Mit csinálj</h3>
       <ul>
         <li>Kérd meg Claude-ot, hogy készítse el a specifikációt. A projektben van erre egy <b>skill</b>, a nevét a <code>README.md</code>-ben vagy a <code>CLAUDE.md</code>-ben találod.</li>
-        <li>Claude néhány <b>tisztázó kérdést</b> tesz fel, mindegyikhez javasolt alapértelmezéssel. Gondold át őket, és válaszolj. Ha a javaslat jó, elfogadhatod.</li>
+        <li>Claude néhány <b>tisztázó kérdést</b> tesz fel <b>választós formában</b>: a nyilakkal lépkedhetsz az opciók között, és Enterrel választhatsz. Az ajánlott válasz mindig az első. Ha egyik sem jó, az „Other” sorban saját választ is írhatsz.</li>
         <li>Ha kész a <code>SPEC.md</code>, Claude megáll. <b>Kódot még nem ír.</b></li>
       </ul>
     </div>
@@ -188,7 +188,10 @@ claude</pre><button type="button">Másolás</button></div>
   <div class="see"><h3>✔ Mit kell látnod</h3><p>Létrejön a <code>SPEC.md</code>, az elején <code>Státusz: TERVEZET</code> áll. Benne vannak a számozott üzleti szabályok (SZ-01…) és elfogadási kritériumok (EK-01…), valamint egy táblázat arról, melyik üzleti elvárást melyik EK fedi le.</p></div>
   <details class="help"><summary>🆘 Segítség: pontos prompt</summary><div class="inner">
     <div class="code"><span class="lbl">prompt</span><pre>/spec</pre><button type="button">Másolás</button></div>
-    <p>Ha nem tudod, mit válaszolj a kérdésekre, ez mindig elfogadható:</p>
+    <p>Ha nem tudod, mit válassz, az első, „(Ajánlott)” jelölésű opció mindig jó kiindulás.</p>
+    <p>Ha a kérdések mégis sima szövegként, számozott listában jelennek meg, kérd a választós formát:</p>
+    <div class="code"><span class="lbl">prompt</span><pre>Kérlek, a tisztázó kérdéseket az AskUserQuestion eszközzel tedd fel, választható opciókkal, az ajánlottal az első helyen.</pre><button type="button">Másolás</button></div>
+    <p>Vagy egyszerűen fogadd el a javaslatokat:</p>
     <div class="code"><span class="lbl">prompt</span><pre>Mindegyik kérdésnél a javasolt alapértelmezés jó, mehet.</pre><button type="button">Másolás</button></div>
   </div></details>
   <div class="done-row"><label><input type="checkbox" data-done="s2"> Kész</label></div>
