@@ -126,12 +126,14 @@ claude --version</pre><button type="button">Másolás</button></div>
 
 <!-- ======================================================= 1 -->
 <section class="step" id="s1">
-  <div class="step-head"><div class="step-no">1</div><div><h2>Ismerkedés a projekttel</h2><div class="meta">10 perc · terminál + Claude Code</div></div></div>
+  <div class="step-head"><div class="step-no">1</div><div><h2>Ismerkedés a projekttel</h2><div class="meta">15 perc · terminál + Claude Code</div></div></div>
   <div class="cols2">
     <div class="do">
       <h3>▶ Mit csinálj</h3>
       <ul>
-        <li>Klónozd a gyakorló repót (<a href="https://github.com/wydrian1/b1-demo-kudos"><code>wydrian1/b1-demo-kudos</code></a>), és indítsd el Claude Code-ot a mappájában.</li>
+        <li>Klónozd a gyakorló repót (<a href="https://github.com/wydrian1/b1-demo-kudos"><code>wydrian1/b1-demo-kudos</code></a>).</li>
+        <li>Futtasd le a projekt <b>telepítőszkriptjét</b> a böngészős tesztekhez (<code>scripts/</code> mappa). Pár percig tart, és kérheti a <code>sudo</code> jelszavadat. Amíg fut, nézz bele a fájlokba (lásd lent).</li>
+        <li>Ha a szkript a végén ✅-et ír, indítsd el Claude Code-ot a mappában.</li>
         <li>Kérdezd meg Claude-ot, <b>milyen szabályok szerint fog dolgozni</b> ebben a projektben.</li>
         <li>Közben nézz bele te is a fontos fájlokba:
           <ul>
@@ -147,6 +149,7 @@ claude --version</pre><button type="button">Másolás</button></div>
       <h3>💡 Miért</h3>
       <p>A <code>CLAUDE.md</code> egy <b>projekt-utasítás fájl</b>. A harness minden munkamenet elején betölti a kontextusba, ezért nem kell minden alkalommal újra elmondani a szabályokat. Ha Claude helyesen foglalja össze őket, az bizonyítja, hogy „látja” őket.</p>
       <p>Figyeld meg a szabályok között: kódot csak jóváhagyott spec alapján írhat, és a jóváhagyás <b>a te dolgod</b>.</p>
+      <p>A telepítőszkript a <b>böngészős (E2E) teszteket</b> készíti elő: egy valódi, láthatatlan Chromium végigkattintja az alkalmazást, ahogy te is tennéd. Ez az egyetlen külső függőség, és nem az ágens telepíti, hanem te.</p>
       <a class="slide" href="../#27">→ Dia: Mi van a kontextusban?</a>
     </div>
   </div>
@@ -154,7 +157,9 @@ claude --version</pre><button type="button">Másolás</button></div>
   <details class="help"><summary>🆘 Segítség: pontos parancsok és prompt</summary><div class="inner">
     <div class="code"><span class="lbl">bash</span><pre>git clone https://github.com/wydrian1/b1-demo-kudos.git kudos
 cd kudos
-claude</pre><button type="button">Másolás</button></div>
+bash scripts/setup-e2e.sh</pre><button type="button">Másolás</button></div>
+    <p>A végén ezt kell látnod: <code>✅ A böngészős tesztek futtathatók</code>. Utána:</p>
+    <div class="code"><span class="lbl">bash</span><pre>claude</pre><button type="button">Másolás</button></div>
     <div class="code"><span class="lbl">prompt</span><pre>Foglald össze 5 pontban, milyen szabályok szerint fogsz dolgozni ebben a projektben, és mi a teendőnk a munka elején.</pre><button type="button">Másolás</button></div>
   </div></details>
   <div class="done-row"><label><input type="checkbox" data-done="s1"> Kész</label></div>
@@ -304,7 +309,7 @@ claude</pre><button type="button">Másolás</button></div>
       <a class="slide" href="../#43">→ Dia: Egy fejlesztési feladat az ágens kezében</a>
     </div>
   </div>
-  <div class="see"><h3>✔ Mit kell látnod</h3><p>Először egy rövid bemutatót arról, miről szól az S1 story (felhasználói történet, mi készül el, EK-k, „Kész, ha…”). Utána egy feladatlistát az S1 EK-ival, előbb piros, aztán zöld tesztfuttatást, egy új <code>HALADAS.md</code>-t, és a végén egy rövid, kattintós ellenőrzést. A böngészőben az S1 „Kész, ha…” feltétele teljesül (pl. Horváth Anna be tud lépni, és köszönetet küld Farkas Júliának). Claude ezután <b>nem kezd bele</b> az S2-be.</p></div>
+  <div class="see"><h3>✔ Mit kell látnod</h3><p>Először egy rövid bemutatót arról, miről szól az S1 story (felhasználói történet, mi készül el, EK-k, „Kész, ha…”). Utána egy feladatlistát az S1 EK-ival, előbb piros, aztán zöld tesztfuttatást (unit és böngészős E2E teszt is), egy új <code>HALADAS.md</code>-t, és a végén egy rövid, kattintós ellenőrzést. A böngészőben az S1 „Kész, ha…” feltétele teljesül (pl. Horváth Anna be tud lépni, és köszönetet küld Farkas Júliának). Claude ezután <b>nem kezd bele</b> az S2-be.</p></div>
   <details class="help"><summary>🆘 Segítség: pontos prompt és parancsok</summary><div class="inner">
     <div class="code"><span class="lbl">prompt</span><pre>/build S1</pre><button type="button">Másolás</button></div>
     <p>Az alkalmazás indítása egy új terminálban:</p>
@@ -312,6 +317,9 @@ claude</pre><button type="button">Másolás</button></div>
 python3 app.py</pre><button type="button">Másolás</button></div>
     <p>Majd a böngészőben: <code>http://localhost:8000</code>. A tesztek kézi futtatása Claude Code-ban:</p>
     <div class="code"><span class="lbl">Claude Code</span><pre>! python3 -m unittest discover -s tests -v</pre><button type="button">Másolás</button></div>
+    <p>A böngészős teszt <b>látható ablakban</b>, lassítva (Windows 11-en a WSL külön ablakot nyit):</p>
+    <div class="code"><span class="lbl">bash · új terminálban</span><pre>cd kudos
+HEADED=1 .venv/bin/python -m unittest discover -s tests/e2e -v</pre><button type="button">Másolás</button></div>
   </div></details>
   <div class="done-row"><label><input type="checkbox" data-done="s4"> Kész</label></div>
 </section>
@@ -334,6 +342,7 @@ python3 app.py</pre><button type="button">Másolás</button></div>
         <li>Mikor kér <b>engedélyt</b>, és mire?</li>
         <li>Mit csinál, ha egy teszt <b>piros</b> marad? Hányadik próbálkozásra javítja?</li>
         <li>Lefuttatja-e a <b>korábbi storyk</b> tesztjeit is, hogy semmi ne romoljon el?</li>
+        <li>Mit csinál, ha a <b>böngészős teszt</b> bukik, de a unit tesztek zöldek? (Tipp: ilyenkor a felület és a logika között van eltérés.)</li>
         <li>Mennyire követi a felület a <code>docs/arculat-ui.md</code>-t? Ez is kontextus, ugyanúgy, mint a spec.</li>
       </ul>
     </div>
@@ -545,7 +554,10 @@ python3 app.py</pre><button type="button">Másolás</button></div>
     <tr><td><code>claude</code> nem éri el a modellt</td><td>Szólj a levezetőnek: gateway-beállítás vagy proxy</td></tr>
     <tr><td>A <code>git clone</code> időtúllépéssel vagy tanúsítványhibával áll le</td><td>Céges proxy vagy tanúsítvány: szólj a levezetőnek. Ne kapcsold ki a tanúsítvány-ellenőrzést.</td></tr>
     <tr><td>Az ágens kódot akar írni a jóváhagyás előtt</td><td>Utasítsd el, és utalj a <code>CLAUDE.md</code> 2. pontjára</td></tr>
-    <tr><td><code>pip install</code>-t akar futtatni</td><td>Utasítsd el: csak standard library használható</td></tr>
+    <tr><td><code>pip install</code>-t akar futtatni</td><td>Utasítsd el: az alkalmazás csak standard libraryt használ, a teszteszközöket a <code>scripts/setup-e2e.sh</code> telepíti</td></tr>
+    <tr><td>A <code>setup-e2e.sh</code> szerint hiányzik a <code>python3-venv</code></td><td><code>sudo apt install -y python3-venv</code>, majd futtasd újra a szkriptet</td></tr>
+    <tr><td>A <code>setup-e2e.sh</code> a pip-nél vagy a Chromium letöltésénél akad el</td><td>Valószínűleg a céges proxy vagy tűzfal. Szólj a levezetőnek (proxy-beállítás vagy belső tükör kell)</td></tr>
+    <tr><td>A böngészős teszt hibát ad: hiányzó könyvtár (<code>lib….so</code>)</td><td>A szkript 4. lépése (<code>install-deps</code>) nem futott le: futtasd újra a szkriptet, és add meg a <code>sudo</code> jelszót</td></tr>
     <tr><td>Foglalt a 8000-es port</td><td>Állítsd le a másik <code>python3 app.py</code>-t (Ctrl+C abban a terminálban)</td></tr>
     <tr><td>Körbe-körbe javít</td><td><b>Esc</b>, kérdezd meg, mit gondol a hibáról, és kérj egyetlen EK-ra szűkített javítást</td></tr>
     <tr><td>Elakadtál a spec-lépésnél</td><td>Kérj a levezetőtől tartalék <code>SPEC.md</code>-t, és hagyd jóvá te magad</td></tr>

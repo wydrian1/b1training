@@ -15,6 +15,8 @@ kontextus és `CLAUDE.md`, toolok, skillek, az agentic loop (olvas → szerkeszt
 - [ ] Minden gépen: WSL, `python3 --version` legalább 3.10, `git`, `claude --version`
 - [ ] Claude Code beállítva az RBI LLM gatewayre, a modell elérhető (pl. Sonnet 5.5). Próbaüzenet: `claude -p "szia"`
 - [ ] A repó klónozható a résztvevők gépéről (hozzáférés, proxy)
+- [ ] **`bash scripts/setup-e2e.sh` lefut minden gépen** (pip csomag, kb. 150 MB-os Chromium-letöltés, `sudo` a rendszerkönyvtárakhoz). Ha a proxy vagy a tűzfal megfogja, előre kell megoldani (proxy-beállítás vagy belső tükör), mert a workshopon ez viszi el a legtöbb időt. A végén ✅-et kell kiírnia.
+- [ ] Windows 11 + WSLg esetén a `HEADED=1` mód külön ablakot nyit: érdemes egyszer kipróbálni, jó demóeszköz a kivetítőn
 - [ ] Levezetőként egy teljes próbafutás előre, időméréssel
 - [ ] Tartalék: egy előre elkészült, jóváhagyott `SPEC.md` (ha valaki elakad a spec-lépésnél, attól folytathatja)
 
@@ -22,7 +24,7 @@ kontextus és `CLAUDE.md`, toolok, skillek, az agentic loop (olvas → szerkeszt
 
 | Idő | Lépés | Résztvevő teendője | Mire mutass rá |
 |---|---|---|---|
-| 0:00 | **Indulás** | `git clone`, `cd`, `claude` | A harness betölti a `CLAUDE.md`-t: ez a „projekt-utasítás” a kontextusban |
+| 0:00 | **Indulás** | `git clone`, `cd`, `bash scripts/setup-e2e.sh`, `claude` | A harness betölti a `CLAUDE.md`-t: ez a „projekt-utasítás” a kontextusban |
 | 0:15 | **Az üzleti igény megértése** | Claude-dal összefoglaltatja a `docs/uzleti-leiras.md`-t, végigvezettet egy példát, rákérdez a hiányokra | Claude mint elemzőtárs. Első tool-használat: maga olvassa a fájlokat. A jóváhagyóknak érteniük kell, mit hagynak jóvá |
 | 0:30 | **Specifikáció** | `/spec`, válasz a kérdésekre | Skill működés közben: az ágens kérdez, nem találgat |
 | 0:55 | **🟡 1. kapu** | `SPEC.md` átnézése, javíttatás, majd **saját kézzel** `Státusz: JÓVÁHAGYVA` | Az ember dönt, az ágens nem hagyhatja jóvá saját magát |
