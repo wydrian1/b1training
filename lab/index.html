@@ -52,12 +52,12 @@
 <main>
 
 <div class="hero" id="mit-epitunk">
-  <div class="kicker">Lab guide · kb. 3 óra</div>
+  <div class="kicker">Lab guide · kb. 3 óra 15 perc</div>
   <h1>Köszönőfal: spec-driven fejlesztés <span class="hl">Claude Code-dal</span></h1>
   <p class="lead">Egy kis belső alkalmazást építesz a saját gépeden, ahol a munkatársak köszönetet küldhetnek egymásnak, a vezetők pedig látják a csapatukhoz tartozó köszöneteket. A kódot Claude Code írja. <b>A te dolgod a döntés:</b> mit építünk, és elfogadod-e, amit kaptál.</p>
 
   <div class="grid">
-    <div class="card y"><h3>Mit építünk?</h3><p>Köszönet küldése ellenőrző lépéssel, kapott és küldött lista kereséssel, értesítés a címzettnek és a vezetőinek, vezetői nézet a saját szervezeti körre.</p></div>
+    <div class="card y"><h3>Mit építünk?</h3><p>Köszönet küldése kategóriával és privát vagy nyilvános láthatósággal, közös fal 👏 reakciókkal, kereshető saját listák, értesítések, vezetői nézet statisztikával. Mindez igényes, Raiffeisen-színekkel készült felületen.</p></div>
     <div class="card v"><h3>Miért így?</h3><p>Hogy élőben lásd, amiről délelőtt szó volt: a <code>CLAUDE.md</code>-t, a skilleket, az agentic loopot és az RBI SDLC két emberi kapuját.</p></div>
     <div class="card a"><h3>Mi nem cél?</h3><p>Nem kell befejezned, és nem kell hibátlannak lennie. Az a cél, hogy megtapasztald a folyamatot, és lásd, hol kell az ember.</p></div>
   </div>
@@ -86,9 +86,9 @@
     <tr><td>0:45</td><td>3. 1. kapu</td><td>10 perc</td></tr>
     <tr><td>0:55</td><td>4. Tesztek előbb</td><td>20 perc</td></tr>
     <tr><td>1:15</td><td>☕ Szünet</td><td>10 perc</td></tr>
-    <tr><td>1:25</td><td>5. Építés</td><td>60 perc</td></tr>
-    <tr><td>2:25</td><td>6–7. Bizonyíték és 2. kapu</td><td>20 perc</td></tr>
-    <tr><td>2:45</td><td>8. Visszatekintés</td><td>15 perc</td></tr>
+    <tr><td>1:25</td><td>5. Építés</td><td>75 perc</td></tr>
+    <tr><td>2:40</td><td>6–7. Bizonyíték és 2. kapu</td><td>20 perc</td></tr>
+    <tr><td>3:00</td><td>8. Visszatekintés</td><td>15 perc</td></tr>
     <tr><td>–</td><td>+ Opcionális feladatok (aki hamarabb végez)</td><td>tetszés szerint</td></tr>
   </table>
   <p class="meta">Tipp: a lépéseket a jobb alsó „Kész” jelölővel pipálhatod ki. A böngésződ megjegyzi, hol tartasz.</p>
@@ -143,6 +143,7 @@ git config --global user.email "te.neved@raiffeisen.hu"</pre><button type="butto
         <li>Közben nézz bele te is a fontos fájlokba:
           <ul>
             <li><code>docs/uzleti-leiras.md</code>: az üzleti igény, ebből indulunk</li>
+            <li><code>docs/arculat-ui.md</code>: hogyan nézzen ki a felület (színek, kártyák, varázsló)</li>
             <li><code>CLAUDE.md</code>: szabályok az ágensnek</li>
             <li><code>data/munkatarsak.json</code>: 16 kitalált munkatárs, ez helyettesíti az AD-t</li>
           </ul>
@@ -212,7 +213,9 @@ claude</pre><button type="button">Másolás</button></div>
         <li><input type="checkbox" id="c3a" data-check="c3a"><label for="c3a">A „Kimarad” rész felsorolja, ami nincs benne (AD, e-mail, képfeltöltés, statisztika…).</label></li>
         <li><input type="checkbox" id="c3b" data-check="c3b"><label for="c3b">A B-1 vezető definíciója egyértelmű (a címzett vezetőjének a vezetője).</label></li>
         <li><input type="checkbox" id="c3c" data-check="c3c"><label for="c3c">Az EK-k konkrétak, valódi nevekkel a JSON-ból (pl. Horváth Anna → Farkas Júlia).</label></li>
-        <li><input type="checkbox" id="c3d" data-check="c3d"><label for="c3d">Vannak negatív esetek is: önmagának küldés, üres üzenet, illetéktelen vezetői hozzáférés.</label></li>
+        <li><input type="checkbox" id="c3d" data-check="c3d"><label for="c3d">Vannak negatív esetek is: önmagának küldés, üres üzenet, kategória nélküli küldés, napi 3-as korlát, illetéktelen vezetői hozzáférés, privát köszönetre tapsolás.</label></li>
+        <li><input type="checkbox" id="c3f" data-check="c3f"><label for="c3f">A privát / nyilvános láthatóság szabályai egyértelműek: ki mit lát a falon és a vezetői nézetben.</label></li>
+        <li><input type="checkbox" id="c3g" data-check="c3g"><label for="c3g">A nem funkcionális rész hivatkozik a <code>docs/arculat-ui.md</code>-re, és a fontosabb UI-elvárásokhoz (varázsló, hibaüzenet a mező alatt, üres állapot) is van EK.</label></li>
         <li><input type="checkbox" id="c3e" data-check="c3e"><label for="c3e">A „Nyitott kérdések” rész üres, vagy minden ponthoz van döntés.</label></li>
       </ul>
       <ul>
@@ -274,7 +277,7 @@ claude</pre><button type="button">Másolás</button></div>
 
 <!-- ======================================================= 5 -->
 <section class="step" id="s5">
-  <div class="step-head"><div class="step-no">5</div><div><h2>Építés</h2><div class="meta">60 perc · Claude Code dolgozik, te figyelsz</div></div></div>
+  <div class="step-head"><div class="step-no">5</div><div><h2>Építés</h2><div class="meta">75 perc · Claude Code dolgozik, te figyelsz</div></div></div>
   <div class="cols2">
     <div class="do">
       <h3>▶ Mit csinálj</h3>
@@ -288,6 +291,7 @@ claude</pre><button type="button">Másolás</button></div>
         <li>Mikor kér <b>engedélyt</b>, és mire?</li>
         <li>Mit csinál, ha egy teszt <b>piros</b> marad? Hányadik próbálkozásra javítja?</li>
         <li>Eltér-e valahol a spectől? Ha igen, szólj rá.</li>
+        <li>Mennyire követi a felület a <code>docs/arculat-ui.md</code>-t? Ez is kontextus, ugyanúgy, mint a spec.</li>
       </ul>
     </div>
     <div class="why">
@@ -344,22 +348,24 @@ python3 app.py</pre><button type="button">Másolás</button></div>
       <h3>▶ Mit csinálj</h3>
       <p>Az alkalmazás fut. Kattints végig:</p>
       <ul class="checks">
-        <li><input type="checkbox" id="c7a" data-check="c7a"><label for="c7a">Lépj be <b>Horváth Annaként</b>, és küldj köszönetet <b>Farkas Júliának</b> egy emojis üzenettel, a keresőt használva. Figyeld meg az ellenőrző nézetet és a visszaigazolást.</label></li>
-        <li><input type="checkbox" id="c7b" data-check="c7b"><label for="c7b">Annaként próbálj meg <b>saját magadnak</b>, majd <b>üres üzenetet</b> küldeni. Egyik sem mehet át.</label></li>
-        <li><input type="checkbox" id="c7c" data-check="c7c"><label for="c7c">Anna „Küldött” listájában ott az üzenet.</label></li>
-        <li><input type="checkbox" id="c7d" data-check="c7d"><label for="c7d"><b>Farkas Júliaként</b>: van értesítés, és a „Kapott” listában ott az üzenet.</label></li>
-        <li><input type="checkbox" id="c7e" data-check="c7e"><label for="c7e"><b>Szabó Katalinként</b> (Júlia vezetője): van értesítés, és a vezetői nézetben látja az üzenetet.</label></li>
-        <li><input type="checkbox" id="c7f" data-check="c7f"><label for="c7f"><b>Kovács Eszterként</b> (B-1): van értesítés, és a vezetői nézetben látja az üzenetet.</label></li>
-        <li><input type="checkbox" id="c7g" data-check="c7g"><label for="c7g"><b>Nagy Péterként</b> (Anna vezetője): <b>nincs</b> értesítés, de a vezetői nézetben <b>látja</b> az üzenetet, mert a küldő az ő beosztottja.</label></li>
-        <li><input type="checkbox" id="c7h" data-check="c7h"><label for="c7h"><b>Tóth Gáborként</b>: se értesítés, se üzenet a vezetői nézetben.</label></li>
-        <li><input type="checkbox" id="c7i" data-check="c7i"><label for="c7i"><b>Varga Benceként</b> (nem vezető): a vezetői nézet nem érhető el.</label></li>
+        <li><input type="checkbox" id="c7a" data-check="c7a"><label for="c7a">Lépj be <b>Horváth Annaként</b>, és küldj <b>Farkas Júliának</b> egy <b>privát</b> köszönetet 🚀 Gyors segítség kategóriában, a keresőt használva. Figyeld meg a 3 lépéses varázslót, az ellenőrző lépést és a toastot.</label></li>
+        <li><input type="checkbox" id="c7b" data-check="c7b"><label for="c7b">Küldj Annaként egy <b>nyilvános</b> köszönetet <b>Juhász Nórának</b> 🤝 Együttműködés kategóriában.</label></li>
+        <li><input type="checkbox" id="c7c" data-check="c7c"><label for="c7c">Annaként próbálj meg saját magadnak, üres üzenettel, kategória nélkül, illetve Júliának ma egy 4. köszönetet küldeni. Egyik sem mehet át, a hiba a mező alatt jelenik meg.</label></li>
+        <li><input type="checkbox" id="c7d" data-check="c7d"><label for="c7d">Anna „Küldött” listájában ott mindkét üzenet, kategória-chippel és láthatóság-ikonnal.</label></li>
+        <li><input type="checkbox" id="c7e" data-check="c7e"><label for="c7e"><b>Varga Benceként</b>: a falon ott a nyilvános (Nórának szóló) köszönet, a privát nincs. Tapsolj 👏, majd kattints újra: a taps visszavonódik. A vezetői nézet nem érhető el.</label></li>
+        <li><input type="checkbox" id="c7f" data-check="c7f"><label for="c7f"><b>Farkas Júliaként</b>: van értesítés, és a „Kapott” listában ott a privát üzenet.</label></li>
+        <li><input type="checkbox" id="c7g" data-check="c7g"><label for="c7g"><b>Szabó Katalinként</b> (Júlia vezetője): van értesítés, a vezetői nézetben látja a privát üzenetet, és a statisztikában is megjelenik.</label></li>
+        <li><input type="checkbox" id="c7h" data-check="c7h"><label for="c7h"><b>Kovács Eszterként</b> (B-1): mindkét köszönetről van értesítés, a vezetői nézetben mindkettő látszik, és a statisztika a teljes körre számol.</label></li>
+        <li><input type="checkbox" id="c7i" data-check="c7i"><label for="c7i"><b>Nagy Péterként</b> (Anna vezetője): <b>nincs</b> értesítés, de a vezetői nézetben <b>látja</b> mindkét üzenetet, mert a küldő az ő beosztottja.</label></li>
+        <li><input type="checkbox" id="c7j" data-check="c7j"><label for="c7j"><b>Tóth Gáborként</b> (Nóra vezetője): Nóra köszönetéről kap értesítést, és azt látja. Júliáét <b>nem</b> látja, és a statisztikájában sem szerepel.</label></li>
+        <li><input type="checkbox" id="c7k" data-check="c7k"><label for="c7k">Nézd meg a felületet keskeny ablakban (vagy telefonon) is: kártyák egy oszlopban, a menü alul.</label></li>
       </ul>
       <p>Döntés: <b>elfogadod</b>, vagy <b>visszadobod</b> egy konkrét hibával, és kéred a javítást.</p>
     </div>
     <div class="why">
       <h3>💡 Miért</h3>
       <p>Ez az <b>RBI SDLC második kapuja</b>: élesítés előtt az ember a bizonyítékot validálja. A tesztek a szabályokat ellenőrzik, a kattintás azt, hogy valóban azt építettük-e, amit kértünk.</p>
-      <p>A Nagy Péter- és a Tóth Gábor-lépés a legérdekesebb: itt derül ki, hogy a jogosultsági logika tényleg a spec szerint működik-e. Ez az a fajta hiba, ami élesben adatvédelmi incidens lenne.</p>
+      <p>A Nagy Péter- és a Tóth Gábor-lépés a legérdekesebb: itt derül ki, hogy a jogosultsági logika, és vele a statisztika, tényleg a spec szerint működik-e. Ez az a fajta hiba, ami élesben adatvédelmi incidens lenne.</p>
       <a class="slide" href="../#40">→ Dia: Biztonság és jogosultság</a>
     </div>
   </div>
@@ -396,13 +402,13 @@ python3 app.py</pre><button type="button">Másolás</button></div>
 
   <div class="plus-grid">
     <div class="plus">
-      <h3>+1 Statisztika a vezetői nézetben <span class="tag">változáskérés</span></h3>
-      <p>A vezetői nézet tetején jelenjen meg, hány köszönetet küldtek és kaptak a vezető körébe tartozók az elmúlt 30 napban. Kérd a specen keresztül, hagyd jóvá, majd építtesd meg.</p>
-      <p class="why-s"><b>Miért:</b> a változás is a specen és a kapun megy át. Figyeld meg, hogyan nő a spec verziója, és hogyan kerül be a változásnaplóba.</p>
+      <h3>+1 Visszavonás 5 percen belül <span class="tag">változáskérés</span></h3>
+      <p>A küldő 5 percen belül visszavonhassa a köszönetét. Ilyenkor a köszönet és a hozzá tartozó értesítések is eltűnnek. Kérd a specen keresztül, hagyd jóvá, majd építtesd meg.</p>
+      <p class="why-s"><b>Miért:</b> a változás is a specen és a kapun megy át. Figyeld meg, hogyan nő a spec verziója, és hogy egy időfüggő szabályt hogyan lehet tesztelni.</p>
       <details class="help"><summary>🆘 Segítség</summary><div class="inner">
-        <div class="code"><span class="lbl">prompt</span><pre>/spec Változáskérés: a vezetői nézet tetején jelenjen meg, hány köszönetet küldtek és kaptak a vezető körébe tartozók az elmúlt 30 napban.</pre><button type="button">Másolás</button></div>
+        <div class="code"><span class="lbl">prompt</span><pre>/spec Változáskérés: a küldő a küldéstől számított 5 percen belül visszavonhassa a köszönetét. Visszavonáskor a köszönet és a hozzá tartozó értesítések is tűnjenek el. 5 perc után a visszavonás gomb ne jelenjen meg.</pre><button type="button">Másolás</button></div>
         <p>Jóváhagyás után (státusz → <code>JÓVÁHAGYVA</code>):</p>
-        <div class="code"><span class="lbl">prompt</span><pre>A SPEC.md új verziója jóvá van hagyva. Írd meg az új és módosult EK-k tesztjeit, implementáld őket, futtasd az összes tesztet, majd /verify.</pre><button type="button">Másolás</button></div>
+        <div class="code"><span class="lbl">prompt</span><pre>A SPEC.md új verziója jóvá van hagyva. Írd meg az új és módosult EK-k tesztjeit, implementáld őket, és futtasd az összes tesztet. Utána állj meg.</pre><button type="button">Másolás</button></div>
       </div></details>
     </div>
 
