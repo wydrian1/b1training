@@ -573,7 +573,7 @@
       <tr><td>Eszközök</td><td class="muted">Mennyire megbízható a tool-használata?</td></tr>
     </table>
     <div style="display:flex;flex-direction:column;gap:14px">
-      <div class="callout t frag"><b>Nálunk:</b> a modelleket az <b>RBI által hostolt LLM gatewayen</b> keresztül érjük el. Hogy mely modellek engedélyezettek, az központi döntés. Hogy egy feladathoz melyiket használjuk, az a felhasználóé vagy a csapaté.</div>
+      <div class="callout t frag"><b>Nálunk:</b> a legtöbb eszköz az <b>RBI által hostolt LLM gatewayen</b> keresztül éri el a modelleket. Hogy mely modellek engedélyezettek, az központi döntés. Hogy egy feladathoz melyiket használjuk, az a felhasználóé vagy a csapaté.</div>
       <div class="callout frag">Ökölszabály: kezdjünk a jó minőségű közepes modellel. Ha nem elég jó, lépjünk feljebb. Ha drága és tömeges, mérjünk, és próbáljuk lejjebb.</div>
     </div>
   </div>
@@ -635,7 +635,7 @@
   <div class="body mid">
     <div class="ladder">
       <div class="step frag"><div class="lv">0</div><div class="nm">Chat</div><div class="ds">Kérdez–felel. Az ember mindent maga hajt végre.</div><div class="hu">RBI YellowGPT</div></div>
-      <div class="step frag"><div class="lv">1</div><div class="nm">Asszisztens</div><div class="ds">Dokumentumokkal, alkalmazásokba építve javasol. Az ember dönt és kattint.</div><div class="hu">O365 Copilot · YellowGPT bővülő funkciói</div></div>
+      <div class="step frag"><div class="lv">1</div><div class="nm">Asszisztens</div><div class="ds">Dokumentumokkal, alkalmazásokba építve javasol. Az ember dönt és kattint.</div><div class="hu">O365 Copilot · GitHub Copilot · YellowGPT bővülő funkciói</div></div>
       <div class="step frag"><div class="lv">2</div><div class="nm">Felügyelt ágens</div><div class="ds">Maga olvas, ír, futtat, de a kockázatos lépéseknél engedélyt kér.</div><div class="hu">Claude Code · opencode · Codex (WSL)</div></div>
       <div class="step frag"><div class="lv">3</div><div class="nm">Ágens jóváhagyási pontokkal</div><div class="ds">Előre engedélyezett körben önállóan dolgozik, a végén ember ellenőriz.</div><div class="hu">rAIhub · Claude Desktop (hamarosan)</div></div>
       <div class="step frag"><div class="lv">4</div><div class="nm">Autonóm háttér-ágens</div><div class="ds">Feladatot kap (pl. ticketből), és PR-t vagy riportot ad le. Az ember csak az eredményt nézi.</div><div class="hu dim">még nem nálunk</div></div>
@@ -828,64 +828,94 @@
   <div class="kicker">05 · Harness · nálunk</div>
   <h2>Hogyan néz ki ez a Raiffeisennél?</h2>
   <div class="body">
-    <svg viewBox="0 0 1150 450" style="width:100%;height:100%">
+    <svg viewBox="0 0 1150 506" style="width:100%;height:100%">
       <defs><marker id="ar6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="#9fb1d4"/></marker></defs>
-      <text x="85" y="18" text-anchor="middle" fill="#9fb1d4" font-size="13" letter-spacing="2">FELHASZNÁLÓ</text>
-      <text x="440" y="18" text-anchor="middle" fill="#9fb1d4" font-size="13" letter-spacing="2">HARNESS (ALKALMAZÁS)</text>
-      <text x="810" y="18" text-anchor="middle" fill="#9fb1d4" font-size="13" letter-spacing="2">VÁLLALATI HOZZÁFÉRÉS</text>
-      <text x="1060" y="18" text-anchor="middle" fill="#9fb1d4" font-size="13" letter-spacing="2">MODELLEK</text>
-      <rect x="10" y="170" width="150" height="90" rx="12" fill="#131c30" stroke="#63b3ed" stroke-width="2"/>
-      <text x="85" y="210" text-anchor="middle" fill="#e9effc" font-size="18" font-weight="700">Munkatárs</text>
-      <text x="85" y="234" text-anchor="middle" fill="#9fb1d4" font-size="14">üzlet · IT · fejlesztő</text>
+      <g font-size="13" fill="#9fb1d4" letter-spacing="2" text-anchor="middle">
+        <text x="80" y="18">FELHASZNÁLÓ</text><text x="450" y="18">ESZKÖZ (HARNESS)</text><text x="845" y="18">VÁLLALATI HOZZÁFÉRÉS</text><text x="1060" y="18">MODELLEK</text>
+      </g>
+      <rect x="10" y="222" width="140" height="90" rx="12" fill="#131c30" stroke="#63b3ed" stroke-width="2"/>
+      <text x="80" y="262" text-anchor="middle" fill="#e9effc" font-size="18" font-weight="700">Munkatárs</text>
+      <text x="80" y="286" text-anchor="middle" fill="#9fb1d4" font-size="14">üzlet · IT</text>
       <g stroke="#2c3d63" stroke-width="2" fill="none">
-        <path d="M160,215 C200,215 200,63 240,63"/><path d="M160,215 C200,215 200,141 240,141"/><path d="M160,215 C200,215 200,219 240,219"/><path d="M160,215 C200,215 200,297 240,297"/><path d="M160,215 C200,215 200,385 240,385"/>
+        <path d="M150,267 C175,267 175,63 200,63"/><path d="M150,267 C175,267 175,127 200,127"/><path d="M150,267 C175,267 175,191 200,191"/><path d="M150,267 C175,267 175,255 200,255"/>
+        <path d="M150,267 C175,267 175,343 200,343"/><path d="M150,267 C175,267 175,407 200,407"/><path d="M150,267 C175,267 175,471 200,471"/>
+      </g>
+
+      <!-- LLM gatewayen át -->
+      <g class="frag">
+        <rect x="200" y="36" width="500" height="54" rx="10" fill="#131c30" stroke="#f6d155" stroke-width="2"/>
+        <text x="216" y="59" fill="#e9effc" font-size="17" font-weight="700">RBI YellowGPT</text>
+        <text x="216" y="79" fill="#9fb1d4" font-size="13">webes chat-harness, egyre több funkcióval</text>
+        <rect x="580" y="51" width="108" height="22" rx="11" fill="rgba(99,179,237,.18)"/><text x="634" y="67" text-anchor="middle" fill="#63b3ed" font-size="12" font-weight="700">üzlet is</text>
+        <line x1="700" y1="63" x2="756" y2="92" stroke="#9fb1d4" stroke-width="2" marker-end="url(#ar6)"/>
       </g>
       <g class="frag">
-        <rect x="240" y="30" width="400" height="66" rx="12" fill="#131c30" stroke="#f6d155" stroke-width="2"/>
-        <text x="258" y="57" fill="#e9effc" font-size="19" font-weight="700">RBI YellowGPT</text>
-        <text x="258" y="80" fill="#9fb1d4" font-size="14">webes chat-harness, egyre több funkcióval</text>
-        <line x1="640" y1="63" x2="716" y2="125" stroke="#9fb1d4" stroke-width="2" marker-end="url(#ar6)"/>
+        <rect x="200" y="100" width="500" height="54" rx="10" fill="#131c30" stroke="#4fd1c5" stroke-width="2"/>
+        <text x="216" y="123" fill="#e9effc" font-size="17" font-weight="700">Claude Code · opencode · Codex</text>
+        <text x="216" y="143" fill="#9fb1d4" font-size="13">coding agentek a saját gépen, WSL-ben</text>
+        <rect x="552" y="115" width="136" height="22" rx="11" fill="rgba(246,173,85,.2)"/><text x="620" y="131" text-anchor="middle" fill="#f6ad55" font-size="12" font-weight="700">kiválasztott IT</text>
+        <line x1="700" y1="127" x2="756" y2="138" stroke="#9fb1d4" stroke-width="2" marker-end="url(#ar6)"/>
       </g>
       <g class="frag">
-        <rect x="240" y="108" width="400" height="66" rx="12" fill="#131c30" stroke="#4fd1c5" stroke-width="2"/>
-        <text x="258" y="135" fill="#e9effc" font-size="19" font-weight="700">Claude Code · opencode · Codex</text>
-        <text x="258" y="158" fill="#9fb1d4" font-size="14">coding agentek a saját gépen, WSL-ben</text>
-        <line x1="640" y1="141" x2="716" y2="170" stroke="#9fb1d4" stroke-width="2" marker-end="url(#ar6)"/>
+        <rect x="200" y="164" width="500" height="54" rx="10" fill="rgba(79,209,197,.08)" stroke="#4fd1c5" stroke-width="3"/>
+        <text x="216" y="187" fill="#e9effc" font-size="17" font-weight="700">rAIhub <tspan fill="#4fd1c5" font-size="13">saját fejlesztés</tspan></text>
+        <text x="216" y="207" fill="#9fb1d4" font-size="13">agentic platform OKD-n · webes, perzisztens</text>
+        <rect x="580" y="179" width="108" height="22" rx="11" fill="rgba(99,179,237,.18)"/><text x="634" y="195" text-anchor="middle" fill="#63b3ed" font-size="12" font-weight="700">üzlet is</text>
+        <line x1="700" y1="191" x2="756" y2="184" stroke="#9fb1d4" stroke-width="2" marker-end="url(#ar6)"/>
       </g>
       <g class="frag">
-        <rect x="240" y="186" width="400" height="66" rx="12" fill="rgba(79,209,197,.08)" stroke="#4fd1c5" stroke-width="3"/>
-        <text x="258" y="213" fill="#e9effc" font-size="19" font-weight="700">rAIhub <tspan fill="#4fd1c5" font-size="14">saját fejlesztés</tspan></text>
-        <text x="258" y="236" fill="#9fb1d4" font-size="14">agentic platform OKD-n · webes, perzisztens</text>
-        <line x1="640" y1="219" x2="716" y2="215" stroke="#9fb1d4" stroke-width="2" marker-end="url(#ar6)"/>
+        <rect x="200" y="228" width="500" height="54" rx="10" fill="#131c30" stroke="#4fd1c5" stroke-width="2" stroke-dasharray="7 5"/>
+        <text x="216" y="251" fill="#e9effc" font-size="17" font-weight="700">Claude Desktop <tspan fill="#f6ad55" font-size="13">hamarosan</tspan></text>
+        <text x="216" y="271" fill="#9fb1d4" font-size="13">asztali alkalmazás: chat + ágens-képességek</text>
+        <rect x="580" y="243" width="108" height="22" rx="11" fill="rgba(99,179,237,.18)"/><text x="634" y="259" text-anchor="middle" fill="#63b3ed" font-size="12" font-weight="700">üzlet is</text>
+        <line x1="700" y1="255" x2="756" y2="228" stroke="#9fb1d4" stroke-width="2" marker-end="url(#ar6)"/>
       </g>
-      <g class="frag">
-        <rect x="240" y="264" width="400" height="66" rx="12" fill="#131c30" stroke="#4fd1c5" stroke-width="2" stroke-dasharray="7 5"/>
-        <text x="258" y="291" fill="#e9effc" font-size="19" font-weight="700">Claude Desktop <tspan fill="#f6ad55" font-size="14">hamarosan</tspan></text>
-        <text x="258" y="314" fill="#9fb1d4" font-size="14">asztali alkalmazás: chat + ágens-képességek</text>
-        <line x1="640" y1="297" x2="716" y2="260" stroke="#9fb1d4" stroke-width="2" marker-end="url(#ar6)"/>
-      </g>
-      <rect x="720" y="100" width="180" height="200" rx="14" fill="rgba(79,209,197,.12)" stroke="#4fd1c5" stroke-width="3"/>
-      <text x="810" y="135" text-anchor="middle" fill="#e9effc" font-size="20" font-weight="800">RBI LLM</text>
-      <text x="810" y="160" text-anchor="middle" fill="#e9effc" font-size="20" font-weight="800">Gateway</text>
+      <rect x="760" y="50" width="170" height="220" rx="14" fill="rgba(79,209,197,.12)" stroke="#4fd1c5" stroke-width="3"/>
+      <text x="845" y="92" text-anchor="middle" fill="#e9effc" font-size="20" font-weight="800">RBI LLM</text>
+      <text x="845" y="117" text-anchor="middle" fill="#e9effc" font-size="20" font-weight="800">Gateway</text>
       <g font-size="14" fill="#9fb1d4" text-anchor="middle">
-        <text x="810" y="194">security</text><text x="810" y="218">budget control</text><text x="810" y="242">naplózás, audit</text><text x="810" y="266">modell-hozzáférés</text>
+        <text x="845" y="152">security</text><text x="845" y="176">budget control</text><text x="845" y="200">naplózás, audit</text><text x="845" y="224">modell-hozzáférés</text>
       </g>
-      <line x1="900" y1="200" x2="976" y2="200" stroke="#9fb1d4" stroke-width="2.5" marker-end="url(#ar6)"/>
-      <rect x="980" y="120" width="160" height="160" rx="14" fill="rgba(167,139,250,.14)" stroke="#a78bfa" stroke-width="2.5"/>
-      <text x="1060" y="180" text-anchor="middle" fill="#e9effc" font-size="19" font-weight="700">LLM-ek</text>
-      <text x="1060" y="208" text-anchor="middle" fill="#9fb1d4" font-size="14">több szolgáltató,</text>
-      <text x="1060" y="228" text-anchor="middle" fill="#9fb1d4" font-size="14">több méret</text>
+      <line x1="930" y1="160" x2="976" y2="160" stroke="#9fb1d4" stroke-width="2.5" marker-end="url(#ar6)"/>
+      <rect x="980" y="90" width="160" height="140" rx="14" fill="rgba(167,139,250,.14)" stroke="#a78bfa" stroke-width="2.5"/>
+      <text x="1060" y="150" text-anchor="middle" fill="#e9effc" font-size="19" font-weight="700">LLM-ek</text>
+      <text x="1060" y="176" text-anchor="middle" fill="#9fb1d4" font-size="14">több szolgáltató,</text>
+      <text x="1060" y="196" text-anchor="middle" fill="#9fb1d4" font-size="14">több méret</text>
+
+      <!-- nem az LLM gatewayen át -->
+      <line x1="200" y1="299" x2="1140" y2="299" stroke="#2c3d63" stroke-width="2" stroke-dasharray="4 6"/>
+      <rect x="830" y="289" width="240" height="20" fill="#0b1220"/>
+      <text x="950" y="304" text-anchor="middle" fill="#f87171" font-size="13" font-weight="700" letter-spacing="1">NEM AZ LLM GATEWAYEN ÁT</text>
       <g class="frag">
-        <rect x="240" y="352" width="400" height="66" rx="12" fill="#131c30" stroke="#6f82a8" stroke-width="2"/>
-        <text x="258" y="379" fill="#e9effc" font-size="19" font-weight="700">O365 Copilot „extra”</text>
-        <text x="258" y="402" fill="#9fb1d4" font-size="14">kiválasztott userek · kevés licensz, nem bővül</text>
-        <line x1="640" y1="385" x2="716" y2="385" stroke="#6f82a8" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#ar6)"/>
-        <rect x="720" y="353" width="420" height="64" rx="12" fill="none" stroke="#6f82a8" stroke-width="2" stroke-dasharray="6 5"/>
-        <text x="930" y="391" text-anchor="middle" fill="#9fb1d4" font-size="15">Microsoft 365 saját útvonala</text>
+        <rect x="200" y="316" width="500" height="54" rx="10" fill="#131c30" stroke="#6f82a8" stroke-width="2"/>
+        <text x="216" y="339" fill="#e9effc" font-size="17" font-weight="700">GitHub Copilot</text>
+        <text x="216" y="359" fill="#9fb1d4" font-size="13">kódkiegészítés, chat, agent mód az IDE-ben</text>
+        <rect x="552" y="331" width="136" height="22" rx="11" fill="rgba(246,173,85,.2)"/><text x="620" y="347" text-anchor="middle" fill="#f6ad55" font-size="12" font-weight="700">kiválasztott IT</text>
+        <line x1="700" y1="343" x2="756" y2="343" stroke="#6f82a8" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#ar6)"/>
+        <rect x="760" y="316" width="380" height="54" rx="10" fill="none" stroke="#6f82a8" stroke-width="2" stroke-dasharray="6 5"/>
+        <text x="950" y="348" text-anchor="middle" fill="#9fb1d4" font-size="15">GitHub API (a GitHub saját útvonala)</text>
+      </g>
+      <g class="frag">
+        <rect x="200" y="380" width="500" height="54" rx="10" fill="#131c30" stroke="#6f82a8" stroke-width="2"/>
+        <text x="216" y="403" fill="#e9effc" font-size="17" font-weight="700">O365 Copilot „extra”</text>
+        <text x="216" y="423" fill="#9fb1d4" font-size="13">kevés licensz, nem bővül</text>
+        <rect x="540" y="395" width="148" height="22" rx="11" fill="rgba(99,179,237,.18)"/><text x="614" y="411" text-anchor="middle" fill="#63b3ed" font-size="12" font-weight="700">kiválasztott userek</text>
+        <line x1="700" y1="407" x2="756" y2="407" stroke="#6f82a8" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#ar6)"/>
+        <rect x="760" y="380" width="380" height="54" rx="10" fill="none" stroke="#6f82a8" stroke-width="2" stroke-dasharray="6 5"/>
+        <text x="950" y="412" text-anchor="middle" fill="#9fb1d4" font-size="15">Microsoft 365 saját útvonala</text>
+      </g>
+      <g class="frag">
+        <rect x="200" y="444" width="500" height="54" rx="10" fill="#131c30" stroke="#6f82a8" stroke-width="2"/>
+        <text x="216" y="467" fill="#e9effc" font-size="17" font-weight="700">Lovable · Colossyan</text>
+        <text x="216" y="487" fill="#9fb1d4" font-size="13">egyedi, whitelistelt eszközök</text>
+        <rect x="580" y="459" width="108" height="22" rx="11" fill="rgba(99,179,237,.18)"/><text x="634" y="475" text-anchor="middle" fill="#63b3ed" font-size="12" font-weight="700">üzlet is</text>
+        <line x1="700" y1="471" x2="756" y2="471" stroke="#6f82a8" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#ar6)"/>
+        <rect x="760" y="444" width="380" height="54" rx="10" fill="none" stroke="#6f82a8" stroke-width="2" stroke-dasharray="6 5"/>
+        <text x="950" y="476" text-anchor="middle" fill="#9fb1d4" font-size="15">a szolgáltatók saját felhője</text>
       </g>
     </svg>
   </div>
-  <aside class="notes"><p>A gateway a vállalati „kapu”: minden harness (YellowGPT, coding agentek, hamarosan a Claude Desktop) ezen át éri el a modelleket. Itt van a security, a budget control és a naplózás, ezért nem kell eszközönként külön megoldani.</p><p>A coding agentek helyi gépen, WSL-ben futnak: a harness a mi gépünkön van, a fájlok és a shell lokálisak, csak a modellhívás megy a gatewayen át.</p><p>A rAIhub ugyanez szerveroldalon: saját fejlesztésű, OKD-n futó platform, ahol a harness egy személyes konténerben fut. Részletek a következő dián.</p><p>Az O365 Copilot a Microsoft saját architektúrájában fut (ellenőrizendő a pontos útvonal), és szándékosan szűk körű.</p></aside>
+  <aside class="notes"><p>A gateway a vállalati „kapu”: a saját és a gatewayre kötött eszközök (YellowGPT, coding agentek, rAIhub, hamarosan a Claude Desktop) ezen át érik el a modelleket. Itt van a security, a budget control és a naplózás, ezért nem kell eszközönként külön megoldani.</p><p>Az elérhetőség eltér: a WSL-es coding agentek és a GitHub Copilot csak kiválasztott IT-s kollégáknak érhető el, a többi eszköz az üzleti területeknek is.</p><p>A coding agentek helyi gépen, WSL-ben futnak: a harness a mi gépünkön van, a fájlok és a shell lokálisak, csak a modellhívás megy a gatewayen át.</p><p>A rAIhub ugyanez szerveroldalon: saját fejlesztésű, OKD-n futó platform, ahol a harness egy személyes konténerben fut. Részletek a következő dián.</p><p>Nem a gatewayen mennek: a GitHub Copilot (GitHub API), az O365 Copilot (Microsoft 365) és az egyedileg whitelistelt eszközök, pl. a Lovable és a Colossyan (a szolgáltató saját felhője). Ezeknél az adatvédelmi és költségkontrollt a szerződés és a whitelist adja, nem a gateway.</p></aside>
 </section>
 
 <section class="slide" data-title="rAIhub">
@@ -1070,7 +1100,7 @@
   <h2>Kockázatok, és hogy hol kezeljük őket</h2>
   <div class="body mid">
     <div class="cols c3" style="gap:16px">
-      <div class="card r frag"><h3>🔓 Adatkezelés</h3><p>Milyen adat mehet ki a modellhez? → adatbesorolás, a gateway mint egyetlen út</p></div>
+      <div class="card r frag"><h3>🔓 Adatkezelés</h3><p>Milyen adat mehet ki a modellhez? → adatbesorolás, gateway, csak whitelistelt eszközök</p></div>
       <div class="card r frag"><h3>👻 Shadow AI</h3><p>Nem engedélyezett eszközök, privát fiókok → legyen jó hivatalos alternatíva</p></div>
       <div class="card r frag"><h3>🎭 Hallucináció</h3><p>Hihető, de hibás kimenet → forrás, ellenőrzés, emberi felelős</p></div>
       <div class="card r frag"><h3>💉 Prompt injection</h3><p>Rosszindulatú tartalom irányítja az ágenst → jogosultság, jóváhagyás, sandbox</p></div>
@@ -1111,7 +1141,7 @@
     <div class="cols c3">
       <div class="card t frag"><div class="ico">🧪</div><h3>1. Saját tapasztalat</h3><ul class="small"><li>Két hét valós munka a <b>YellowGPT</b>-vel</li><li>IT-s vezetőknek: egy délután a <b>rAIhubban</b> vagy egy <b>coding agenttel</b> (WSL), valós feladaton</li><li>Figyeljük meg a ciklust: mit kér, mit futtat?</li></ul></div>
       <div class="card v frag"><div class="ico">🎯</div><h3>2. Két-három use case</h3><ul class="small"><li>A „Kezdd itt” negyedből, területenként</li><li>Kiinduló mérés: idő, minőség, költség</li><li>Kis csapat, rövid ciklus, őszinte kiértékelés</li></ul></div>
-      <div class="card a frag"><div class="ico">🛡️</div><h3>3. Keret és kultúra</h3><ul class="small"><li>Mit lehet a gatewayen át küldeni? Legyen egyértelmű</li><li>Közös skillek és utasítás-fájlok csapatszinten</li><li>Tapasztalatmegosztás: mi működött, mi nem?</li></ul></div>
+      <div class="card a frag"><div class="ico">🛡️</div><h3>3. Keret és kultúra</h3><ul class="small"><li>Melyik eszközbe milyen adat mehet? Legyen egyértelmű</li><li>Közös skillek és utasítás-fájlok csapatszinten</li><li>Tapasztalatmegosztás: mi működött, mi nem?</li></ul></div>
     </div>
   </div>
   <aside class="notes"><p>Konkrét felajánlás: a coding agentes délutánt szívesen megszervezem a jelentkezőknek. (Igazítsd a saját tervedhez.)</p></aside>
