@@ -35,13 +35,14 @@
   <div class="grp">Lépések</div>
   <a href="#s0" data-step="s0"><span class="n">0</span>Előkészítés</a>
   <a href="#s1" data-step="s1"><span class="n">1</span>Ismerkedés a projekttel</a>
-  <a href="#s2" data-step="s2"><span class="n">2</span>Specifikáció</a>
-  <a href="#s3" data-step="s3"><span class="n">3</span>1. kapu: jóváhagyás</a>
-  <a href="#s4" data-step="s4"><span class="n">4</span>Tesztek előbb</a>
-  <a href="#s5" data-step="s5"><span class="n">5</span>Építés</a>
-  <a href="#s6" data-step="s6"><span class="n">6</span>Bizonyíték</a>
-  <a href="#s7" data-step="s7"><span class="n">7</span>2. kapu: elfogadás</a>
-  <a href="#s8" data-step="s8"><span class="n">8</span>Visszatekintés</a>
+  <a href="#su" data-step="su"><span class="n">2</span>Az üzleti igény megértése</a>
+  <a href="#s2" data-step="s2"><span class="n">3</span>Specifikáció</a>
+  <a href="#s3" data-step="s3"><span class="n">4</span>1. kapu: jóváhagyás</a>
+  <a href="#s4" data-step="s4"><span class="n">5</span>Tesztek előbb</a>
+  <a href="#s5" data-step="s5"><span class="n">6</span>Építés</a>
+  <a href="#s6" data-step="s6"><span class="n">7</span>Bizonyíték</a>
+  <a href="#s7" data-step="s7"><span class="n">8</span>2. kapu: elfogadás</a>
+  <a href="#s8" data-step="s8"><span class="n">9</span>Visszatekintés</a>
   <div class="grp">Ha van még időd</div>
   <a href="#plusz"><span class="n">+</span>Opcionális feladatok</a>
   <div class="grp">Segítség</div>
@@ -52,7 +53,7 @@
 <main>
 
 <div class="hero" id="mit-epitunk">
-  <div class="kicker">Lab guide · kb. 3 óra 15 perc</div>
+  <div class="kicker">Lab guide · kb. 3,5 óra</div>
   <h1>Köszönőfal: spec-driven fejlesztés <span class="hl">Claude Code-dal</span></h1>
   <p class="lead">Egy kis belső alkalmazást építesz a saját gépeden, ahol a munkatársak köszönetet küldhetnek egymásnak, a vezetők pedig látják a csapatukhoz tartozó köszöneteket. A kódot Claude Code írja. <b>A te dolgod a döntés:</b> mit építünk, és elfogadod-e, amit kaptál.</p>
 
@@ -81,14 +82,15 @@
   </div>
   <table>
     <tr><th>Idő</th><th>Lépés</th><th>Időtartam</th></tr>
-    <tr><td>0:00</td><td>0–1. Előkészítés, ismerkedés</td><td>15 perc</td></tr>
-    <tr><td>0:15</td><td>2. Specifikáció</td><td>30 perc</td></tr>
-    <tr><td>0:45</td><td>3. 1. kapu</td><td>10 perc</td></tr>
-    <tr><td>0:55</td><td>4. Tesztek előbb</td><td>20 perc</td></tr>
-    <tr><td>1:15</td><td>☕ Szünet</td><td>10 perc</td></tr>
-    <tr><td>1:25</td><td>5. Építés</td><td>75 perc</td></tr>
-    <tr><td>2:40</td><td>6–7. Bizonyíték és 2. kapu</td><td>20 perc</td></tr>
-    <tr><td>3:00</td><td>8. Visszatekintés</td><td>15 perc</td></tr>
+    <tr><td>0:00</td><td>0–1. Előkészítés, ismerkedés a projekttel</td><td>15 perc</td></tr>
+    <tr><td>0:15</td><td>2. Az üzleti igény megértése</td><td>15 perc</td></tr>
+    <tr><td>0:30</td><td>3. Specifikáció</td><td>25 perc</td></tr>
+    <tr><td>0:55</td><td>4. 1. kapu</td><td>10 perc</td></tr>
+    <tr><td>1:05</td><td>5. Tesztek előbb</td><td>20 perc</td></tr>
+    <tr><td>1:25</td><td>☕ Szünet</td><td>10 perc</td></tr>
+    <tr><td>1:35</td><td>6. Építés</td><td>75 perc</td></tr>
+    <tr><td>2:50</td><td>7–8. Bizonyíték és 2. kapu</td><td>20 perc</td></tr>
+    <tr><td>3:10</td><td>9. Visszatekintés</td><td>15 perc</td></tr>
     <tr><td>–</td><td>+ Opcionális feladatok (aki hamarabb végez)</td><td>tetszés szerint</td></tr>
   </table>
   <p class="meta">Tipp: a lépéseket a jobb alsó „Kész” jelölővel pipálhatod ki. A böngésződ megjegyzi, hol tartasz.</p>
@@ -167,9 +169,52 @@ claude</pre><button type="button">Másolás</button></div>
   <div class="done-row"><label><input type="checkbox" data-done="s1"> Kész</label></div>
 </section>
 
+<!-- ======================================================= 2: üzleti igény -->
+<section class="step" id="su">
+  <div class="step-head"><div class="step-no">2</div><div><h2>Az üzleti igény megértése</h2><div class="meta">15 perc · Claude Code mint elemzőtárs</div></div></div>
+  <div class="cols2">
+    <div class="do">
+      <h3>▶ Mit csinálj</h3>
+      <ul>
+        <li>Mielőtt specifikáció készülne, értsd meg, <b>mit is kér az üzlet</b>. Ez a <code>docs/uzleti-leiras.md</code>.</li>
+        <li>Elolvashatod magad is, de kérheted Claude-ot is, hogy <b>foglalja össze közérthetően</b>: mit építünk, kik a szereplők, ki mit láthat és mit tehet.</li>
+        <li>Kérd meg, hogy <b>egy konkrét példán</b>, a <code>data/munkatarsak.json</code> neveivel vezesse végig, mi történik egy köszönet elküldésekor: ki kap értesítést, ki látja az üzenetet, és ki nem.</li>
+        <li>Kérdezz rá arra, ami nem világos (pl. B-1 és B-2 vezető, privát és nyilvános köszönet, napi korlát).</li>
+        <li>Végül kérdezd meg: <b>szerinte mi nem egyértelmű vagy hiányzik</b> a leírásból? Ezek jó eséllyel előkerülnek majd a spec tisztázó kérdései között.</li>
+        <li>Ebben a lépésben Claude <b>csak magyaráz</b>, specifikációt és kódot még nem ír.</li>
+      </ul>
+      <h3>✋ Ellenőrizd magad</h3>
+      <ul class="checks">
+        <li><input type="checkbox" id="cua" data-check="cua"><label for="cua">Három mondatban el tudom mondani, mit építünk.</label></li>
+        <li><input type="checkbox" id="cub" data-check="cub"><label for="cub">Tudom, ki Farkas Júlia B-1 vezetője, és miért.</label></li>
+        <li><input type="checkbox" id="cuc" data-check="cuc"><label for="cuc">Tudom, ki látja a privát és ki a nyilvános köszönetet.</label></li>
+        <li><input type="checkbox" id="cud" data-check="cud"><label for="cud">Tudom, mit lát egy osztályvezető (B-2) és mit a főosztályvezető (B-1) a vezetői nézetben.</label></li>
+      </ul>
+    </div>
+    <div class="why">
+      <h3>💡 Miért</h3>
+      <p>A 4. lépésben <b>te hagyod jóvá</b> a specifikációt. Ehhez értened kell, mit kér az üzlet, különben csak „bólintasz”.</p>
+      <p>Claude itt <b>elemzőtársként</b> dolgozik: egy oldalnyi szöveget percek alatt közérthetővé tesz, példán keresztül megmutatja a szabályokat, és rámutat a hiányokra. Figyeld meg, hogy ehhez <b>toolt</b> használ: maga olvassa be a fájlokat.</p>
+      <a class="slide" href="../#24">→ Dia: Tool: mit kérhet a modell?</a>
+    </div>
+  </div>
+  <div class="see"><h3>✔ Mit kell látnod</h3><p>Egy rövid, közérthető összefoglalót, egy végigvezetett példát konkrét nevekkel, és néhány pontot, ami a leírásban nem egyértelmű. Fájl még nem jön létre.</p></div>
+  <details class="help"><summary>🆘 Segítség: pontos promptok</summary><div class="inner">
+    <p>Összefoglaló:</p>
+    <div class="code"><span class="lbl">prompt</span><pre>Olvasd el a docs/uzleti-leiras.md-t, és foglald össze közérthetően, legfeljebb 10 pontban: mit építünk, kik a szereplők, és mit láthat, illetve tehet az egyes szereplő. Még ne írj specifikációt vagy kódot, és ne hozz létre fájlt.</pre><button type="button">Másolás</button></div>
+    <p>Példa konkrét nevekkel:</p>
+    <div class="code"><span class="lbl">prompt</span><pre>Mutasd be egy példán a data/munkatarsak.json neveivel: Horváth Anna privát köszönetet küld Farkas Júliának. Ki kap értesítést, ki látja az üzenetet és hol (saját lista, fal, vezetői nézet), és ki nem? Minden állításnál hivatkozz az üzleti leírás megfelelő pontjára.</pre><button type="button">Másolás</button></div>
+    <p>A szintek:</p>
+    <div class="code"><span class="lbl">prompt</span><pre>Magyarázd el egyszerűen a B, B-1 és B-2 szinteket ebben az alkalmazásban. Mi történik, ha egy osztályvezető (pl. Szabó Katalin) kap köszönetet: ki kap értesítést, és hányat?</pre><button type="button">Másolás</button></div>
+    <p>Hiányok, nyitott kérdések:</p>
+    <div class="code"><span class="lbl">prompt</span><pre>Szerinted mi nem egyértelmű vagy hiányzik az üzleti leírásból? Sorolj fel legfeljebb 5 pontot, mindegyikhez egy javasolt döntéssel. Még ne írj specifikációt.</pre><button type="button">Másolás</button></div>
+  </div></details>
+  <div class="done-row"><label><input type="checkbox" data-done="su"> Kész</label></div>
+</section>
+
 <!-- ======================================================= 2 -->
 <section class="step" id="s2">
-  <div class="step-head"><div class="step-no">2</div><div><h2>Specifikáció</h2><div class="meta">30 perc · Claude Code</div></div></div>
+  <div class="step-head"><div class="step-no">3</div><div><h2>Specifikáció</h2><div class="meta">25 perc · Claude Code</div></div></div>
   <div class="cols2">
     <div class="do">
       <h3>▶ Mit csinálj</h3>
@@ -204,7 +249,7 @@ claude</pre><button type="button">Másolás</button></div>
 
 <!-- ======================================================= 3 -->
 <section class="step gate" id="s3">
-  <div class="step-head"><div class="step-no">3</div><div><h2>🟡 1. kapu: a spec jóváhagyása</h2><div class="meta">10 perc · te döntesz</div></div></div>
+  <div class="step-head"><div class="step-no">4</div><div><h2>🟡 1. kapu: a spec jóváhagyása</h2><div class="meta">10 perc · te döntesz</div></div></div>
   <div class="cols2">
     <div class="do">
       <h3>▶ Mit csinálj</h3>
@@ -248,7 +293,7 @@ claude</pre><button type="button">Másolás</button></div>
 
 <!-- ======================================================= 4 -->
 <section class="step" id="s4">
-  <div class="step-head"><div class="step-no">4</div><div><h2>Tesztek előbb</h2><div class="meta">20 perc · Claude Code</div></div></div>
+  <div class="step-head"><div class="step-no">5</div><div><h2>Tesztek előbb</h2><div class="meta">20 perc · Claude Code</div></div></div>
   <div class="cols2">
     <div class="do">
       <h3>▶ Mit csinálj</h3>
@@ -277,7 +322,7 @@ claude</pre><button type="button">Másolás</button></div>
 
 <!-- ======================================================= 5 -->
 <section class="step" id="s5">
-  <div class="step-head"><div class="step-no">5</div><div><h2>Építés</h2><div class="meta">75 perc · Claude Code dolgozik, te figyelsz</div></div></div>
+  <div class="step-head"><div class="step-no">6</div><div><h2>Építés</h2><div class="meta">75 perc · Claude Code dolgozik, te figyelsz</div></div></div>
   <div class="cols2">
     <div class="do">
       <h3>▶ Mit csinálj</h3>
@@ -317,7 +362,7 @@ python3 app.py</pre><button type="button">Másolás</button></div>
 
 <!-- ======================================================= 6 -->
 <section class="step" id="s6">
-  <div class="step-head"><div class="step-no">6</div><div><h2>Bizonyíték</h2><div class="meta">5 perc · Claude Code</div></div></div>
+  <div class="step-head"><div class="step-no">7</div><div><h2>Bizonyíték</h2><div class="meta">5 perc · Claude Code</div></div></div>
   <div class="cols2">
     <div class="do">
       <h3>▶ Mit csinálj</h3>
@@ -342,7 +387,7 @@ python3 app.py</pre><button type="button">Másolás</button></div>
 
 <!-- ======================================================= 7 -->
 <section class="step gate" id="s7">
-  <div class="step-head"><div class="step-no">7</div><div><h2>🟡 2. kapu: elfogadás</h2><div class="meta">15 perc · böngésző · te döntesz</div></div></div>
+  <div class="step-head"><div class="step-no">8</div><div><h2>🟡 2. kapu: elfogadás</h2><div class="meta">15 perc · böngésző · te döntesz</div></div></div>
   <div class="cols2">
     <div class="do">
       <h3>▶ Mit csinálj</h3>
@@ -385,7 +430,7 @@ python3 app.py</pre><button type="button">Másolás</button></div>
 
 <!-- ======================================================= 8 -->
 <section class="step" id="s8">
-  <div class="step-head"><div class="step-no">8</div><div><h2>Visszatekintés</h2><div class="meta">15 perc · közösen</div></div></div>
+  <div class="step-head"><div class="step-no">9</div><div><h2>Visszatekintés</h2><div class="meta">15 perc · közösen</div></div></div>
   <ul>
     <li>Hol kellett beavatkoznod? Mit csinált volna rosszul az ágens, ha nincs spec?</li>
     <li>Mennyi időt vitt el a spec, és mennyit spórolt meg később?</li>
