@@ -106,7 +106,6 @@
         <li>Nyiss egy WSL terminált.</li>
         <li>Ellenőrizd, hogy megvan a <b>Python</b> (legalább 3.10), a <b>git</b> és a <b>Claude Code</b>.</li>
         <li>Próbáld ki, hogy Claude <b>válaszol</b>-e egy egyszerű kérdésre, vagyis eléri-e a modellt.</li>
-        <li>Ha még soha nem használtál gitet ezen a gépen, állítsd be a <b>git-azonosítódat</b> (név és e-mail). Enélkül a commitok elakadnak.</li>
       </ul>
     </div>
     <div class="why">
@@ -121,13 +120,6 @@
 git --version
 claude --version</pre><button type="button">Másolás</button></div>
     <div class="code"><span class="lbl">bash</span><pre>claude -p "Szia! Egy mondatban: melyik modell vagy?"</pre><button type="button">Másolás</button></div>
-    <p><b>Git-azonosító.</b> Előbb nézd meg, van-e már beállítva:</p>
-    <div class="code"><span class="lbl">bash</span><pre>git config --global user.name
-git config --global user.email</pre><button type="button">Másolás</button></div>
-    <p>Ha üres a válasz, állítsd be (a saját neveddel és céges e-mail-címeddel):</p>
-    <div class="code"><span class="lbl">bash</span><pre>git config --global user.name "Vezetéknév Keresztnév"
-git config --global user.email "te.neved@raiffeisen.hu"</pre><button type="button">Másolás</button></div>
-    <p>A gyakorló repó nyilvános, ezért a <code>git clone</code>-hoz nem kell bejelentkezés. Az azonosítót a git a <b>commitokhoz</b> kéri, pl. ha Claude a munka végén menteni akarja a változásokat.</p>
     <p>Ha bármelyik lépés hibát ad, nézd meg a <a href="#hibak">Ha elakadsz</a> részt, vagy szólj a levezetőnek.</p>
   </div></details>
   <div class="done-row"><label><input type="checkbox" data-done="s0"> Kész</label></div>
@@ -542,7 +534,6 @@ python3 app.py</pre><button type="button">Másolás</button></div>
   <table>
     <tr><th>Tünet</th><th>Teendő</th></tr>
     <tr><td><code>claude</code> nem éri el a modellt</td><td>Szólj a levezetőnek: gateway-beállítás vagy proxy</td></tr>
-    <tr><td><code>Please tell me who you are</code> / <code>Author identity unknown</code></td><td>Nincs beállítva a git-azonosító: <code>git config --global user.name "…"</code> és <code>git config --global user.email "…"</code> (lásd a <a href="#s0">0. lépés</a> Segítség-dobozát)</td></tr>
     <tr><td>A <code>git clone</code> időtúllépéssel vagy tanúsítványhibával áll le</td><td>Céges proxy vagy tanúsítvány: szólj a levezetőnek. Ne kapcsold ki a tanúsítvány-ellenőrzést.</td></tr>
     <tr><td>Az ágens kódot akar írni a jóváhagyás előtt</td><td>Utasítsd el, és utalj a <code>CLAUDE.md</code> 2. pontjára</td></tr>
     <tr><td><code>pip install</code>-t akar futtatni</td><td>Utasítsd el: csak standard library használható</td></tr>
