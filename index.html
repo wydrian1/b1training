@@ -1052,6 +1052,59 @@
   <aside class="notes"><p>Ez ugyanaz az agentic loop, mint a riportos példánál, csak fejlesztési eszközökkel. A teszt mint „bíró” teszi lehetővé, hogy az ágens maga vegye észre a hibáját.</p><p>WSL-ben futó coding agenteknél (Claude Code, opencode, Codex) ez a mindennapi munkafolyamat.</p></aside>
 </section>
 
+<section class="slide" data-title="Faster is not further: RBI tanulságok">
+  <div class="kicker">06 · Fejlesztés · nálunk</div>
+  <h2>„Faster is not further”: mit tanult az RBI?</h2>
+  <div class="body mid" style="gap:14px">
+    <div class="cols c2 tight" style="gap:20px">
+      <div class="card r frag">
+        <h3 class="hl4">A csapda</h3>
+        <ul class="small">
+          <li>Az egyéni gyorsulás olcsó (licensz), a szervezeti nem: struktúra, platform és keret kell hozzá</li>
+          <li>A csapatok gyorsabban kódoltak, és „nagyon jók lettek a tokenköltésben”</li>
+          <li>Két párhuzamos, 20 perces AI-workflow után egy hét merge conflict</li>
+          <li>Rossz mérőszám: a token-ranglista. Jó: a <b>ciklusidő</b> és az <b>újramunka</b></li>
+        </ul>
+      </div>
+      <div class="card t frag">
+        <h3 class="hl">A megközelítés</h3>
+        <ol class="small" style="padding-left:1.3em">
+          <li><b>Megérteni:</b> ciklusidő mérése, szűk keresztmetszetek (review, regressziós teszt, monitoring)</li>
+          <li><b>Javítani:</b> kiszűrni a korábbi hibák okozta újramunkát (failure demand)</li>
+          <li><b>Automatizálni:</b> csak a megértett, stabil folyamatot</li>
+          <li><b>Determinisztikussá tenni:</b> a stabil lépésből lint, teszt, orchestrator lesz. Olcsóbb, és AI nélkül is működik</li>
+        </ol>
+      </div>
+    </div>
+    <div class="callout v frag">„Moving faster is not the same as moving further.” <span class="muted">(Gojko Adzic)</span> Az AI a folyamatjavítás katalizátora, nem a helyettesítője.</div>
+    <p class="xs dim" style="font-size:13px">Forrás: <a href="https://training.techtalk.at/blog/faster-is-not-further-what-a-bank-learned-about-ai-adoption/" style="color:var(--muted)">TechTalk blog: „Faster is not further”</a> (Gojko Adzic és Ana Nad, RBI, Agile Tour Vienna 2026)</p>
+  </div>
+  <aside class="notes"><p>Gojko Adzic és Ana Nad (RBI AI Adoption Lead) előadása az Agile Tour Vienna 2026-on. A DORA 2025 riport szerint az AI erősítő: erős platform és folyamat nélkül az egyéni nyereség nem jut el a szervezeti szintre.</p><p>Érettségi modell anekdota: több csapat 4-es vagy 5-ös szintre értékelte magát, miközben a PR-ek ellenőrzés nélkül mentek élesbe.</p><p>Párhuzam: ugyanez történt az agilis átállásnál is (unit teszt → TDD → CI → rövidebb iterációk).</p></aside>
+</section>
+
+<section class="slide" data-title="RBI AI-native SDLC (spec-driven)">
+  <div class="kicker">06 · Fejlesztés · nálunk</div>
+  <h2>RBI AI-native SDLC: spec-driven fejlesztés</h2>
+  <div class="body mid" style="gap:16px">
+    <div class="flow" style="gap:6px;--fs:16px">
+      <div class="node frag" style="border-top:4px solid var(--blue)"><b>Specifikáció</b>teljes, előre megírva, mielőtt bárki épít</div><div class="arr">→</div>
+      <div class="node frag" style="border-color:var(--amber);background:rgba(246,173,85,.08)"><b class="hl2">1. kapu</b>az ember jóváhagyja a specet</div><div class="arr">→</div>
+      <div class="node frag" style="border-top:4px solid var(--violet)"><b>Építés</b>az ágens a kit eszközeivel dolgozik</div><div class="arr">→</div>
+      <div class="node frag" style="border-top:4px solid var(--green)"><b>Kettős ellenőrzés</b>tesztek + független ellenőrzés</div><div class="arr">→</div>
+      <div class="node frag" style="border-color:var(--amber);background:rgba(246,173,85,.08)"><b class="hl2">2. kapu</b>az ember validálja a bizonyítékot (pl. tesztfutás felvétele)</div><div class="arr">→</div>
+      <div class="node frag" style="flex:.7;border-top:4px solid var(--teal)"><b>Éles</b>emberi felelősséggel</div>
+    </div>
+    <div class="cols c3 tight" style="gap:16px">
+      <div class="card t frag"><h3>Három alapelv</h3><ul class="small"><li>teljes specifikáció előre</li><li>kettős ellenőrzés</li><li>emberi felügyelet a döntéseken</li></ul></div>
+      <div class="card v frag"><h3>Getting started kit</h3><p><b>Skillek, hookok, toolok, ágensek</b> egy csomagban: a 11 core market közös kiindulópontja. <span class="muted">A kész külső keretrendszerek nem váltak be, mert más folyamatát tükrözték.</span></p></div>
+      <div class="card a frag"><h3>Minden fázis Markdownban</h3><p>Input, output, bizonyíték, kontroll: ember és ágens ugyanazt olvassa. A <b>product discovery</b> is része, nem csak a szállítás.</p></div>
+    </div>
+    <div class="callout t frag"><b>Software factory, nem „dark factory”:</b> az ágens épít, de a döntés és a felelősség az emberé marad (compliance).</div>
+    <p class="xs dim" style="font-size:13px">Forrás: <a href="https://training.techtalk.at/blog/faster-is-not-further-what-a-bank-learned-about-ai-adoption/" style="color:var(--muted)">TechTalk blog: „Faster is not further”</a> (Gojko Adzic és Ana Nad, RBI, Agile Tour Vienna 2026)</p>
+  </div>
+  <aside class="notes"><p>Ez a mai fogalmak „élesben”: a getting started kit pontosan azokból az építőkockákból áll, amikről a 03-as és 05-ös blokkban beszéltünk (skill, hook, tool, sub-agent). A spec-driven megközelítés lényege, hogy az ágens egy jóváhagyott specifikációból dolgozik, nem egy egysoros promptból.</p><p>A két emberi kapu: (1) a spec jóváhagyása az építés előtt, (2) a bizonyíték validálása élesítés előtt.</p><p>Gyakorlati tapasztalat: a 20–50 repóra szétszórt kontextus lassította a munkát. „Ez nem ágens-probléma, hanem folyamat-probléma”, és az új emberi kollégákat is ugyanígy lassítja.</p></aside>
+</section>
+
 <section class="slide" data-title="Mi változik a szerepekben?">
   <div class="kicker">06 · Fejlesztés</div>
   <h2>Mi változik a szerepekben?</h2>

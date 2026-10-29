@@ -260,7 +260,7 @@ svg text { font-family: var(--sans); }
 
 /* folyamat-sor */
 .flow { display: flex; align-items: stretch; gap: 8px; }
-.flow .node { flex: 1; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 17px; line-height: 1.35; }
+.flow .node { flex: 1; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: var(--fs, 17px); line-height: 1.35; }
 .flow .node b { display: block; font-size: 19px; margin-bottom: 4px; }
 .flow .arr { align-self: center; color: var(--dim); font-size: 26px; }
 
