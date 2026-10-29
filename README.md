@@ -5,6 +5,7 @@ Kétórás, magyar nyelvű bevezető előadás az LLM-ekről, a kontextusról, a
 Statikus HTML, build és külső függőség nélkül: `index.html` + `style.css` + `app.js`.
 
 A délutáni gyakorlat útmutatója: [`lab/`](lab/), élőben: https://wydrian1.github.io/b1training/lab/
+A levezetői forgatókönyv (csak a levezetőnek): [`levezeto/demo-forgatokonyv.md`](levezeto/demo-forgatokonyv.md)
 
 ## Vezérlés
 
