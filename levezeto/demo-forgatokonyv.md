@@ -17,6 +17,7 @@ kontextus és `CLAUDE.md`, toolok, skillek, az agentic loop (olvas → szerkeszt
 - [ ] A repó klónozható a résztvevők gépéről (hozzáférés, proxy)
 - [ ] **`bash scripts/setup-e2e.sh` lefut minden gépen** (pip csomag, kb. 150 MB-os Chromium-letöltés, `sudo` a rendszerkönyvtárakhoz). Ha a proxy vagy a tűzfal megfogja, előre kell megoldani (proxy-beállítás vagy belső tükör), mert a workshopon ez viszi el a legtöbb időt. A végén ✅-et kell kiírnia.
 - [ ] Windows 11 + WSLg esetén a `HEADED=1` mód külön ablakot nyit: érdemes egyszer kipróbálni, jó demóeszköz a kivetítőn (a lab guide-ban ez a „+7” opcionális feladat)
+- [ ] Ellenőrizd, hogy a résztvevő gépeken nincs-e bekapcsolva az `rbi-sdlc-fundamentals` plugin (RBI Getting Started Kit). Ha igen, a labhoz kapcsolják ki (`/plugin`), különben Claude a szabad szöveges kérésekre a plugin `specify-task` / `start-prd` skilljét választhatja a projekt `/spec`-je helyett
 - [ ] Levezetőként egy teljes próbafutás előre, időméréssel
 - [ ] Tartalék: egy előre elkészült, jóváhagyott `SPEC.md` (ha valaki elakad a spec-lépésnél, attól folytathatja)
 
@@ -124,6 +125,25 @@ A 9–13. lépés a legérdekesebb: itt derül ki, hogy a jogosultsági logika, 
 - **Képfeltöltés:** PNG/JPG, legfeljebb 2 MB. Jó vitatéma, mert ütközik a „Kimarad” résszel: a hatókört is bővíteni kell.
 
 A szabály: előbb `/spec` a kéréssel, a státusz visszaáll `TERVEZET`-re, majd jóváhagyás, és csak utána jöhet a kód.
+
+## A labban → élesben (Getting Started Kit)
+
+A Visszatekintésnél érdemes megmutatni, hogy a lab a [RBI Getting Started Kit](https://code.rbi.tech/raiffeisen/RBI-Getting-Started-Kit) egyszerűsített változata (a lab guide 10. lépésében is ott a táblázat):
+
+| A labban | A Getting Started Kitben |
+|---|---|
+| `docs/uzleti-leiras.md` | PRD (`start-prd` → `refine-prd`) |
+| `/spec` → `SPEC.md` (SZ, EK, storyk) | `plan-prd` → `plan.md` (storyk, BAC-ok), `specify-task` → `spec.md` |
+| EK-01… | BAC-1… (Business Acceptance Criteria) |
+| 1. kapu: `Státusz: JÓVÁHAGYVA` | solution gate, spec-jóváhagyás |
+| `/build S1` | `build-task` (+ `generate-e2e`) |
+| +5 sub-agent ellenőr | `review-pr`: 4 reviewer + gap-critic (H3, code review) |
+| `/verify` → `BIZONYITEK.md` | `validate-acceptance` → Validation Evidence Pack |
+| 2. kapu: elfogadás | H4: PO-jóváhagyás, utána mehet UAT-ra |
+| – | `mercury-check`, H5 deploy |
+| 4. lépés: változáskérés | `revise-plan` |
+
+A kitben H1 és H2 néven nincs kapu: a lab két kapuja didaktikai egyszerűsítés. A „11 core market” a TechTalk blogból jön, a kit repóban nem szerepel.
 
 ## Visszatekintő kérdések
 

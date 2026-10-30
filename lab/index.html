@@ -385,7 +385,7 @@ python3 app.py</pre><button type="button">Másolás</button></div>
     </div>
     <div class="why">
       <h3>💡 Miért</h3>
-      <p>Ez az <b>RBI SDLC második kapuja</b>: élesítés előtt az ember a bizonyítékot validálja. A tesztek a szabályokat ellenőrzik, a kattintás azt, hogy valóban azt építettük-e, amit kértünk.</p>
+      <p>Ez az <b>RBI SDLC második kapuja</b>: élesítés előtt az ember a bizonyítékot validálja. Élesben több kapu van (pl. code review, validáció, deploy), a labban kettőre egyszerűsítünk: spec-jóváhagyás és bizonyíték-elfogadás. A tesztek a szabályokat ellenőrzik, a kattintás azt, hogy valóban azt építettük-e, amit kértünk.</p>
       <p>A Nagy Péter- és a Tóth Gábor-lépés a legérdekesebb: itt derül ki, hogy a jogosultsági logika tényleg a spec szerint működik-e. Ez az a fajta hiba, ami élesben adatvédelmi incidens lenne.</p>
       <a class="slide" href="../#40">→ Dia: Biztonság és jogosultság</a>
     </div>
@@ -409,6 +409,22 @@ python3 app.py</pre><button type="button">Másolás</button></div>
     <li>Mit láttál a „háttérben”: milyen toolokat hívott, mikor kért engedélyt?</li>
     <li>Melyik saját területi feladatotoknál lenne használható ez a folyamat? Hol lenne a két kapu?</li>
   </ul>
+  <h3>A labban → élesben</h3>
+  <p>A labban az <a href="https://code.rbi.tech/raiffeisen/RBI-Getting-Started-Kit">RBI Getting Started Kit</a> folyamatát használtuk, szándékosan leegyszerűsítve:</p>
+  <table>
+    <tr><th>A labban</th><th>A Getting Started Kitben</th></tr>
+    <tr><td><code>docs/uzleti-leiras.md</code></td><td>PRD (<code>start-prd</code> → <code>refine-prd</code>)</td></tr>
+    <tr><td><code>/spec</code> → <code>SPEC.md</code> (SZ, EK, storyk)</td><td><code>plan-prd</code> → <code>plan.md</code> (storyk, BAC-ok), <code>specify-task</code> → <code>spec.md</code></td></tr>
+    <tr><td>EK-01…</td><td>BAC-1… (Business Acceptance Criteria)</td></tr>
+    <tr><td>1. kapu: <code>Státusz: JÓVÁHAGYVA</code></td><td>solution gate, spec-jóváhagyás</td></tr>
+    <tr><td><code>/build S1</code></td><td><code>build-task</code> (+ <code>generate-e2e</code>)</td></tr>
+    <tr><td>+5 sub-agent ellenőr</td><td><code>review-pr</code>: 4 reviewer + gap-critic (H3, code review)</td></tr>
+    <tr><td><code>/verify</code> → <code>BIZONYITEK.md</code></td><td><code>validate-acceptance</code> → Validation Evidence Pack</td></tr>
+    <tr><td>2. kapu: elfogadás</td><td>H4: PO-jóváhagyás, utána mehet UAT-ra</td></tr>
+    <tr><td>–</td><td><code>mercury-check</code>, H5 deploy</td></tr>
+    <tr><td>4. lépés: változáskérés</td><td><code>revise-plan</code></td></tr>
+  </table>
+  <p class="meta">A valódi kit Jira-, Confluence- és Zephyr-integrációval, több emberi kapuval (pl. code review, validáció, deploy) és a <code>.sdlc/</code> mappában dolgozik.</p>
   <a class="slide" href="../#49">→ Dia: Hol érdemes kezdeni?</a>
   <div class="done-row"><label><input type="checkbox" data-done="s8"> Kész</label></div>
 </section>
@@ -517,6 +533,7 @@ HEADED=1 .venv/bin/python -m unittest discover -s tests/e2e -v</pre><button type
     <tr><td>A spec kérdései sima szövegként, számozott listában jönnek</td><td>Kérd: „A tisztázó kérdéseket az AskUserQuestion eszközzel tedd fel, választható opciókkal, az ajánlottal az első helyen.”</td></tr>
     <tr><td>A spec-kérdések megválaszolása után sokáig nem történik semmi</td><td><b>Esc</b>, majd: „Ne egyben írd meg a specet. Írd ki egy sorban, mit rögzítettél, vegyél fel egy feladatlistát a szakaszokkal, és szakaszonként töltsd ki.”</td></tr>
     <tr><td>Az ágens kódot akar írni a jóváhagyás előtt, vagy magától kezd bele a következő fázisba</td><td><b>Esc</b>, majd: „Állj meg. Egyszerre csak egy fázist csinálj, és csak akkor, ha kifejezetten kérem (lásd a CLAUDE.md-t).”</td></tr>
+    <tr><td>Claude egy <code>rbi-sdlc-…</code> skillt indít (pl. <code>specify-task</code>, <code>start-prd</code>) a projekt saját skillje helyett</td><td><b>Esc</b>, és használd a slash parancsot: <code>/spec</code>, <code>/build</code>, <code>/verify</code>. Ha a gépeden telepítve van az <code>rbi-sdlc-fundamentals</code> plugin, a labhoz kapcsold ki (<code>/plugin</code>)</td></tr>
     <tr><td><code>pip install</code>-t akar futtatni</td><td>Utasítsd el: az alkalmazás csak standard libraryt használ, a teszteszközöket a <code>scripts/setup-e2e.sh</code> telepíti</td></tr>
     <tr><td>Körbe-körbe javít</td><td><b>Esc</b>, majd: „Állj meg. Melyik teszt piros, és szerinted mi az oka? Javasolj egy javítást, de még ne hajtsd végre.”</td></tr>
     <tr><td>A story végén nyitva maradtak feladatok a listában</td><td>Kérd így: „Nézd végig a feladatlistát: zárd le, ami elkészült, és mondd meg, mi maradt nyitva és miért.”</td></tr>
