@@ -26,10 +26,10 @@ kontextus és `CLAUDE.md`, toolok, skillek, az agentic loop (olvas → szerkeszt
 |---|---|---|---|
 | 0:00 | **Indulás** | `git clone`, `cd`, `bash scripts/setup-e2e.sh`, `claude` | A harness betölti a `CLAUDE.md`-t: ez a „projekt-utasítás” a kontextusban |
 | 0:15 | **Az üzleti igény megértése** | Claude-dal összefoglaltatja a `docs/uzleti-leiras.md`-t, végigvezettet egy példát, rákérdez a hiányokra | Claude mint elemzőtárs. Első tool-használat: maga olvassa a fájlokat. A jóváhagyóknak érteniük kell, mit hagynak jóvá |
-| 0:30 | **Specifikáció** | `/spec`, válasz a kérdésekre | Skill működés közben: az ágens kérdez, nem találgat |
+| 0:30 | **Specifikáció** | `/model opus`, `/spec`, válasz a kérdésekre | Skill működés közben: az ágens kérdez, nem találgat. Modellválasztás: a spechez megéri a legerősebb modell |
 | 0:55 | **Változáskérés: kategóriák** (kötelező) | `/spec Változáskérés: …` – az 5 kategória helyett a 4 IT-BSO Behavioral Anchor | Az igény változik: a jóváhagyás előtt ez néhány sor a specben, nem kódátírás. A változás végigfut SZ → EK → story → konzisztencia, és bekerül a változásnaplóba. Az üzleti leírás nem változik |
 | 1:05 | **🟡 1. kapu** | `SPEC.md` átnézése, javíttatás, majd **saját kézzel** `Státusz: JÓVÁHAGYVA` | Az ember dönt, az ágens nem hagyhatja jóvá saját magát |
-| 1:15 | **Első story** | `/build S1` | Story = vertikális szelet. Előbb a tesztek (piros), utána a kód (zöld), majd megállás és böngészős ellenőrzés |
+| 1:15 | **Első story** | `/model sonnet`, `/build S1` | Story = vertikális szelet. Előbb a tesztek (piros), utána a kód (zöld), majd megállás és böngészős ellenőrzés |
 | 1:40 | ☕ Szünet | | |
 | 1:50 | **További storyk** | `/build S2`, `/build S3`, … storynként ellenőrizve | Kis körök, az ember minden story után dönt. S1–S4 = MVP, a többi ráadás. Az agentic loop élőben: tool-hívások, engedélykérések, piros → javít. A `docs/arculat-ui.md` mint kontextus: ettől lesz igényes a felület |
 | 2:50 | **🟡 2. kapu** | `/verify`, `BIZONYITEK.md` elolvasása, kattintós forgatókönyv | Bizonyíték alapján fogadunk el, nem érzésre |
@@ -59,9 +59,10 @@ Szerinted mi nem egyértelmű vagy hiányzik az üzleti leírásból? Sorolj fel
 mindegyikhez egy javasolt döntéssel. Még ne írj specifikációt.
 ```
 
-**Specifikáció:**
+**Specifikáció** (előtte Opusra váltás):
 
 ```text
+/model opus
 /spec
 ```
 
@@ -81,8 +82,11 @@ Forrás: [IT-BSO Behavioral Anchor](https://wiki.rbinternational.com/confluence/
 **Jóváhagyás után, storynként** (a `/build` skill előbb a story tesztjeit írja meg, aztán a kódot, és a végén megáll):
 
 ```text
+/model sonnet
 /build S1
 ```
+
+A build előtt vissza Sonnetre: a jóváhagyott spec alapján bőven elég, gyorsabb és olcsóbb. Jó beszélgetési pont: a feladathoz választunk modellt, nem mindenhez a legerősebbet.
 
 Ellenőrzés a böngészőben a skill által adott lépések szerint, utána `/build S2`, `/build S3`, … A haladás a `HALADAS.md`-ben látszik.
 

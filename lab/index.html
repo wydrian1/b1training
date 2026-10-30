@@ -218,6 +218,7 @@ bash scripts/setup-e2e.sh</pre><button type="button">Másolás</button></div>
     <div class="do">
       <h3>▶ Mit csinálj</h3>
       <ul>
+        <li><b>Válts Opusra</b> a <code>/model</code> paranccsal. A specifikációnál sokat számít a mélyebb gondolkodás: jobb kérdések, kevesebb kimaradt határeset.</li>
         <li>Kérd meg Claude-ot, hogy készítse el a specifikációt. A projektben van erre egy <b>skill</b>, a nevét a <code>README.md</code>-ben vagy a <code>CLAUDE.md</code>-ben találod.</li>
         <li>Claude néhány <b>tisztázó kérdést</b> tesz fel <b>választós formában</b>: a nyilakkal lépkedhetsz az opciók között, és Enterrel választhatsz. Az ajánlott válasz mindig az első. Ha egyik sem jó, az „Other” sorban saját választ is írhatsz.</li>
         <li>Ha kész a <code>SPEC.md</code>, Claude megáll. <b>Kódot még nem ír.</b></li>
@@ -227,11 +228,15 @@ bash scripts/setup-e2e.sh</pre><button type="button">Másolás</button></div>
       <h3>💡 Miért</h3>
       <p>A spec-készítés egy <b>skill</b>: elmentett szakértelem, ami csak akkor töltődik be teljesen, amikor szükség van rá. Mindenkinél ugyanazt a folyamatot és ugyanazt a szerkezetet adja.</p>
       <p>Az ágens <b>kérdez, nem találgat</b>. Minden kérdés egy olyan döntés, amit különben csendben, helyetted hozott volna meg.</p>
+      <p><b>Modellválasztás:</b> a spec egyszeri, de minden későbbi lépés erre épül, ide megéri a legerősebb modell. A buildnél a feladat már jól körülírt, ott a gyorsabb és olcsóbb Sonnet is bőven elég.</p>
       <a class="slide" href="../#26">→ Dia: Skillek</a>
     </div>
   </div>
   <div class="see"><h3>✔ Mit kell látnod</h3><p>A válaszaid után előbb egy nyugtázó sort („✅ Rögzítettem: …”), majd egy rövid <b>mini-tervet</b>: a tervezett szabályokat és storykat. Ha már itt rossz az irány, szólj! Az írás közben egy <b>feladatlista</b> és rövid státuszsorok (pl. <code>✍️ 4/11 – Adatmodell</code>) mutatják, hol tart. A specet szakaszonként tölti ki, így menet közben is belenézhetsz. A végén létrejön a <code>SPEC.md</code>, az elején <code>Státusz: TERVEZET</code> áll. Benne vannak a számozott üzleti szabályok (SZ-01…) és elfogadási kritériumok (EK-01…), valamint egy táblázat arról, melyik üzleti elvárást melyik EK fedi le. A spec végén a <b>storyk</b> (S1, S2, …) mutatják, milyen sorrendben, milyen szeletekben épül majd az alkalmazás. Végül egy <b>🔎 konzisztencia-ellenőrzés</b> táblázata: hivatkozik-e minden EK létező szabályra, minden EK pontosan egy storyban van-e, le van-e fedve minden üzleti elvárás. Ez segít az 1. kapunál. A legvégén Claude <b>táblázatban</b> kiírja a létrejött storykat: azonosító, röviden, EK-k, „Kész, ha…”, MVP.</p></div>
   <details class="help"><summary>🆘 Segítség: pontos prompt</summary><div class="inner">
+    <p>Modellváltás Opusra, a spec előtt:</p>
+    <div class="code"><span class="lbl">Claude Code</span><pre>/model opus</pre><button type="button">Másolás</button></div>
+    <p>A <code>/model</code> paraméter nélkül egy választólistát nyit (nyilak + Enter). Az aktuális modellt a <code>/status</code> mutatja.</p>
     <div class="code"><span class="lbl">prompt</span><pre>/spec</pre><button type="button">Másolás</button></div>
     <p>Ha nem tudod, mit válassz, az első, „(Ajánlott)” jelölésű opció mindig jó kiindulás.</p>
     <p>Ha a kérdések mégis sima szövegként, számozott listában jelennek meg, kérd a választós formát:</p>
@@ -352,6 +357,7 @@ Javítsd az összes érintett szabályt, EK-t és storyt, rögzítsd az eltéré
       <h3>▶ Mit csinálj</h3>
       <ul>
         <li>Nézd meg a <code>SPEC.md</code> „Storyk” részét: melyik EK-k tartoznak az <b>S1</b>-hez, és mit kell látnod a végén („Kész, ha…”).</li>
+        <li><b>Válts vissza Sonnetre</b> a <code>/model</code> paranccsal: a jóváhagyott spec alapján a buildhez bőven elég, és gyorsabb.</li>
         <li>Indítsd el az első storyt a projekt <b>build skilljével</b>, a story azonosítójával.</li>
         <li>Figyeld meg a sorrendet: Claude <b>előbb a teszteket</b> írja meg, és megmutatja, hogy <b>pirosak</b>, csak utána kezd el kódolni, EK-ról EK-ra.</li>
         <li>Engedélykérésnél a tesztek futtatását nyugodtan engedélyezheted tartósan.</li>
@@ -365,8 +371,9 @@ Javítsd az összes érintett szabályt, EK-t és storyt, rögzítsd az eltéré
       <a class="slide" href="../#43">→ Dia: Egy fejlesztési feladat az ágens kezében</a>
     </div>
   </div>
-  <div class="see"><h3>✔ Mit kell látnod</h3><p>Először egy rövid bemutatót arról, miről szól az S1 story (felhasználói történet, mi készül el, EK-k, „Kész, ha…”). Utána egy feladatlistát az S1 EK-ival, előbb piros, aztán zöld tesztfuttatást (unit és böngészős E2E teszt is), egy új <code>HALADAS.md</code>-t, és a végén egy rövid, kattintós ellenőrzést. A böngészőben az S1 „Kész, ha…” feltétele teljesül (pl. Horváth Anna be tud lépni, és köszönetet küld Farkas Júliának). Claude ezután <b>nem kezd bele</b> az S2-be.</p></div>
+  <div class="see"><h3>✔ Mit kell látnod</h3><p>A <code>/model</code> után egy visszajelzést, hogy a modell Sonnetre váltott. Utána egy rövid bemutatót arról, miről szól az S1 story (felhasználói történet, mi készül el, EK-k, „Kész, ha…”). Utána egy feladatlistát az S1 EK-ival, előbb piros, aztán zöld tesztfuttatást (unit és böngészős E2E teszt is), egy új <code>HALADAS.md</code>-t, és a végén egy rövid, kattintós ellenőrzést. A böngészőben az S1 „Kész, ha…” feltétele teljesül (pl. Horváth Anna be tud lépni, és köszönetet küld Farkas Júliának). Claude ezután <b>nem kezd bele</b> az S2-be.</p></div>
   <details class="help"><summary>🆘 Segítség: pontos prompt és parancsok</summary><div class="inner">
+    <div class="code"><span class="lbl">Claude Code</span><pre>/model sonnet</pre><button type="button">Másolás</button></div>
     <div class="code"><span class="lbl">prompt</span><pre>/build S1</pre><button type="button">Másolás</button></div>
     <p>Az alkalmazás indítása egy új terminálban:</p>
     <div class="code"><span class="lbl">bash</span><pre>cd kudos
@@ -597,6 +604,7 @@ HEADED=1 .venv/bin/python -m unittest discover -s tests/e2e -v</pre><button type
     <tr><td>Fájl a kontextusba</td><td><code>@SPEC.md</code></td><td>Közvetlenül hivatkozol egy fájlra a promptban</td></tr>
     <tr><td>Saját parancs</td><td><code>! &lt;parancs&gt;</code></td><td>Te futtatsz egy shell parancsot, nem az ágens</td></tr>
     <tr><td>Skillek</td><td><code>/spec</code>, <code>/verify</code></td><td>A projekt előre megírt munkafolyamatai</td></tr>
+    <tr><td>Modellváltás</td><td><code>/model opus</code>, <code>/model sonnet</code></td><td>Spechez Opus (mélyebb gondolkodás), buildhez Sonnet (gyorsabb, olcsóbb). Paraméter nélkül választólistát nyit</td></tr>
     <tr><td>Tiszta lap</td><td><code>/clear</code></td><td>Új kontextus, ha a beszélgetés túl hosszú lett vagy összezavarodott</td></tr>
     <tr><td>Tömörítés</td><td><code>/compact</code></td><td>Összefoglalja az eddigi beszélgetést, így helyet szabadít fel</td></tr>
   </table>
