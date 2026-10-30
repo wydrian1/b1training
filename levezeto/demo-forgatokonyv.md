@@ -27,10 +27,11 @@ kontextus és `CLAUDE.md`, toolok, skillek, az agentic loop (olvas → szerkeszt
 | 0:00 | **Indulás** | `git clone`, `cd`, `bash scripts/setup-e2e.sh`, `claude` | A harness betölti a `CLAUDE.md`-t: ez a „projekt-utasítás” a kontextusban |
 | 0:15 | **Az üzleti igény megértése** | Claude-dal összefoglaltatja a `docs/uzleti-leiras.md`-t, végigvezettet egy példát, rákérdez a hiányokra | Claude mint elemzőtárs. Első tool-használat: maga olvassa a fájlokat. A jóváhagyóknak érteniük kell, mit hagynak jóvá |
 | 0:30 | **Specifikáció** | `/spec`, válasz a kérdésekre | Skill működés közben: az ágens kérdez, nem találgat |
-| 0:55 | **🟡 1. kapu** | `SPEC.md` átnézése, javíttatás, majd **saját kézzel** `Státusz: JÓVÁHAGYVA` | Az ember dönt, az ágens nem hagyhatja jóvá saját magát |
-| 1:05 | **Első story** | `/build S1` | Story = vertikális szelet. Előbb a tesztek (piros), utána a kód (zöld), majd megállás és böngészős ellenőrzés |
-| 1:30 | ☕ Szünet | | |
-| 1:40 | **További storyk** | `/build S2`, `/build S3`, … storynként ellenőrizve | Kis körök, az ember minden story után dönt. S1–S4 = MVP, a többi ráadás. Az agentic loop élőben: tool-hívások, engedélykérések, piros → javít. A `docs/arculat-ui.md` mint kontextus: ettől lesz igényes a felület |
+| 0:55 | **Változáskérés: kategóriák** (kötelező) | `/spec Változáskérés: …` – az 5 kategória helyett a 4 IT-BSO Behavioral Anchor | Az igény változik: a jóváhagyás előtt ez néhány sor a specben, nem kódátírás. A változás végigfut SZ → EK → story → konzisztencia, és bekerül a változásnaplóba. Az üzleti leírás nem változik |
+| 1:05 | **🟡 1. kapu** | `SPEC.md` átnézése, javíttatás, majd **saját kézzel** `Státusz: JÓVÁHAGYVA` | Az ember dönt, az ágens nem hagyhatja jóvá saját magát |
+| 1:15 | **Első story** | `/build S1` | Story = vertikális szelet. Előbb a tesztek (piros), utána a kód (zöld), majd megállás és böngészős ellenőrzés |
+| 1:40 | ☕ Szünet | | |
+| 1:50 | **További storyk** | `/build S2`, `/build S3`, … storynként ellenőrizve | Kis körök, az ember minden story után dönt. S1–S4 = MVP, a többi ráadás. Az agentic loop élőben: tool-hívások, engedélykérések, piros → javít. A `docs/arculat-ui.md` mint kontextus: ettől lesz igényes a felület |
 | 2:50 | **🟡 2. kapu** | `/verify`, `BIZONYITEK.md` elolvasása, kattintós forgatókönyv | Bizonyíték alapján fogadunk el, nem érzésre |
 | 3:10 | **Visszatekintés** | Kerekasztal | Lásd a kérdéseket lent |
 | – | **+ feladatok** (aki hamarabb végez) | Lásd lent és a lab guide-ban | A változás is a specen és a kapun megy át |
@@ -64,6 +65,19 @@ mindegyikhez egy javasolt döntéssel. Még ne írj specifikációt.
 /spec
 ```
 
+**Változáskérés a spec után, még a jóváhagyás előtt** (kötelező):
+
+```text
+/spec Változáskérés: a köszönet kategóriái az üzleti leírás 5 kategóriája helyett az IT-BSO négy Behavioral Anchorja legyenek:
+💛 Earn customer loyalty – az ügyfélért, az ügyfélelégedettségért tett erőfeszítés
+🚀 Take actions to move forward – nem várt, cselekedett: elakadást oldott fel, felvette a leesett feladatot
+🤝 Deliver value together – közös munka, együtt teremtett érték az ügyfélnek
+🧪 Experiment, learn fast! – kipróbált valami újat, tanult a hibából, jobbá tette a folyamatot
+Javítsd az összes érintett szabályt, EK-t és storyt, rögzítsd az eltérést az üzleti leírástól, és vedd fel a változásnaplóba. A docs/uzleti-leiras.md-t ne módosítsd, kódot ne írj.
+```
+
+Forrás: [IT-BSO Behavioral Anchor](https://wiki.rbinternational.com/confluence/spaces/PMOHOME/pages/5231576526/IT-BSO+Behavioral+Anchor). A régi kategóriák eltűnése gyorsan ellenőrizhető: `grep -n -E "Gyors segítség|Jó ötlet|Ügyfélfókusz|Kiemelkedő munka|Együttműködés" SPEC.md` (ne adjon találatot). A tartalék `SPEC.md` is már a 4 kategóriával készüljön.
+
 **Jóváhagyás után, storynként** (a `/build` skill előbb a story tesztjeit írja meg, aztán a kódot, és a végén megáll):
 
 ```text
@@ -83,13 +97,13 @@ Ellenőrzés a böngészőben a skill által adott lépések szerint, utána `/b
 `python3 app.py`, majd http://localhost:8000
 
 1. Lépj be **Horváth Anna** (Fejlesztési Osztály) néven.
-2. Új köszönet: keress rá arra, hogy „adat”, és válaszd ki **Farkas Júliát**. Kategória: 🚀 Gyors segítség, üzenet: „Köszönöm a gyors adatelemzést! 🙏🎉”, láthatóság: **Privát** → ellenőrző nézet → küldés → toast.
-3. Küldj Annaként egy második köszönetet **Juhász Nórának** (🤝 Együttműködés), ezúttal **Nyilvános** láthatósággal.
+2. Új köszönet: keress rá arra, hogy „adat”, és válaszd ki **Farkas Júliát**. Kategória: 🚀 Take actions to move forward, üzenet: „Köszönöm a gyors adatelemzést! 🙏🎉”, láthatóság: **Privát** → ellenőrző nézet → küldés → toast.
+3. Küldj Annaként egy második köszönetet **Juhász Nórának** (🤝 Deliver value together), ezúttal **Nyilvános** láthatósággal.
 4. Próbáld meg Annaként: saját magadnak küldeni, üres üzenetet küldeni, kategória nélkül küldeni, illetve Júliának ugyanazon a napon egy 4. köszönetet küldeni → egyik sem mehet át, a hiba a mező alatt jelenik meg.
 5. Anna „Küldött” listájában ott mindkét üzenet, kategória-chippel és láthatóság-ikonnal.
 6. Lépj be **Varga Bence** (nem vezető) néven: a **falon** ott a nyilvános (Nórának szóló) köszönet, a privát (Júliának szóló) nincs. Tapsolj 👏 a nyilvánosra, majd kattints újra → a taps visszavonódik. A vezetői nézet nem érhető el.
 7. Lépj be **Farkas Júliaként**: van értesítés, és a „Kapott” listában ott a privát üzenet.
-8. Lépj be **Szabó Katalinként** (Júlia vezetője): van értesítés, a vezetői nézetben látszik a privát üzenet, és a statisztikában is megjelenik (kapott: 1, 🚀 Gyors segítség).
+8. Lépj be **Szabó Katalinként** (Júlia vezetője): van értesítés, a vezetői nézetben látszik a privát üzenet, és a statisztikában is megjelenik (kapott: 1, 🚀 Take actions to move forward).
 9. Lépj be **Kovács Eszterként** (B-1): van értesítés Júlia köszönetéről, és Nóráéról is. A vezetői nézetben mindkét üzenet látszik, a statisztika a teljes körre számol.
 10. Lépj be **Nagy Péterként** (Anna vezetője): **nincs** értesítés (nem ő a címzettek vezetője), de a vezetői nézetben **látja** mindkét üzenetet, mert a küldő a beosztottja.
 11. Lépj be **Tóth Gáborként** (Nóra vezetője): értesítést kap Nóra köszönetéről, a vezetői nézetben azt látja, de Júliáét **nem**. A statisztikájában Júlia köszönete nem szerepel.
@@ -131,7 +145,7 @@ A szabály: előbb `/spec` a kéréssel, a státusz visszaáll `TERVEZET`-re, ma
 | AD + SSO bejelentkezés | `data/munkatarsak.json` + „Belépés mint…” (DEMO jelzéssel) |
 | AD-alapú címzettkereső | Keresés a JSON-ban név, egység vagy e-mail szerint |
 | Emoji-támogatás | Unicode emoji a szövegben |
-| – (új a demóban) | Kategóriák, privát / nyilvános láthatóság és közös fal, 👏 reakció, napi 3-as korlát |
+| – (új a demóban) | Kategóriák (a lab változáskérése után a 4 IT-BSO Behavioral Anchor), privát / nyilvános láthatóság és közös fal, 👏 reakció, napi 3-as korlát |
 | Képfeltöltés, vírusellenőrzés | Kimarad (változáskérés-ötlet) |
 | E-mail / Teams értesítés | Alkalmazáson belüli értesítés |
 | Közvetlen és B-1 vezető értesítése | Megmarad. A B-1 pozíció (főosztályvezető), a JSON `szint` mezőjéből |

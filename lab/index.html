@@ -37,12 +37,13 @@
   <a href="#s1" data-step="s1"><span class="n">1</span>Ismerkedés a projekttel</a>
   <a href="#su" data-step="su"><span class="n">2</span>Az üzleti igény megértése</a>
   <a href="#s2" data-step="s2"><span class="n">3</span>Specifikáció</a>
-  <a href="#s3" data-step="s3"><span class="n">4</span>1. kapu: jóváhagyás</a>
-  <a href="#s4" data-step="s4"><span class="n">5</span>Első story (S1)</a>
-  <a href="#s5" data-step="s5"><span class="n">6</span>További storyk</a>
-  <a href="#s6" data-step="s6"><span class="n">7</span>Bizonyíték</a>
-  <a href="#s7" data-step="s7"><span class="n">8</span>2. kapu: elfogadás</a>
-  <a href="#s8" data-step="s8"><span class="n">9</span>Visszatekintés</a>
+  <a href="#sk" data-step="sk"><span class="n">4</span>Változás: kategóriák</a>
+  <a href="#s3" data-step="s3"><span class="n">5</span>1. kapu: jóváhagyás</a>
+  <a href="#s4" data-step="s4"><span class="n">6</span>Első story (S1)</a>
+  <a href="#s5" data-step="s5"><span class="n">7</span>További storyk</a>
+  <a href="#s6" data-step="s6"><span class="n">8</span>Bizonyíték</a>
+  <a href="#s7" data-step="s7"><span class="n">9</span>2. kapu: elfogadás</a>
+  <a href="#s8" data-step="s8"><span class="n">10</span>Visszatekintés</a>
   <div class="grp">Ha van még időd</div>
   <a href="#plusz"><span class="n">+</span>Opcionális feladatok</a>
   <div class="grp">Segítség</div>
@@ -58,7 +59,7 @@
   <p class="lead">Egy kis belső alkalmazást építesz a saját gépeden, ahol a munkatársak köszönetet küldhetnek egymásnak, a vezetők pedig látják a csapatukhoz tartozó köszöneteket. A kódot Claude Code írja. <b>A te dolgod a döntés:</b> mit építünk, és elfogadod-e, amit kaptál.</p>
 
   <div class="grid">
-    <div class="card y"><h3>Mit építünk?</h3><p>Köszönet küldése kategóriával és privát vagy nyilvános láthatósággal, közös fal 👏 reakciókkal, kereshető saját listák, értesítések, vezetői nézet statisztikával. Mindez igényes, Raiffeisen-színekkel készült felületen.</p></div>
+    <div class="card y"><h3>Mit építünk?</h3><p>Köszönet küldése az IT-BSO Behavioral Anchorok szerinti kategóriával és privát vagy nyilvános láthatósággal, közös fal 👏 reakciókkal, kereshető saját listák, értesítések, vezetői nézet statisztikával. Mindez igényes, Raiffeisen-színekkel készült felületen.</p></div>
     <div class="card v"><h3>Miért így?</h3><p>Hogy élőben lásd, amiről délelőtt szó volt: a <code>CLAUDE.md</code>-t, a skilleket, az agentic loopot és az RBI SDLC két emberi kapuját.</p></div>
     <div class="card a"><h3>Mi nem cél?</h3><p>Nem kell befejezned, és nem kell hibátlannak lennie. Az a cél, hogy megtapasztald a folyamatot, és lásd, hol kell az ember.</p></div>
   </div>
@@ -74,6 +75,7 @@
   <h2>A délután menete</h2>
   <div class="flow">
     <div class="node"><b>Specifikáció</b>az ágens kérdez és ír</div><div class="arr">→</div>
+    <div class="node"><b>Változás</b>a spec módosul, nem a kód</div><div class="arr">→</div>
     <div class="node gate"><b>🟡 1. kapu</b>te hagyod jóvá</div><div class="arr">→</div>
     <div class="node"><b>Storyk</b>storynként: tesztek → kód → zöld</div><div class="arr">→</div>
     <div class="node"><b>Bizonyíték</b>EK → teszt → eredmény</div><div class="arr">→</div>
@@ -84,12 +86,13 @@
     <tr><td>0:00</td><td>0–1. Előkészítés, ismerkedés a projekttel</td><td>15 perc</td></tr>
     <tr><td>0:15</td><td>2. Az üzleti igény megértése</td><td>15 perc</td></tr>
     <tr><td>0:30</td><td>3. Specifikáció</td><td>25 perc</td></tr>
-    <tr><td>0:55</td><td>4. 1. kapu</td><td>10 perc</td></tr>
-    <tr><td>1:05</td><td>5. Első story (S1)</td><td>25 perc</td></tr>
-    <tr><td>1:30</td><td>☕ Szünet</td><td>10 perc</td></tr>
-    <tr><td>1:40</td><td>6. További storyk (S2…)</td><td>70 perc</td></tr>
-    <tr><td>2:50</td><td>7–8. Bizonyíték és 2. kapu</td><td>20 perc</td></tr>
-    <tr><td>3:10</td><td>9. Visszatekintés</td><td>15 perc</td></tr>
+    <tr><td>0:55</td><td>4. Változáskérés: Behavioral Anchor kategóriák</td><td>10 perc</td></tr>
+    <tr><td>1:05</td><td>5. 1. kapu</td><td>10 perc</td></tr>
+    <tr><td>1:15</td><td>6. Első story (S1)</td><td>25 perc</td></tr>
+    <tr><td>1:40</td><td>☕ Szünet</td><td>10 perc</td></tr>
+    <tr><td>1:50</td><td>7. További storyk (S2…)</td><td>60 perc</td></tr>
+    <tr><td>2:50</td><td>8–9. Bizonyíték és 2. kapu</td><td>20 perc</td></tr>
+    <tr><td>3:10</td><td>10. Visszatekintés</td><td>15 perc</td></tr>
     <tr><td>–</td><td>+ Opcionális feladatok (aki hamarabb végez)</td><td>tetszés szerint</td></tr>
   </table>
   <p class="meta">Tipp: a lépéseket a jobb alsó „Kész” jelölővel pipálhatod ki. A böngésződ megjegyzi, hol tartasz.</p>
@@ -189,7 +192,7 @@ bash scripts/setup-e2e.sh</pre><button type="button">Másolás</button></div>
     </div>
     <div class="why">
       <h3>💡 Miért</h3>
-      <p>A 4. lépésben <b>te hagyod jóvá</b> a specifikációt. Ehhez értened kell, mit kér az üzlet, különben csak „bólintasz”.</p>
+      <p>Az 5. lépésben <b>te hagyod jóvá</b> a specifikációt. Ehhez értened kell, mit kér az üzlet, különben csak „bólintasz”.</p>
       <p>Claude itt <b>elemzőtársként</b> dolgozik: egy oldalnyi szöveget percek alatt közérthetővé tesz, példán keresztül megmutatja a szabályokat, és rámutat a hiányokra. Figyeld meg, hogy ehhez <b>toolt</b> használ: maga olvassa be a fájlokat.</p>
       <a class="slide" href="../#24">→ Dia: Tool: mit kérhet a modell?</a>
     </div>
@@ -243,9 +246,61 @@ bash scripts/setup-e2e.sh</pre><button type="button">Másolás</button></div>
   <div class="done-row"><label><input type="checkbox" data-done="s2"> Kész</label></div>
 </section>
 
+<!-- ======================================================= 4: változáskérés -->
+<section class="step" id="sk">
+  <div class="step-head"><div class="step-no">4</div><div><h2>Változáskérés: Behavioral Anchor kategóriák</h2><div class="meta">10 perc · Claude Code · kötelező</div></div></div>
+  <div class="cols2">
+    <div class="do">
+      <h3>▶ Mit csinálj</h3>
+      <ul>
+        <li>Az üzleti leírás 5 kategóriát ad meg (🤝 Együttműködés, 🚀 Gyors segítség, 💡 Jó ötlet, 🎯 Ügyfélfókusz, ⭐ Kiemelkedő munka). Jobb lenne, ha a köszönetek a mindennapi működésünket tükröznék: az <a href="https://wiki.rbinternational.com/confluence/spaces/PMOHOME/pages/5231576526/IT-BSO+Behavioral+Anchor">IT-BSO négy Behavioral Anchorját</a>.</li>
+        <li>Kérd meg Claude-ot, hogy a <b>spec skillel</b>, változáskérésként módosítsa a <code>SPEC.md</code>-t. Az 5 kategória helyett ez a 4 legyen:
+          <table>
+            <tr><th>Kategória</th><th>Jelentés</th></tr>
+            <tr><td>💛 Earn customer loyalty</td><td>az ügyfélért, az ügyfélelégedettségért tett erőfeszítés</td></tr>
+            <tr><td>🚀 Take actions to move forward</td><td>nem várt, cselekedett: elakadást oldott fel, felvette a leesett feladatot</td></tr>
+            <tr><td>🤝 Deliver value together</td><td>közös munka, együtt teremtett érték az ügyfélnek</td></tr>
+            <tr><td>🧪 Experiment, learn fast!</td><td>kipróbált valami újat, tanult a hibából, jobbá tette a folyamatot</td></tr>
+          </table>
+        </li>
+        <li>A <code>docs/uzleti-leiras.md</code> <b>nem változik</b>: az eltérést a spec rögzíti, mint üzleti döntést.</li>
+        <li>Nézd meg, mit módosított: mely szabályok, EK-k és storyk változtak, és van-e erről bejegyzés a spec <b>változásnaplójában</b>.</li>
+      </ul>
+      <h3>✋ Ellenőrizd magad</h3>
+      <ul class="checks">
+        <li><input type="checkbox" id="cka" data-check="cka"><label for="cka">A <code>SPEC.md</code>-ben pontosan a 4 Behavioral Anchor szerepel kategóriaként, emojival és jelentéssel, a régi 5 kategória sehol nem maradt meg.</label></li>
+        <li><input type="checkbox" id="ckb" data-check="ckb"><label for="ckb">A kategóriára hivatkozó EK-k (küldés, szűrés, statisztika) az új neveket használják.</label></li>
+        <li><input type="checkbox" id="ckc" data-check="ckc"><label for="ckc">A spec jelzi, hogy ez eltérés az üzleti leírástól, és a változásnaplóban ott a bejegyzés.</label></li>
+        <li><input type="checkbox" id="ckd" data-check="ckd"><label for="ckd">A konzisztencia-ellenőrzés a módosítás után is rendben van, és a státusz továbbra is <code>TERVEZET</code>.</label></li>
+      </ul>
+    </div>
+    <div class="why">
+      <h3>💡 Miért</h3>
+      <p>Az igény <b>menet közben is változik</b>, ez természetes. A kérdés az, hol javítjuk. Most, a jóváhagyás előtt ez néhány sor a specben. Ha a kód már kész lenne, teszteket, felületet és adatot kellene átírni.</p>
+      <p>Figyeld meg, hogy a változás <b>végigfut</b> a specen: szabály → EK → story → konzisztencia-táblázat. Az ágens nem csak egy listát cserél le, hanem minden hivatkozást rendbe tesz.</p>
+      <p>Az üzleti leírást nem az ágens írja át. A spec az a hely, ahol a döntés nyomon követhetően rögzül, és amit az 1. kapun te hagysz jóvá.</p>
+      <a class="slide" href="../#45">→ Dia: RBI AI-native SDLC</a>
+    </div>
+  </div>
+  <div class="see"><h3>✔ Mit kell látnod</h3><p>Claude a spec skillel módosítja a <code>SPEC.md</code>-t, és a végén felsorolja, mely SZ-ek, EK-k és storyk változtak. A kategóriák helyén a 4 Behavioral Anchor áll, a változásnaplóban új bejegyzés van. Kód nem készül, a státusz <code>TERVEZET</code> marad.</p></div>
+  <details class="help"><summary>🆘 Segítség: pontos prompt</summary><div class="inner">
+    <div class="code"><span class="lbl">prompt</span><pre>/spec Változáskérés: a köszönet kategóriái az üzleti leírás 5 kategóriája helyett az IT-BSO négy Behavioral Anchorja legyenek:
+💛 Earn customer loyalty – az ügyfélért, az ügyfélelégedettségért tett erőfeszítés
+🚀 Take actions to move forward – nem várt, cselekedett: elakadást oldott fel, felvette a leesett feladatot
+🤝 Deliver value together – közös munka, együtt teremtett érték az ügyfélnek
+🧪 Experiment, learn fast! – kipróbált valami újat, tanult a hibából, jobbá tette a folyamatot
+Javítsd az összes érintett szabályt, EK-t és storyt, rögzítsd az eltérést az üzleti leírástól, és vedd fel a változásnaplóba. A docs/uzleti-leiras.md-t ne módosítsd, kódot ne írj.</pre><button type="button">Másolás</button></div>
+    <p>Ellenőrzés, hogy a régi kategóriák eltűntek-e:</p>
+    <div class="code"><span class="lbl">Claude Code</span><pre>! grep -n -E "Gyors segítség|Jó ötlet|Ügyfélfókusz|Kiemelkedő munka|Együttműködés" SPEC.md</pre><button type="button">Másolás</button></div>
+    <p>Ha nincs találat, rendben van. Ha van, kérd a javítást:</p>
+    <div class="code"><span class="lbl">prompt</span><pre>A SPEC.md-ben még szerepelnek a régi kategóriák. Cseréld le őket mindenhol a 4 Behavioral Anchorra, és futtasd újra a konzisztencia-ellenőrzést. Csak a SPEC.md-t módosítsd.</pre><button type="button">Másolás</button></div>
+  </div></details>
+  <div class="done-row"><label><input type="checkbox" data-done="sk"> Kész</label></div>
+</section>
+
 <!-- ======================================================= 3 -->
 <section class="step gate" id="s3">
-  <div class="step-head"><div class="step-no">4</div><div><h2>🟡 1. kapu: a spec jóváhagyása</h2><div class="meta">10 perc · te döntesz</div></div></div>
+  <div class="step-head"><div class="step-no">5</div><div><h2>🟡 1. kapu: a spec jóváhagyása</h2><div class="meta">10 perc · te döntesz</div></div></div>
   <div class="cols2">
     <div class="do">
       <h3>▶ Mit csinálj</h3>
@@ -258,6 +313,7 @@ bash scripts/setup-e2e.sh</pre><button type="button">Másolás</button></div>
         <li><input type="checkbox" id="c3f" data-check="c3f"><label for="c3f">A privát / nyilvános láthatóság szabályai egyértelműek: ki mit lát a falon és a vezetői nézetben.</label></li>
         <li><input type="checkbox" id="c3g" data-check="c3g"><label for="c3g">A nem funkcionális rész hivatkozik a <code>docs/arculat-ui.md</code>-re, és a fontosabb UI-elvárásokhoz (varázsló, hibaüzenet a mező alatt, üres állapot) is van EK.</label></li>
         <li><input type="checkbox" id="c3h" data-check="c3h"><label for="c3h">A „Storyk” rész 5–7 storyra bontja a munkát, minden EK pontosan egy storyban van, és minden storynál érthető, mit kell látni a végén. Az MVP (kb. S1–S4) ki van jelölve.</label></li>
+        <li><input type="checkbox" id="c3i" data-check="c3i"><label for="c3i">A kategóriák a 4 Behavioral Anchor (a 4. lépés változáskérése szerint), és a változásnaplóban ott a bejegyzés.</label></li>
         <li><input type="checkbox" id="c3e" data-check="c3e"><label for="c3e">A „Nyitott kérdések” rész üres, vagy minden ponthoz van döntés.</label></li>
       </ul>
       <ul>
@@ -290,7 +346,7 @@ bash scripts/setup-e2e.sh</pre><button type="button">Másolás</button></div>
 
 <!-- ======================================================= 4 -->
 <section class="step" id="s4">
-  <div class="step-head"><div class="step-no">5</div><div><h2>Első story (S1): tesztek, aztán kód</h2><div class="meta">25 perc · Claude Code</div></div></div>
+  <div class="step-head"><div class="step-no">6</div><div><h2>Első story (S1): tesztek, aztán kód</h2><div class="meta">25 perc · Claude Code</div></div></div>
   <div class="cols2">
     <div class="do">
       <h3>▶ Mit csinálj</h3>
@@ -326,7 +382,7 @@ HEADED=1 .venv/bin/python -m unittest discover -s tests/e2e -v</pre><button type
 
 <!-- ======================================================= 5 -->
 <section class="step" id="s5">
-  <div class="step-head"><div class="step-no">6</div><div><h2>További storyk (S2, S3, …)</h2><div class="meta">70 perc · Claude Code dolgozik, te figyelsz és ellenőrzöl</div></div></div>
+  <div class="step-head"><div class="step-no">7</div><div><h2>További storyk (S2, S3, …)</h2><div class="meta">70 perc · Claude Code dolgozik, te figyelsz és ellenőrzöl</div></div></div>
   <div class="cols2">
     <div class="do">
       <h3>▶ Mit csinálj</h3>
@@ -371,7 +427,7 @@ HEADED=1 .venv/bin/python -m unittest discover -s tests/e2e -v</pre><button type
 
 <!-- ======================================================= 6 -->
 <section class="step" id="s6">
-  <div class="step-head"><div class="step-no">7</div><div><h2>Bizonyíték</h2><div class="meta">5 perc · Claude Code</div></div></div>
+  <div class="step-head"><div class="step-no">8</div><div><h2>Bizonyíték</h2><div class="meta">5 perc · Claude Code</div></div></div>
   <div class="cols2">
     <div class="do">
       <h3>▶ Mit csinálj</h3>
@@ -396,16 +452,16 @@ HEADED=1 .venv/bin/python -m unittest discover -s tests/e2e -v</pre><button type
 
 <!-- ======================================================= 7 -->
 <section class="step gate" id="s7">
-  <div class="step-head"><div class="step-no">8</div><div><h2>🟡 2. kapu: elfogadás</h2><div class="meta">15 perc · böngésző · te döntesz</div></div></div>
+  <div class="step-head"><div class="step-no">9</div><div><h2>🟡 2. kapu: elfogadás</h2><div class="meta">15 perc · böngésző · te döntesz</div></div></div>
   <div class="cols2">
     <div class="do">
       <h3>▶ Mit csinálj</h3>
       <p>Az alkalmazás fut. Kattints végig:</p>
       <ul class="checks">
-        <li><input type="checkbox" id="c7a" data-check="c7a"><label for="c7a">Lépj be <b>Horváth Annaként</b>, és küldj <b>Farkas Júliának</b> egy <b>privát</b> köszönetet 🚀 Gyors segítség kategóriában, a keresőt használva. Figyeld meg a 3 lépéses varázslót, az ellenőrző lépést és a toastot.</label></li>
-        <li><input type="checkbox" id="c7b" data-check="c7b"><label for="c7b">Küldj Annaként egy <b>nyilvános</b> köszönetet <b>Juhász Nórának</b> 🤝 Együttműködés kategóriában.</label></li>
+        <li><input type="checkbox" id="c7a" data-check="c7a"><label for="c7a">Lépj be <b>Horváth Annaként</b>, és küldj <b>Farkas Júliának</b> egy <b>privát</b> köszönetet 🚀 Take actions to move forward kategóriában, a keresőt használva. Figyeld meg a 3 lépéses varázslót, az ellenőrző lépést és a toastot.</label></li>
+        <li><input type="checkbox" id="c7b" data-check="c7b"><label for="c7b">Küldj Annaként egy <b>nyilvános</b> köszönetet <b>Juhász Nórának</b> 🤝 Deliver value together kategóriában.</label></li>
         <li><input type="checkbox" id="c7c" data-check="c7c"><label for="c7c">Annaként próbálj meg saját magadnak, üres üzenettel, kategória nélkül, illetve Júliának ma egy 4. köszönetet küldeni. Egyik sem mehet át, a hiba a mező alatt jelenik meg.</label></li>
-        <li><input type="checkbox" id="c7d" data-check="c7d"><label for="c7d">Anna „Küldött” listájában ott mindkét üzenet, kategória-chippel és láthatóság-ikonnal.</label></li>
+        <li><input type="checkbox" id="c7d" data-check="c7d"><label for="c7d">Anna „Küldött” listájában ott mindkét üzenet, kategória-chippel (az új, Behavioral Anchor nevekkel) és láthatóság-ikonnal.</label></li>
         <li><input type="checkbox" id="c7e" data-check="c7e"><label for="c7e"><b>Varga Benceként</b>: a falon ott a nyilvános (Nórának szóló) köszönet, a privát nincs. Tapsolj 👏, majd kattints újra: a taps visszavonódik. A vezetői nézet nem érhető el.</label></li>
         <li><input type="checkbox" id="c7f" data-check="c7f"><label for="c7f"><b>Farkas Júliaként</b>: van értesítés, és a „Kapott” listában ott a privát üzenet.</label></li>
         <li><input type="checkbox" id="c7g" data-check="c7g"><label for="c7g"><b>Szabó Katalinként</b> (Júlia vezetője): van értesítés, a vezetői nézetben látja a privát üzenetet, és a statisztikában is megjelenik.</label></li>
@@ -439,7 +495,7 @@ HEADED=1 .venv/bin/python -m unittest discover -s tests/e2e -v</pre><button type
 
 <!-- ======================================================= 8 -->
 <section class="step" id="s8">
-  <div class="step-head"><div class="step-no">9</div><div><h2>Visszatekintés</h2><div class="meta">15 perc · közösen</div></div></div>
+  <div class="step-head"><div class="step-no">10</div><div><h2>Visszatekintés</h2><div class="meta">15 perc · közösen</div></div></div>
   <ul>
     <li>Hol kellett beavatkoznod? Mit csinált volna rosszul az ágens, ha nincs spec?</li>
     <li>Mennyi időt vitt el a spec, és mennyit spórolt meg később?</li>
