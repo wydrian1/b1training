@@ -19,7 +19,8 @@ kontextus és `CLAUDE.md`, toolok, skillek, az agentic loop (olvas → szerkeszt
 - [ ] Windows 11 + WSLg esetén a `HEADED=1` mód külön ablakot nyit: érdemes egyszer kipróbálni, jó demóeszköz a kivetítőn (a lab guide-ban ez a „+7” opcionális feladat)
 - [ ] Ellenőrizd, hogy a résztvevő gépeken nincs-e bekapcsolva az `rbi-sdlc-fundamentals` plugin (RBI Getting Started Kit). Ha igen, a labhoz kapcsolják ki (`/plugin`), különben Claude a szabad szöveges kérésekre a plugin `specify-task` / `start-prd` skilljét választhatja a projekt `/spec`-je helyett
 - [ ] Levezetőként egy teljes próbafutás előre, időméréssel
-- [ ] Tartalék: egy előre elkészült, jóváhagyott `SPEC.md` (ha valaki elakad a spec-lépésnél, attól folytathatja)
+- [ ] Tartalék: egy előre elkészült, jóváhagyott `SPEC.md` (ha valaki elakad a spec-lépésnél, attól folytathatja). Ilyen a mintamegoldás `SPEC.md`-je is
+- [ ] **Végső megoldásként** kéznél van a kész mintamegoldás: [`wydrian1/b1-demo-kudos-solution`](https://github.com/wydrian1/b1-demo-kudos-solution). A lab guide szándékosan nem említi, ne is mutasd meg előre (lásd a hibaelhárítást)
 
 ## Időbeosztás
 
@@ -174,6 +175,7 @@ A kitben H1 és H2 néven nincs kapu: a lab két kapuja didaktikai egyszerűsít
 | Az ágens `pip install`-t akar futtatni | Utasítsd el, és utalj a `CLAUDE.md` technológiai keretére |
 | A 8000-es port foglalt | `python3 app.py` helyett a spec szerinti portparaméter, vagy állítsd le a másik folyamatot |
 | Valaki elakad a spec-lépésnél | Adj neki tartalék `SPEC.md`-t, és hagyja jóvá ő maga |
+| Valakinek teljesen elfogy az ideje, vagy a gépe miatt nem tud haladni | **Végső megoldás:** mutasd meg a mintamegoldást ([`wydrian1/b1-demo-kudos-solution`](https://github.com/wydrian1/b1-demo-kudos-solution)): `SPEC.md`, `HALADAS.md`, `BIZONYITEK.md`, `dokumentacio/`, vagy klónozza le, és futtassa (`python3 app.py`). Csak akkor, ha a saját futása már nem menthető: a cél a folyamat megtapasztalása, nem a kész eredmény |
 | Az ágens körbe-körbe javít | Állítsd meg (Esc), kérdezd meg, mit gondol a hibáról, és szűkítsd a feladatot egy EK-ra |
 
 ## Az eredeti igény és a demó megfeleltetése
