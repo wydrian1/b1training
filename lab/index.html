@@ -42,7 +42,8 @@
   <a href="#s5" data-step="s5"><span class="n">7</span>További storyk</a>
   <a href="#s6" data-step="s6"><span class="n">8</span>Bizonyíték</a>
   <a href="#s7" data-step="s7"><span class="n">9</span>2. kapu: elfogadás</a>
-  <a href="#s8" data-step="s8"><span class="n">10</span>Visszatekintés</a>
+  <a href="#sd" data-step="sd"><span class="n">10</span>Dokumentáció</a>
+  <a href="#s8" data-step="s8"><span class="n">11</span>Visszatekintés</a>
   <div class="grp">Ha van még időd</div>
   <a href="#plusz"><span class="n">+</span>Opcionális feladatok</a>
   <div class="grp">Segítség</div>
@@ -78,9 +79,10 @@
     <div class="node gate"><b>🟡 1. kapu</b>te hagyod jóvá</div><div class="arr">→</div>
     <div class="node"><b>Storyk</b>storynként: tesztek → kód → zöld</div><div class="arr">→</div>
     <div class="node"><b>Bizonyíték</b>EK → teszt → eredmény</div><div class="arr">→</div>
-    <div class="node gate"><b>🟡 2. kapu</b>te fogadod el</div>
+    <div class="node gate"><b>🟡 2. kapu</b>te fogadod el</div><div class="arr">→</div>
+    <div class="node"><b>Dokumentáció</b>az elfogadott változatról</div>
   </div>
-  <p class="meta">Kb. 75 perc a specifikációig és a jóváhagyásig, utána storyk az első szünettel az S1 után, a végén 20 perc bizonyíték és elfogadás, majd közös visszatekintés. A lépéseket a „Kész” jelölővel pipálhatod ki, a böngésződ megjegyzi, hol tartasz.</p>
+  <p class="meta">Kb. 75 perc a specifikációig és a jóváhagyásig, utána storyk az első szünettel az S1 után, a végén 20 perc bizonyíték és elfogadás, 10 perc dokumentáció, majd közös visszatekintés. A lépéseket a „Kész” jelölővel pipálhatod ki, a böngésződ megjegyzi, hol tartasz.</p>
 </div>
 
 <!-- ======================================================= 1 -->
@@ -354,7 +356,7 @@ python3 app.py</pre><button type="button">Másolás</button></div>
       <a class="slide" href="../#35">→ Dia: Mikor áll meg a ciklus?</a>
     </div>
   </div>
-  <div class="see"><h3>✔ Mit kell látnod</h3><p>Egy táblázatot EK → teszt → ✅/❌ bontásban, a lefedetlen kritériumok listáját (jó esetben „Nincs.”), és egy kézi ellenőrző forgatókönyvet.</p></div>
+  <div class="see"><h3>✔ Mit kell látnod</h3><p>Egy táblázatot EK → teszt → ✅/❌ bontásban, a lefedetlen kritériumok listáját (jó esetben „Nincs.”), és egy kézi ellenőrző forgatókönyvet. Az elején <code>Elfogadás: FÜGGŐBEN</code> áll: ezt a következő lépésben te döntöd el.</p></div>
   <details class="help"><summary>🆘 Segítség: pontos prompt</summary><div class="inner">
     <div class="code"><span class="lbl">prompt</span><pre>/verify</pre><button type="button">Másolás</button></div>
     <div class="code"><span class="lbl">Claude Code</span><pre>! cat BIZONYITEK.md</pre><button type="button">Másolás</button></div>
@@ -381,7 +383,7 @@ python3 app.py</pre><button type="button">Másolás</button></div>
         <li><input type="checkbox" id="c7l" data-check="c7l"><label for="c7l"><b>Balogh Mátéként</b> küldj köszönetet <b>Szabó Katalinnak</b>. <b>Kovács Eszter</b> erről <b>pontosan egy</b> értesítést kap, pedig közvetlen vezetőként és B-1-ként is érintett.</label></li>
       </ul>
       <p class="meta">Ha van időd: <b>Fehér Lászlóként</b> (board tag) a vezetői nézetben minden köszönet látszik, de értesítést nem kapott. Keskeny ablakban a kártyák egy oszlopba rendeződnek, a menü alulra kerül.</p>
-      <p>Döntés: <b>elfogadod</b>, vagy <b>visszadobod</b> egy konkrét hibával, és kéred a javítást.</p>
+      <p>Döntés: <b>elfogadod</b>, vagy <b>visszadobod</b> egy konkrét hibával, és kéred a javítást. Ha elfogadod, <b>saját kezűleg</b> írd át a <code>BIZONYITEK.md</code> elején az <code>Elfogadás</code> sort <code>ELFOGADVA</code>-ra, ugyanúgy, mint a spec státuszát az 1. kapunál.</p>
     </div>
     <div class="why">
       <h3>💡 Miért</h3>
@@ -390,19 +392,58 @@ python3 app.py</pre><button type="button">Másolás</button></div>
       <a class="slide" href="../#40">→ Dia: Biztonság és jogosultság</a>
     </div>
   </div>
-  <div class="see"><h3>✔ Mit kell látnod</h3><p>Minden pont kipipálva. Ha valami nem stimmel, az nem kudarc: pont ezért van a kapu.</p></div>
+  <div class="see"><h3>✔ Mit kell látnod</h3><p>Minden pont kipipálva, és a <code>BIZONYITEK.md</code> elején <code>Elfogadás: ELFOGADVA</code> áll. Ha valami nem stimmel, az nem kudarc: pont ezért van a kapu.</p></div>
   <details class="help"><summary>🆘 Segítség: példaüzenet és visszadobás</summary><div class="inner">
     <p>Példaüzenet a küldéshez (a címzett keresőjébe írd be: <code>adat</code>):</p>
     <div class="code"><span class="lbl">szöveg</span><pre>Köszönöm a gyors adatelemzést! 🙏🎉</pre><button type="button">Másolás</button></div>
     <p>Visszadobás konkrét hibával, például:</p>
+    <p>Elfogadás (Claude Code-ban, a <code>!</code> előtaggal te futtatod):</p>
+    <div class="code"><span class="lbl">Claude Code</span><pre>! sed -i 's/^Elfogadás: FÜGGŐBEN/Elfogadás: ELFOGADVA/' BIZONYITEK.md</pre><button type="button">Másolás</button></div>
     <div class="code"><span class="lbl">prompt</span><pre>A 2. kapun elakadtunk: Nagy Péterként belépve a vezetői nézetben nem látszik Horváth Anna köszönete Farkas Júliának, pedig a spec szerint látnia kellene, mert a küldő az ő beosztottja. Írj erre egy tesztet, ami most piros, javítsd a hibát, és futtasd újra a /verify-t.</pre><button type="button">Másolás</button></div>
   </div></details>
   <div class="done-row"><label><input type="checkbox" data-done="s7"> Kész</label></div>
 </section>
 
+<!-- ======================================================= 10 dokumentáció -->
+<section class="step" id="sd">
+  <div class="step-head"><div class="step-no">10</div><div><h2>Dokumentáció</h2><div class="meta">10 perc · Claude Code</div></div></div>
+  <div class="cols2">
+    <div class="do">
+      <h3>▶ Mit csinálj</h3>
+      <ul>
+        <li>Ha elfogadtad a változatot, kérd meg Claude-ot, hogy a projekt <b>dokumentációs skilljével</b> készítse el a dokumentációt.</li>
+        <li>Három dokumentum készül a <code>dokumentacio/</code> mappába:
+          <ul>
+            <li><b>felhasználói útmutató</b> képernyőképekkel, üzleti felhasználóknak,</li>
+            <li><b>technikai leírás</b> fejlesztőknek és üzemeltetőknek (architektúra, adatmodell, végpontok, jogosultság),</li>
+            <li><b>nyomonkövethetőségi mátrix</b>: EK → story → teszt → kód.</li>
+          </ul>
+        </li>
+        <li>Nyisd meg a felhasználói útmutatót, és nézd meg: egy kolléga, aki nem volt itt, el tudná-e kezdeni használni?</li>
+      </ul>
+    </div>
+    <div class="why">
+      <h3>💡 Miért</h3>
+      <p>A dokumentáció a munka része, nem utólagos teher. Az ágens a <b>tényleges kódból</b> és az elfogadott bizonyítékból dolgozik, ezért percek alatt naprakész és pontos dokumentációt ad, képernyőképekkel együtt.</p>
+      <p>A nyomonkövethetőségi mátrix az <b>auditálhatóságot</b> szolgálja: minden üzleti kritériumról megmondja, melyik teszt igazolja és melyik kód valósítja meg. Banki környezetben ez sokat ér.</p>
+      <p>Szándékosan csak az <b>elfogadás után</b> készül: elfogadott változatot dokumentálunk, nem félkészet.</p>
+    </div>
+  </div>
+  <div class="see"><h3>✔ Mit kell látnod</h3><p>Egy rövid tervet, majd dokumentumonként egy-egy státuszsort. A végén egy táblázatot a létrejött fájlokról, és a <code>dokumentacio/kepek/</code> mappában a kulcsképernyők képeit. Ha Claude eltérést talált a spec és a kód között, azt külön jelzi, de a kódhoz nem nyúl.</p></div>
+  <details class="help"><summary>🆘 Segítség: pontos prompt és parancsok</summary><div class="inner">
+    <div class="code"><span class="lbl">prompt</span><pre>/docs</pre><button type="button">Másolás</button></div>
+    <p>A létrejött fájlok:</p>
+    <div class="code"><span class="lbl">Claude Code</span><pre>! ls -R dokumentacio</pre><button type="button">Másolás</button></div>
+    <p>Kényelmes olvasás VS Code-ban, Markdown-előnézettel (a képekkel együtt):</p>
+    <div class="code"><span class="lbl">bash</span><pre>code dokumentacio/felhasznaloi-utmutato.md</pre><button type="button">Másolás</button></div>
+    <p>Ha Claude szerint még nincs elfogadva: ellenőrizd, hogy a <code>BIZONYITEK.md</code> elején <code>Elfogadás: ELFOGADVA</code> áll-e (lásd a 9. lépés segítségét).</p>
+  </div></details>
+  <div class="done-row"><label><input type="checkbox" data-done="sd"> Kész</label></div>
+</section>
+
 <!-- ======================================================= 10 -->
 <section class="step" id="s8">
-  <div class="step-head"><div class="step-no">10</div><div><h2>Visszatekintés</h2><div class="meta">15 perc · közösen</div></div></div>
+  <div class="step-head"><div class="step-no">11</div><div><h2>Visszatekintés</h2><div class="meta">15 perc · közösen</div></div></div>
   <ul>
     <li>Hol kellett beavatkoznod? Mit csinált volna rosszul az ágens, ha nincs spec?</li>
     <li>Mennyi időt vitt el a spec, és mennyit spórolt meg később?</li>
@@ -420,7 +461,8 @@ python3 app.py</pre><button type="button">Másolás</button></div>
     <tr><td><code>/build S1</code></td><td><code>build-task</code> (+ <code>generate-e2e</code>)</td></tr>
     <tr><td>+5 sub-agent ellenőr</td><td><code>review-pr</code>: 4 reviewer + gap-critic (H3, code review)</td></tr>
     <tr><td><code>/verify</code> → <code>BIZONYITEK.md</code></td><td><code>validate-acceptance</code> → Validation Evidence Pack</td></tr>
-    <tr><td>2. kapu: elfogadás</td><td>H4: PO-jóváhagyás, utána mehet UAT-ra</td></tr>
+    <tr><td>2. kapu: elfogadás (<code>Elfogadás: ELFOGADVA</code>)</td><td>H4: PO-jóváhagyás, utána mehet UAT-ra</td></tr>
+    <tr><td><code>/docs</code> → <code>dokumentacio/</code></td><td>– (a labban külön lépés, hogy látható legyen)</td></tr>
     <tr><td>–</td><td><code>mercury-check</code>, H5 deploy</td></tr>
     <tr><td>4. lépés: változáskérés</td><td><code>revise-plan</code></td></tr>
   </table>

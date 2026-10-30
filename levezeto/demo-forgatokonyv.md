@@ -1,4 +1,4 @@
-# Levezetői forgatókönyv – Kudos demó (kb. 3,5 óra)
+# Levezetői forgatókönyv – Kudos demó (kb. 3 óra 45 perc)
 
 > A [`wydrian1/b1-demo-kudos`](https://github.com/wydrian1/b1-demo-kudos) gyakorló repóhoz tartozik, de szándékosan **nincs benne**: a résztvevők gépén az ágens ne lássa az elvárt eredményeket. A fájlhivatkozások (pl. `docs/uzleti-leiras.md`) a gyakorló repón belül értendők.
 > A résztvevőknek szóló útmutató: [lab guide](https://wydrian1.github.io/b1training/lab/).
@@ -33,8 +33,9 @@ kontextus és `CLAUDE.md`, toolok, skillek, az agentic loop (olvas → szerkeszt
 | 1:15 | **Első story** | `/model sonnet`, `/build S1` | Story = vertikális szelet. Előbb a tesztek (piros), utána a kód (zöld), majd megállás és böngészős ellenőrzés |
 | 1:40 | ☕ Szünet | | |
 | 1:50 | **További storyk** | `/build S2`, `/build S3`, … storynként ellenőrizve | Kis körök, az ember minden story után dönt. S1–S4 = MVP, a többi ráadás. Az agentic loop élőben: tool-hívások, engedélykérések, piros → javít. A `docs/arculat-ui.md` mint kontextus: ettől lesz igényes a felület |
-| 2:50 | **🟡 2. kapu** | `/verify`, `BIZONYITEK.md` elolvasása, kattintós forgatókönyv | Bizonyíték alapján fogadunk el, nem érzésre |
-| 3:10 | **Visszatekintés** | Kerekasztal | Lásd a kérdéseket lent |
+| 2:50 | **🟡 2. kapu** | `/verify`, `BIZONYITEK.md` elolvasása, kattintós forgatókönyv, majd **saját kézzel** `Elfogadás: ELFOGADVA` | Bizonyíték alapján fogadunk el, nem érzésre. Az elfogadás is emberi döntés, ugyanúgy, mint a spec jóváhagyása |
+| 3:10 | **Dokumentáció** | `/docs` | Az elfogadott változatról, a tényleges kódból: felhasználói útmutató képekkel, technikai leírás, nyomonkövethetőségi mátrix (auditálhatóság) |
+| 3:20 | **Visszatekintés** | Kerekasztal | Lásd a kérdéseket lent |
 | – | **+ feladatok** (aki hamarabb végez) | Lásd lent és a lab guide-ban | A változás is a specen és a kapun megy át |
 
 ## Javasolt promptok lépésenként
@@ -97,6 +98,18 @@ A story végén a skill újraindítja a helyi szervert az új kóddal (`🌐` so
 /verify
 ```
 
+**Elfogadás** (a résztvevő futtatja, nem az ágens):
+
+```text
+! sed -i 's/^Elfogadás: FÜGGŐBEN/Elfogadás: ELFOGADVA/' BIZONYITEK.md
+```
+
+**Dokumentáció** (csak elfogadás után indul):
+
+```text
+/docs
+```
+
 ## Kattintós forgatókönyv (2. kapu)
 
 Az utolsó `/build` a végén újraindítja a helyi szervert, így csak meg kell nyitni a http://localhost:8000 címet (ha mégsem fut: `python3 app.py`).
@@ -139,6 +152,7 @@ A Visszatekintésnél érdemes megmutatni, hogy a lab a [RBI Getting Started Kit
 | `/build S1` | `build-task` (+ `generate-e2e`) |
 | +5 sub-agent ellenőr | `review-pr`: 4 reviewer + gap-critic (H3, code review) |
 | `/verify` → `BIZONYITEK.md` | `validate-acceptance` → Validation Evidence Pack |
+| `/docs` → `dokumentacio/` | – (a labban külön lépés, hogy látható legyen) |
 | 2. kapu: elfogadás | H4: PO-jóváhagyás, utána mehet UAT-ra |
 | – | `mercury-check`, H5 deploy |
 | 4. lépés: változáskérés | `revise-plan` |
