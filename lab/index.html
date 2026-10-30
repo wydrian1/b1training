@@ -182,7 +182,7 @@ bash scripts/setup-e2e.sh</pre><button type="button">Másolás</button></div>
       <a class="slide" href="../#26">→ Dia: Skillek</a>
     </div>
   </div>
-  <div class="see"><h3>✔ Mit kell látnod</h3><p>Egy rövid mini-tervet, majd egy feladatlistát, ahogy Claude szakaszonként kitölti a specet. A végén létrejön a <code>SPEC.md</code> <code>Státusz: TERVEZET</code> jelöléssel, számozott szabályokkal (SZ-01…), elfogadási kritériumokkal (EK-01…) és storykkal (S1, S2, …).</p></div>
+  <div class="see"><h3>✔ Mit kell látnod</h3><p>Egy rövid mini-tervet, majd rövid státuszsorokat (pl. <code>✍️ 4/11 – Adatmodell</code>), ahogy Claude szakaszonként kitölti a specet. A végén létrejön a <code>SPEC.md</code> <code>Státusz: TERVEZET</code> jelöléssel, számozott szabályokkal (SZ-01…), elfogadási kritériumokkal (EK-01…) és storykkal (S1, S2, …).</p></div>
   <details class="help"><summary>🆘 Segítség: pontos prompt</summary><div class="inner">
     <div class="code"><span class="lbl">Claude Code</span><pre>/model opus</pre><button type="button">Másolás</button></div>
     <div class="code"><span class="lbl">prompt</span><pre>/spec</pre><button type="button">Másolás</button></div>
@@ -531,12 +531,11 @@ HEADED=1 .venv/bin/python -m unittest discover -s tests/e2e -v</pre><button type
     <tr><td>A <code>setup-e2e.sh</code> a pip-nél vagy a Chromium letöltésénél akad el</td><td>Valószínűleg a céges proxy vagy tűzfal. Szólj a levezetőnek (proxy-beállítás vagy belső tükör kell)</td></tr>
     <tr><td>A böngészős teszt hibát ad: hiányzó könyvtár (<code>lib….so</code>)</td><td>A szkript 4. lépése (<code>install-deps</code>) nem futott le: futtasd újra a szkriptet, és add meg a <code>sudo</code> jelszót</td></tr>
     <tr><td>A spec kérdései sima szövegként, számozott listában jönnek</td><td>Kérd: „A tisztázó kérdéseket az AskUserQuestion eszközzel tedd fel, választható opciókkal, az ajánlottal az első helyen.”</td></tr>
-    <tr><td>A spec-kérdések megválaszolása után sokáig nem történik semmi</td><td><b>Esc</b>, majd: „Ne egyben írd meg a specet. Írd ki egy sorban, mit rögzítettél, vegyél fel egy feladatlistát a szakaszokkal, és szakaszonként töltsd ki.”</td></tr>
+    <tr><td>A spec-kérdések megválaszolása után sokáig nem történik semmi</td><td><b>Esc</b>, majd: „Ne egyben írd meg a specet. Írd ki egy sorban, mit rögzítettél, és szakaszonként töltsd ki, mindegyik előtt egy rövid státuszsorral.”</td></tr>
     <tr><td>Az ágens kódot akar írni a jóváhagyás előtt, vagy magától kezd bele a következő fázisba</td><td><b>Esc</b>, majd: „Állj meg. Egyszerre csak egy fázist csinálj, és csak akkor, ha kifejezetten kérem (lásd a CLAUDE.md-t).”</td></tr>
     <tr><td>Claude egy <code>rbi-sdlc-…</code> skillt indít (pl. <code>specify-task</code>, <code>start-prd</code>) a projekt saját skillje helyett</td><td><b>Esc</b>, és használd a slash parancsot: <code>/spec</code>, <code>/build</code>, <code>/verify</code>. Ha a gépeden telepítve van az <code>rbi-sdlc-fundamentals</code> plugin, a labhoz kapcsold ki (<code>/plugin</code>)</td></tr>
     <tr><td><code>pip install</code>-t akar futtatni</td><td>Utasítsd el: az alkalmazás csak standard libraryt használ, a teszteszközöket a <code>scripts/setup-e2e.sh</code> telepíti</td></tr>
     <tr><td>Körbe-körbe javít</td><td><b>Esc</b>, majd: „Állj meg. Melyik teszt piros, és szerinted mi az oka? Javasolj egy javítást, de még ne hajtsd végre.”</td></tr>
-    <tr><td>A story végén nyitva maradtak feladatok a listában</td><td>Kérd így: „Nézd végig a feladatlistát: zárd le, ami elkészült, és mondd meg, mi maradt nyitva és miért.”</td></tr>
     <tr><td>Foglalt a 8000-es port</td><td>Ha te indítottál egy <code>python3 app.py</code>-t, állítsd le (Ctrl+C abban a terminálban). Ha más program foglalja, a <code>/build</code> rákérdez, és nem állítja le magától</td></tr>
     <tr><td>Elakadtál a spec-lépésnél</td><td>Kérj a levezetőtől tartalék <code>SPEC.md</code>-t, és hagyd jóvá te magad</td></tr>
     <tr><td>Túl hosszú, zavaros lett a beszélgetés</td><td><code>/compact</code>, vagy <code>/clear</code> és a következő lépés promptja újra (a „Segítség” dobozból)</td></tr>
