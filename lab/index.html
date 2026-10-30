@@ -278,7 +278,7 @@ Javítsd az összes érintett szabályt, EK-t és storyt, rögzítsd az eltéré
         <li><b>Válts vissza Sonnetre</b> a <code>/model</code> paranccsal: a jóváhagyott spec alapján a buildhez bőven elég, és gyorsabb.</li>
         <li>Indítsd el az első storyt a projekt <b>build skilljével</b>, a story azonosítójával.</li>
         <li>Figyeld meg a sorrendet: Claude <b>előbb a teszteket</b> írja meg, és megmutatja, hogy <b>pirosak</b>, csak utána kódol. A tesztek futtatását nyugodtan engedélyezheted tartósan.</li>
-        <li>A story végén Claude <b>megáll</b>, és leírja, mit nézz meg. Indítsd el az alkalmazást egy <b>másik terminálban</b>, és nézd meg a böngészőben.</li>
+        <li>A story végén Claude <b>elindítja (vagy újraindítja) a helyi szervert</b> az új kóddal, <b>megáll</b>, és leírja, mit nézz meg. Nyisd meg a <code>http://localhost:8000</code> címet, vagy frissítsd a böngészőt.</li>
       </ul>
     </div>
     <div class="why">
@@ -288,11 +288,11 @@ Javítsd az összes érintett szabályt, EK-t és storyt, rögzítsd az eltéré
       <a class="slide" href="../#43">→ Dia: Egy fejlesztési feladat az ágens kezében</a>
     </div>
   </div>
-  <div class="see"><h3>✔ Mit kell látnod</h3><p>Egy rövid story-bemutatót, piros, majd zöld tesztfuttatást (unit és böngészős E2E), egy új <code>HALADAS.md</code>-t és egy kattintós ellenőrzést. A böngészőben az S1 „Kész, ha…” feltétele teljesül, és Claude <b>nem kezd bele</b> az S2-be.</p></div>
+  <div class="see"><h3>✔ Mit kell látnod</h3><p>Egy rövid story-bemutatót, piros, majd zöld tesztfuttatást (unit és böngészős E2E), egy új <code>HALADAS.md</code>-t, egy <code>🌐 A szerver újraindítva…</code> sort és egy kattintós ellenőrzést. A böngészőben az S1 „Kész, ha…” feltétele teljesül, és Claude <b>nem kezd bele</b> az S2-be.</p></div>
   <details class="help"><summary>🆘 Segítség: pontos prompt és parancsok</summary><div class="inner">
     <div class="code"><span class="lbl">Claude Code</span><pre>/model sonnet</pre><button type="button">Másolás</button></div>
     <div class="code"><span class="lbl">prompt</span><pre>/build S1</pre><button type="button">Másolás</button></div>
-    <p>Az alkalmazás indítása egy új terminálban, majd a böngészőben: <code>http://localhost:8000</code></p>
+    <p>Ha a szerver mégsem fut, indítsd el te egy új terminálban:</p>
     <div class="code"><span class="lbl">bash</span><pre>cd kudos
 python3 app.py</pre><button type="button">Másolás</button></div>
   </div></details>
@@ -368,7 +368,7 @@ python3 app.py</pre><button type="button">Másolás</button></div>
   <div class="cols2">
     <div class="do">
       <h3>▶ Mit csinálj</h3>
-      <p>Az alkalmazás fut. Kattints végig:</p>
+      <p>Az alkalmazás a <code>http://localhost:8000</code> címen fut (az utolsó <code>/build</code> indította el). Kattints végig:</p>
       <ul class="checks">
         <li><input type="checkbox" id="c7a" data-check="c7a"><label for="c7a"><b>Horváth Annaként</b> küldj <b>Farkas Júliának</b> egy <b>privát</b> (🚀 Take actions to move forward), <b>Juhász Nórának</b> egy <b>nyilvános</b> (🤝 Deliver value together) köszönetet. Mindkettő ott van a „Küldött” listában, kategória-chippel és láthatóság-ikonnal.</label></li>
         <li><input type="checkbox" id="c7c" data-check="c7c"><label for="c7c">Annaként próbálj meg saját magadnak, üres üzenettel, kategória nélkül, illetve Júliának ma egy 4. köszönetet küldeni. Egyik sem mehet át, a hiba a mező alatt jelenik meg.</label></li>
@@ -520,7 +520,7 @@ HEADED=1 .venv/bin/python -m unittest discover -s tests/e2e -v</pre><button type
     <tr><td><code>pip install</code>-t akar futtatni</td><td>Utasítsd el: az alkalmazás csak standard libraryt használ, a teszteszközöket a <code>scripts/setup-e2e.sh</code> telepíti</td></tr>
     <tr><td>Körbe-körbe javít</td><td><b>Esc</b>, majd: „Állj meg. Melyik teszt piros, és szerinted mi az oka? Javasolj egy javítást, de még ne hajtsd végre.”</td></tr>
     <tr><td>A story végén nyitva maradtak feladatok a listában</td><td>Kérd így: „Nézd végig a feladatlistát: zárd le, ami elkészült, és mondd meg, mi maradt nyitva és miért.”</td></tr>
-    <tr><td>Foglalt a 8000-es port</td><td>Állítsd le a másik <code>python3 app.py</code>-t (Ctrl+C abban a terminálban)</td></tr>
+    <tr><td>Foglalt a 8000-es port</td><td>Ha te indítottál egy <code>python3 app.py</code>-t, állítsd le (Ctrl+C abban a terminálban). Ha más program foglalja, a <code>/build</code> rákérdez, és nem állítja le magától</td></tr>
     <tr><td>Elakadtál a spec-lépésnél</td><td>Kérj a levezetőtől tartalék <code>SPEC.md</code>-t, és hagyd jóvá te magad</td></tr>
     <tr><td>Túl hosszú, zavaros lett a beszélgetés</td><td><code>/compact</code>, vagy <code>/clear</code> és a következő lépés promptja újra (a „Segítség” dobozból)</td></tr>
   </table>

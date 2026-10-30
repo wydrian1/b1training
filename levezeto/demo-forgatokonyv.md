@@ -88,7 +88,7 @@ Forrás: [IT-BSO Behavioral Anchor](https://wiki.rbinternational.com/confluence/
 
 A build előtt vissza Sonnetre: a jóváhagyott spec alapján bőven elég, gyorsabb és olcsóbb. Jó beszélgetési pont: a feladathoz választunk modellt, nem mindenhez a legerősebbet.
 
-Ellenőrzés a böngészőben a skill által adott lépések szerint, utána `/build S2`, `/build S3`, … A haladás a `HALADAS.md`-ben látszik.
+A story végén a skill újraindítja a helyi szervert az új kóddal (`🌐` sor az összefoglalóban), így elég frissíteni a böngészőt. Ellenőrzés a skill által adott lépések szerint, utána `/build S2`, `/build S3`, … A haladás a `HALADAS.md`-ben látszik.
 
 **Bizonyíték:**
 
@@ -98,7 +98,7 @@ Ellenőrzés a böngészőben a skill által adott lépések szerint, utána `/b
 
 ## Kattintós forgatókönyv (2. kapu)
 
-`python3 app.py`, majd http://localhost:8000
+Az utolsó `/build` a végén újraindítja a helyi szervert, így csak meg kell nyitni a http://localhost:8000 címet (ha mégsem fut: `python3 app.py`).
 
 1. Lépj be **Horváth Anna** (Fejlesztési Osztály) néven.
 2. Új köszönet: keress rá arra, hogy „adat”, és válaszd ki **Farkas Júliát**. Kategória: 🚀 Take actions to move forward, üzenet: „Köszönöm a gyors adatelemzést! 🙏🎉”, láthatóság: **Privát** → ellenőrző nézet → küldés → toast.
