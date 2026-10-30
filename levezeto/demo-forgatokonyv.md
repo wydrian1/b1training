@@ -16,7 +16,7 @@ kontextus és `CLAUDE.md`, toolok, skillek, az agentic loop (olvas → szerkeszt
 - [ ] Claude Code beállítva az RBI LLM gatewayre, a modell elérhető (pl. Sonnet 5.5). Próbaüzenet: `claude -p "szia"`
 - [ ] A repó klónozható a résztvevők gépéről (hozzáférés, proxy)
 - [ ] **`bash scripts/setup-e2e.sh` lefut minden gépen** (pip csomag, kb. 150 MB-os Chromium-letöltés, `sudo` a rendszerkönyvtárakhoz). Ha a proxy vagy a tűzfal megfogja, előre kell megoldani (proxy-beállítás vagy belső tükör), mert a workshopon ez viszi el a legtöbb időt. A végén ✅-et kell kiírnia.
-- [ ] Windows 11 + WSLg esetén a `HEADED=1` mód külön ablakot nyit: érdemes egyszer kipróbálni, jó demóeszköz a kivetítőn
+- [ ] Windows 11 + WSLg esetén a `HEADED=1` mód külön ablakot nyit: érdemes egyszer kipróbálni, jó demóeszköz a kivetítőn (a lab guide-ban ez a „+7” opcionális feladat)
 - [ ] Levezetőként egy teljes próbafutás előre, időméréssel
 - [ ] Tartalék: egy előre elkészült, jóváhagyott `SPEC.md` (ha valaki elakad a spec-lépésnél, attól folytathatja)
 
