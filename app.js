@@ -157,6 +157,7 @@
     $('#bar').style.width = (total > 1 ? (cur / (total - 1)) * 100 : 100) + '%';
     if (location.hash !== '#' + (cur + 1)) history.replaceState(null, '', '#' + (cur + 1));
     $$('#menu a').forEach(a => a.classList.toggle('cur', +a.dataset.i === cur));
+    syncJump();
     renderNotes();
   }
 
@@ -217,6 +218,28 @@
     a.addEventListener('click', e => { e.preventDefault(); menu.classList.remove('open'); go(i); });
     menu.appendChild(a);
   });
+
+  // fejezet-gyorsmenü: címlap, napirend, fejezet-címlapok és a záró dia
+  const jump = $('#jump');
+  const chapters = [];
+  slides.forEach((s, i) => {
+    if (s.classList.contains('cover')) {
+      const n = $('.num', s);
+      chapters.push([i, (n ? n.textContent.trim() + ' · ' : '') + titleOf(s)]);
+    } else if (i === 0 || i === total - 1 || titleOf(s) === 'Napirend') {
+      chapters.push([i, titleOf(s)]);
+    }
+  });
+  chapters.sort((a, b) => a[0] - b[0]);
+  jump.innerHTML = '<option value="">Ugrás…</option>' + chapters.map(c => `<option value="${c[0]}">${c[1]}</option>`).join('');
+  jump.addEventListener('change', () => { if (jump.value !== '') go(+jump.value); jump.blur(); });
+  jump.addEventListener('click', e => e.stopPropagation());
+  jump.addEventListener('keydown', e => e.stopPropagation());
+  function syncJump() {
+    let v = '';
+    chapters.forEach(c => { if (c[0] <= cur) v = String(c[0]); });
+    jump.value = v;
+  }
 
   // vezérlés
   document.addEventListener('keydown', e => {

@@ -1116,6 +1116,34 @@
   <aside class="notes"><p>Ez a mai fogalmak „élesben”: a getting started kit pontosan azokból az építőkockákból áll, amikről a 03-as és 05-ös blokkban beszéltünk (skill, hook, tool, sub-agent). A spec-driven megközelítés lényege, hogy az ágens egy jóváhagyott specifikációból dolgozik, nem egy egysoros promptból.</p><p>A két emberi kapu: (1) a spec jóváhagyása az építés előtt, (2) a bizonyíték validálása élesítés előtt. Élesben a kit több kaput nevez meg (H3 code review, H4 validáció: a PO jóváhagyja a Validation Evidence Packet, H5 deploy, valamint solution gate, Three Amigos, compliance sign-off). A labban kettőre egyszerűsítünk.</p><p>Kettős ellenőrzés a kitben: a <code>build-task</code> determinisztikus ellenőrzéseket futtat (lint, teszt, coverage, CVE- és secret-scan), a <code>review-pr</code> pedig 4 párhuzamos review-ágenst (code, security, scope, test) és egy gap-critic ágenst, ami azt keresi, mit hagytak ki együtt.</p><p>A „11 core market” a TechTalk blogból származik, a kit repóban nem szerepel.</p><p>A labban → élesben:</p><table><tr><th>A labban</th><th>A Getting Started Kitben</th></tr><tr><td><code>docs/uzleti-leiras.md</code></td><td>PRD (<code>start-prd</code> → <code>refine-prd</code>)</td></tr><tr><td><code>/spec</code> → <code>SPEC.md</code> (SZ, EK, storyk)</td><td><code>plan-prd</code> → <code>plan.md</code> (storyk, BAC-ok), <code>specify-task</code> → <code>spec.md</code></td></tr><tr><td>EK-01…</td><td>BAC-1… (Business Acceptance Criteria)</td></tr><tr><td>1. kapu: <code>Státusz: JÓVÁHAGYVA</code></td><td>solution gate, spec-jóváhagyás</td></tr><tr><td><code>/build S1</code></td><td><code>build-task</code> (+ <code>generate-e2e</code>)</td></tr><tr><td>+5 sub-agent ellenőr</td><td><code>review-pr</code>: 4 reviewer + gap-critic (H3, code review)</td></tr><tr><td><code>/verify</code> → <code>BIZONYITEK.md</code></td><td><code>validate-acceptance</code> → Validation Evidence Pack</td></tr><tr><td>2. kapu: elfogadás</td><td>H4: PO-jóváhagyás, utána mehet UAT-ra</td></tr><tr><td>–</td><td><code>mercury-check</code>, H5 deploy</td></tr><tr><td>4. lépés: változáskérés</td><td><code>revise-plan</code></td></tr></table><p>Gyakorlati tapasztalat: a 20–50 repóra szétszórt kontextus lassította a munkát. „Ez nem ágens-probléma, hanem folyamat-probléma”, és az új emberi kollégákat is ugyanígy lassítja.</p></aside>
 </section>
 
+<section class="slide" data-title="Ha a teljes kittel csináltuk volna">
+  <div class="kicker">06 · Fejlesztés · nálunk</div>
+  <h2>Ha ugyanezt a teljes SDLC kittel csináltuk volna</h2>
+  <div class="body mid" style="gap:14px">
+    <div class="flow" style="gap:6px;--fs:15px">
+      <div class="node frag" style="border-top:4px solid var(--yellow)"><b>PRD</b><code>start-prd</code>, <code>refine-prd</code></div><div class="arr">→</div>
+      <div class="node frag" style="border-top:4px solid var(--blue)"><b>Terv</b><code>plan-prd</code>: sztorik, BAC-ok, tesztek</div><div class="arr">→</div>
+      <div class="node frag" style="border-top:4px solid var(--blue)"><b>Spec</b><code>specify-task</code> sztorinként</div><div class="arr">→</div>
+      <div class="node frag" style="border-top:4px solid var(--violet)"><b>Build</b><code>build-task</code> + <code>evidence.md</code></div><div class="arr">→</div>
+      <div class="node frag" style="border-top:4px solid var(--green)"><b>Review</b><code>review-pr</code>: 4 reviewer + gap-critic</div><div class="arr">→</div>
+      <div class="node frag" style="border-top:4px solid var(--teal)"><b>Validáció</b><code>validate-acceptance</code></div>
+    </div>
+    <table class="tbl frag" style="font-size:16px">
+      <tr><th style="width:150px"></th><th>Mai lab</th><th>Teljes kit (Kudos, valós példa)</th></tr>
+      <tr><td><b>Dokumentum</b></td><td>egy <code>SPEC.md</code></td><td><code>.sdlc/prds/</code> (PRD, terv) és <code>.sdlc/tasks/</code> (spec, bizonyíték) sztorinként</td></tr>
+      <tr><td><b>Kapuk</b></td><td>2 (spec, elfogadás)</td><td>solution gate, H2 spec, H3 code review, H4 PO-validáció, H5 deploy</td></tr>
+      <tr><td><b>Ellenőrzés</b></td><td>tesztek + <code>BIZONYITEK.md</code></td><td>lint, build, teszt, coverage, CVE- és secret-scan; független review-ágensek</td></tr>
+      <tr><td><b>Változás</b></td><td>a spec módosul</td><td><code>revise-plan</code>: a terv és az érintett specek is frissülnek</td></tr>
+    </table>
+    <div class="cols c3 tight" style="gap:16px">
+      <div class="card y frag"><h3>Kudos: 3 kör, 3 munkanap</h3><p class="small"><b>29 sztori</b>, mindegyikhez specifikáció és bizonyíték-csomag, 5 terv-módosítás menet közben.</p></div>
+      <div class="card t frag"><h3>Végállapot</h3><p class="small">Backend <b>199</b>, frontend <b>140</b>, böngészős <b>49</b> teszt, mind sikeres.</p></div>
+      <div class="card a frag"><h3>Őszinte állapotjelentés</h3><p class="small">A bizonyíték azt is felsorolja, amit <b>nem</b> ellenőriztünk (pl. a <code>review-pr</code> demónál kimaradt).</p></div>
+    </div>
+  </div>
+  <aside class="notes"><p>Belépési pont a kitben: <code>/rbi-sdlc-fundamentals:start</code>, ami négy workflow-hoz irányít (<code>wf-refine-idea</code>, <code>wf-implement-ticket</code>, <code>wf-review-change</code>, <code>wf-test-story</code>); mindegyik lépése külön subagentben fut.</p><p>A labon egyetlen SPEC.md-vel dolgoztunk, hogy egy délután belefér. A teljes kit ugyanezt a mintát viszi végig, csak minden lépésnek külön artefaktuma és felelőse van.</p><p>A Kudos alkalmazás ugyanez a demó, a teljes SDLC kittel készült három körben (2026. 10. 22., 10. 23. és 11. 03.): 1. kör az alkalmazás (12 sztori), 2. kör Kubera-készültség (7 sztori), 3. kör egy másik demó-leírás különbségei (10 sztori). Menet közben öt terv-módosítás volt, például a vezető a saját területéhez is hozzátartozik, ami egy valódi kipróbálásnál derült ki.</p><p>Tanulság: minden követelményhez tartozik teszt, minden sztorihoz spec és bizonyíték, és a változás a tervben és a specifikációban jelenik meg, nem a kódból derül ki utólag.</p><p>Korlátok, amiket a leírás is őszintén említ: a független <code>review-pr</code> és a <code>finalise-pr</code> nem futott, függőség-sérülékenység és titokszkennelés nincs bekötve, a <code>mercury-check</code> még nem futott.</p><p>Részletek: Confluence, „[WZ] Kudos – SDLC alapú fejlesztés: az igénytől a kiadásig” (RA tér).</p></aside>
+</section>
+
 <section class="slide" data-title="Mi változik a szerepekben?">
   <div class="kicker">06 · Fejlesztés</div>
   <h2>Mi változik a szerepekben?</h2>
@@ -1254,6 +1282,7 @@
   <div id="bar"></div>
 </div>
 
+<select id="jump" title="Ugrás fejezetre (M: teljes dialista)" aria-label="Ugrás fejezetre"></select>
 <button id="themeBtn" type="button" title="Világos / sötét téma (T)" aria-label="Világos / sötét téma váltása"></button>
 <nav id="menu" aria-label="Diák"></nav>
 <div id="notes" aria-live="polite"></div>

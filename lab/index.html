@@ -451,23 +451,27 @@ python3 app.py</pre><button type="button">Másolás</button></div>
     <li>Melyik saját területi feladatotoknál lenne használható ez a folyamat? Hol lenne a két kapu?</li>
   </ul>
   <h3>A labban → élesben</h3>
-  <p>A labban az <a href="https://code.rbi.tech/raiffeisen/RBI-Getting-Started-Kit">RBI Getting Started Kit</a> folyamatát használtuk, szándékosan leegyszerűsítve:</p>
+  <p>A labban az <a href="https://code.rbi.tech/raiffeisen/RBI-Getting-Started-Kit">RBI Getting Started Kit</a> folyamatát használtuk, szándékosan leegyszerűsítve. A kitben minden lépésnek külön skillje és kimeneti fájlja van (a skillek az <code>rbi-sdlc-fundamentals</code> pluginban vannak):</p>
   <table>
     <tr><th>A labban</th><th>A Getting Started Kitben</th></tr>
-    <tr><td><code>docs/uzleti-leiras.md</code></td><td>PRD (<code>start-prd</code> → <code>refine-prd</code>)</td></tr>
-    <tr><td><code>/spec</code> → <code>SPEC.md</code> (SZ, EK, storyk)</td><td><code>plan-prd</code> → <code>plan.md</code> (storyk, BAC-ok), <code>specify-task</code> → <code>spec.md</code></td></tr>
-    <tr><td>EK-01…</td><td>BAC-1… (Business Acceptance Criteria)</td></tr>
-    <tr><td>1. kapu: <code>Státusz: JÓVÁHAGYVA</code></td><td>solution gate, spec-jóváhagyás</td></tr>
-    <tr><td><code>/build S1</code></td><td><code>build-task</code> (+ <code>generate-e2e</code>)</td></tr>
-    <tr><td>+5 sub-agent ellenőr</td><td><code>review-pr</code>: 4 reviewer + gap-critic (H3, code review)</td></tr>
-    <tr><td><code>/verify</code> → <code>BIZONYITEK.md</code></td><td><code>validate-acceptance</code> → Validation Evidence Pack</td></tr>
-    <tr><td>2. kapu: elfogadás (<code>Elfogadás: ELFOGADVA</code>)</td><td>H4: PO-jóváhagyás, utána mehet UAT-ra</td></tr>
-    <tr><td><code>/docs</code> → <code>dokumentacio/</code></td><td>– (a labban külön lépés, hogy látható legyen)</td></tr>
-    <tr><td>–</td><td><code>mercury-check</code>, H5 deploy</td></tr>
-    <tr><td>4. lépés: változáskérés</td><td><code>revise-plan</code></td></tr>
+    <tr><td>lépésenként kézzel indított parancsok (<code>/spec</code>, <code>/build</code>, <code>/verify</code>)</td><td><code>/rbi-sdlc-fundamentals:start</code> belépési pont, ami négy workflow-skillhez irányít: <code>wf-refine-idea</code> (PRD → terv), <code>wf-implement-ticket</code> (spec → kód), <code>wf-review-change</code> (review → merge), <code>wf-test-story</code> (tesztek → bizonyíték); mindegyik lépés külön subagentben fut</td></tr>
+    <tr><td><code>CLAUDE.md</code>, <code>setup.sh</code></td><td><code>init</code>: környezet, credentialök, dokumentáció és a blokkoló ellenőrzések felmérése</td></tr>
+    <tr><td><code>docs/uzleti-leiras.md</code></td><td>PRD: <code>start-prd</code> (vázlat) → <code>refine-prd</code> (min. 3 megoldási változat, CIG-ellenőrzés) → <code>.sdlc/prds/&lt;slug&gt;/prd.md</code></td></tr>
+    <tr><td><code>/spec</code> → <code>SPEC.md</code> (SZ, EK, storyk)</td><td><code>plan-prd</code> → <code>plan.md</code> (epicek, storyk, tesztek a BAC-okhoz kötve); sztorinként <code>specify-task</code> → <code>.sdlc/tasks/&lt;slug&gt;/spec.md</code></td></tr>
+    <tr><td>EK-01…</td><td>BAC-1… (Business Acceptance Criteria); a teszteket a <code>publish-tests</code> Zephyr Scale-be is felviszi</td></tr>
+    <tr><td>1. kapu: <code>Státusz: JÓVÁHAGYVA</code></td><td>solution gate (a megoldás kiválasztása a <code>refine-prd</code>-ben) és H2: a spec átnézése, mielőtt a <code>wf-implement-ticket</code> építeni kezd</td></tr>
+    <tr><td><code>/build S1</code>, <code>HALADAS.md</code></td><td><code>build-task</code>: külön worktree, a spec érvényességének ellenőrzése, kód + teszt, opcionálisan PR; <code>generate-e2e</code>: Playwright-tesztek a Zephyr-esetekből</td></tr>
+    <tr><td>tesztfuttatás a storyk végén</td><td><code>build-task</code> → <code>evidence.md</code>: lint, build, teszt, coverage, CVE- és secret-scan; azt is rögzíti, amit <b>nem</b> tudott ellenőrizni; piros ellenőrzésnél nem commitol</td></tr>
+    <tr><td>+5 sub-agent ellenőr</td><td><code>review-pr</code> (H3, code review): code, security, scope és test reviewer párhuzamosan + gap-critic, a leleteket triázsolja; javítás <code>build-task</code>-kal, utána <code>finalise-pr</code> és <code>update-docs</code> (<code>wf-review-change</code>)</td></tr>
+    <tr><td><code>/verify</code> → <code>BIZONYITEK.md</code></td><td><code>validate-acceptance</code> → <code>validation-evidence.md</code>: a TEST környezetben lefuttatott elfogadási tesztek, videó/screenshot bizonyítékkal</td></tr>
+    <tr><td>2. kapu: elfogadás (<code>Elfogadás: ELFOGADVA</code>)</td><td>H4: a PO a Validation Evidence Pack alapján hagy jóvá, utána mehet UAT-ra</td></tr>
+    <tr><td><code>/docs</code> → <code>dokumentacio/</code></td><td><code>update-docs</code> (a <code>wf-review-change</code> része): a <code>docs/*.md</code> a kódváltozáshoz igazítva; a labban külön lépés, hogy látható legyen</td></tr>
+    <tr><td>–</td><td><code>mercury-check</code> (Mercury-készültség), H5 deploy</td></tr>
+    <tr><td>4. lépés: változáskérés</td><td><code>revise-plan</code>: review- vagy validációs lelet, új igény esetén a terv frissül, az érintett specek újrafelülvizsgálatra jelölődnek</td></tr>
+    <tr><td>–</td><td><code>capture-rules</code>: a munkamenet közbeni javításokból csapat-szabályok, amelyeket a skillek minden futásnál betöltenek</td></tr>
   </table>
-  <p class="meta">A valódi kit Jira-, Confluence- és Zephyr-integrációval, több emberi kapuval (pl. code review, validáció, deploy) és a <code>.sdlc/</code> mappában dolgozik.</p>
-  <a class="slide" href="../#49">→ Dia: Hol érdemes kezdeni?</a>
+  <p class="meta">A valódi kit Jira-, Confluence-, Zephyr-, Figma- és Grafana-integrációval dolgozik, a kimenetek a <code>.sdlc/</code> mappában vannak. A labban kettő kaput használtunk a kit több emberi kapuja helyett. Egy teljes, valós példa a <a href="../#46">következő dián</a>: a Kudos alkalmazás a teljes kittel.</p>
+  <a class="slide" href="../#50">→ Dia: Hol érdemes kezdeni?</a>
   <div class="done-row"><label><input type="checkbox" data-done="s8"> Kész</label></div>
 </section>
 
