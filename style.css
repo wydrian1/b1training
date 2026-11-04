@@ -454,12 +454,25 @@ rect[fill="#f6ad55"] + text[fill="#0b1220"] { fill: var(--on-acc); }
 .r-sys { background: var(--muted); } .r-user { background: var(--blue); } .r-asst { background: var(--violet); } .r-tool { background: var(--green); }
 
 /* mátrix */
-.matrix { display: grid; grid-template-columns: 40px 1fr 1fr; grid-template-rows: 1fr 1fr 34px; gap: 12px; flex: 1; min-height: 0; }
+.matrix {
+  display: grid; grid-template-columns: 40px 1fr 1fr; grid-template-rows: 1fr 1fr 34px; gap: 12px; flex: 1; min-height: 0;
+  position: relative;
+  /* koordináta-tengelyek a rácsrések közepén: függőleges (Y) és vízszintes (X) */
+  background:
+    linear-gradient(var(--text), var(--text)) no-repeat 45px 14px / 3px calc(100% - 54px),
+    linear-gradient(var(--text), var(--text)) no-repeat 45px calc(100% - 39px) / calc(100% - 59px) 3px;
+}
+/* nyílhegyek a tengelyek végén */
+.matrix::before { content: ""; position: absolute; left: 39px; top: 0; border: 7.5px solid transparent; border-bottom: 14px solid var(--text); border-top: 0; }
+.matrix::after { content: ""; position: absolute; right: 0; bottom: 33px; border: 7.5px solid transparent; border-left: 14px solid var(--text); border-right: 0; }
 .matrix .q { border-radius: 14px; padding: 16px 20px; border: 1px solid var(--line); }
 .matrix .q h3 { font-size: 22px; margin-bottom: 6px; }
 .matrix .q p { font-size: 17px; color: var(--muted); }
-.matrix .ylab { writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; color: var(--muted); font-size: 15px; letter-spacing: .08em; text-transform: uppercase; grid-row: 1 / 3; }
-.matrix .xlab { grid-column: 2 / 4; text-align: center; color: var(--muted); font-size: 15px; letter-spacing: .08em; text-transform: uppercase; }
+.matrix .ylab { writing-mode: vertical-rl; transform: rotate(180deg); color: var(--muted); font-size: 14px; letter-spacing: .08em; text-transform: uppercase; grid-row: 1 / 3; display: flex; justify-content: space-between; align-items: center; padding: 10px 0 20px; }
+.matrix .xlab { grid-column: 2 / 4; color: var(--muted); font-size: 14px; letter-spacing: .08em; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center; padding: 0 24px 0 10px; }
+.matrix .ylab b, .matrix .xlab b { color: var(--text); font-weight: 700; }
+.matrix .ylab span, .matrix .xlab span { font-size: 12px; color: var(--dim); }
+.matrix .origin { align-self: start; justify-self: end; font-size: 12px; color: var(--dim); padding: 2px 4px 0 0; }
 
 /* szekvencia diagram */
 .seqwrap { display: grid; grid-template-columns: 790px 1fr; gap: 22px; flex: 1; min-height: 0; }

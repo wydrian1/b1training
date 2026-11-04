@@ -68,13 +68,13 @@
   <p>Minden lépésnél leírjuk, <b>mit kell elérned</b> és <b>miért</b>. A pontos szöveget próbáld meg saját szavaiddal megfogalmazni Claude-nak, ez is a gyakorlat része. Ha elakadsz, nyisd le a lépés alján a <b>„Segítség”</b> dobozt: ott megtalálod a pontos promptot vagy parancsot.</p>
 
   <h3>Spec-driven, nem „vibe coding”</h3>
-  <p>Vibe codingnál az ember egy mondatot ír, és elfogadja, ami jön. Itt előbb leírjuk és <b>jóváhagyjuk</b>, mit kell építeni, ellenőrizhető elfogadási kritériumokkal. Az ágens csak ezután ír tesztet és kódot, a végén pedig <b>bizonyítékkal</b> mutatja meg, hogy minden kritérium teljesül. Ez ugyanaz a minta, mint az <a href="../#45">RBI AI-native SDLC</a>-ben.</p>
+  <p>Vibe codingnál az ember egy mondatot ír, és elfogadja, ami jön. Itt előbb leírjuk és <b>jóváhagyjuk</b>, mit kell építeni, ellenőrizhető elfogadási kritériumokkal. Az Agent csak ezután ír tesztet és kódot, a végén pedig <b>bizonyítékkal</b> mutatja meg, hogy minden kritérium teljesül. Ez ugyanaz a minta, mint az <a href="../#45">RBI AI-native SDLC</a>-ben.</p>
 </div>
 
 <div id="menet">
   <h2>A délután menete</h2>
   <div class="flow">
-    <div class="node"><b>Specifikáció</b>az ágens kérdez és ír</div><div class="arr">→</div>
+    <div class="node"><b>Specifikáció</b>az Agent kérdez és ír</div><div class="arr">→</div>
     <div class="node"><b>Változás</b>a spec módosul, nem a kód</div><div class="arr">→</div>
     <div class="node gate"><b>🟡 1. kapu</b>te hagyod jóvá</div><div class="arr">→</div>
     <div class="node"><b>Storyk</b>storynként: tesztek → kód → zöld</div><div class="arr">→</div>
@@ -98,7 +98,7 @@
           <ul>
             <li><code>docs/uzleti-leiras.md</code>: az üzleti igény, ebből indulunk</li>
             <li><code>docs/arculat-ui.md</code>: hogyan nézzen ki a felület</li>
-            <li><code>CLAUDE.md</code>: szabályok az ágensnek</li>
+            <li><code>CLAUDE.md</code>: szabályok az Agentnek</li>
             <li><code>data/munkatarsak.json</code>: 17 kitalált munkatárs a board tagtól (B) a főosztályvezetőn (B-1) és az osztályvezetőkön (B-2) át az alkalmazottakig. Ez helyettesíti az AD-t.</li>
           </ul>
         </li>
@@ -180,7 +180,7 @@ bash scripts/setup-e2e.sh</pre><button type="button">Másolás</button></div>
     <div class="why">
       <h3>💡 Miért</h3>
       <p>A spec-készítés egy <b>skill</b>: elmentett szakértelem, ami csak akkor töltődik be teljesen, amikor szükség van rá. Mindenkinél ugyanazt a folyamatot és ugyanazt a szerkezetet adja.</p>
-      <p>Az ágens <b>kérdez, nem találgat</b>. Minden kérdés egy olyan döntés, amit különben csendben, helyetted hozott volna meg.</p>
+      <p>Az Agent <b>kérdez, nem találgat</b>. Minden kérdés egy olyan döntés, amit különben csendben, helyetted hozott volna meg.</p>
       <a class="slide" href="../#26">→ Dia: Skillek</a>
     </div>
   </div>
@@ -190,7 +190,7 @@ bash scripts/setup-e2e.sh</pre><button type="button">Másolás</button></div>
     <div class="code"><span class="lbl">prompt</span><pre>/spec</pre><button type="button">Másolás</button></div>
     <p>Ha nem tudod, mit válassz, fogadd el a javaslatokat:</p>
     <div class="code"><span class="lbl">prompt</span><pre>Mindegyik kérdésnél a javasolt alapértelmezés jó, mehet.</pre><button type="button">Másolás</button></div>
-    <p><b>Ha a spec végén nyitott kérdés marad,</b> az jó jel: az ágens nem döntött helyetted. Gyakori példa a <b>kilépés / felhasználóváltás</b>, amit az üzleti leírás nem említ, de a 2. kapuhoz kell:</p>
+    <p><b>Ha a spec végén nyitott kérdés marad,</b> az jó jel: az Agent nem döntött helyetted. Gyakori példa a <b>kilépés / felhasználóváltás</b>, amit az üzleti leírás nem említ, de a 2. kapuhoz kell:</p>
     <div class="code"><span class="lbl">prompt</span><pre>Igen, vedd fel: legyen „Kilépés / váltás” gomb a fejlécben, ami visszavisz a „Belépés mint…” listára. Kerüljön be üzleti szabályként és egy EK-val, a nyitott kérdést zárd le ezzel a döntéssel.</pre><button type="button">Másolás</button></div>
   </div></details>
   <div class="done-row"><label><input type="checkbox" data-done="s2"> Kész</label></div>
@@ -255,7 +255,7 @@ Javítsd az összes érintett szabályt, EK-t és storyt, rögzítsd az eltéré
     </div>
     <div class="why">
       <h3>💡 Miért</h3>
-      <p>Ez az <b>RBI SDLC első kapuja</b>: az ember hagyja jóvá a specifikációt, mielőtt az ágens épít. A jóváhagyás felelősség, ezért azt <b>nem az ágens</b> állítja be, ezt a <code>CLAUDE.md</code> kifejezetten tiltja neki.</p>
+      <p>Ez az <b>RBI SDLC első kapuja</b>: az ember hagyja jóvá a specifikációt, mielőtt az Agent épít. A jóváhagyás felelősség, ezért azt <b>nem az Agent</b> állítja be, ezt a <code>CLAUDE.md</code> kifejezetten tiltja neki.</p>
       <p>Egy hiba itt egy mondat javítása. Ugyanez a hiba a kódban már órák munkája.</p>
       <a class="slide" href="../#45">→ Dia: RBI AI-native SDLC</a>
     </div>
@@ -264,7 +264,7 @@ Javítsd az összes érintett szabályt, EK-t és storyt, rögzítsd az eltéré
   <details class="help"><summary>🆘 Segítség: javíttatás és a státusz átírása</summary><div class="inner">
     <p>Javíttatás, például:</p>
     <div class="code"><span class="lbl">prompt</span><pre>Az értesítésekről szóló EK-ban legyen benne az is, hogy Nagy Péter és Tóth Gábor nem kap értesítést, amikor Horváth Anna köszönetet küld Farkas Júliának. Csak a SPEC.md-t módosítsd.</pre><button type="button">Másolás</button></div>
-    <p>A státusz átírása Claude Code-ban a <code>!</code> előtaggal (ezt te futtatod, nem az ágens):</p>
+    <p>A státusz átírása Claude Code-ban a <code>!</code> előtaggal (ezt te futtatod, nem az Agent):</p>
     <div class="code"><span class="lbl">Claude Code</span><pre>! sed -i 's/^Státusz: TERVEZET/Státusz: JÓVÁHAGYVA/' SPEC.md</pre><button type="button">Másolás</button></div>
   </div></details>
   <div class="done-row"><label><input type="checkbox" data-done="s3"> Kész</label></div>
@@ -287,7 +287,7 @@ Javítsd az összes érintett szabályt, EK-t és storyt, rögzítsd az eltéré
       <h3>💡 Miért</h3>
       <p>A <b>story</b> egy kicsi, de végig működő szelet (felület + logika + adat). Kis körökben haladva jobban látod, mi történik, és minden kör után közbe tudsz szólni.</p>
       <p>A teszt teszi az elfogadási kritériumot <b>ellenőrizhetővé</b>. Ha egy teszt kód nélkül is zöld, akkor valójában nem ellenőriz semmit.</p>
-      <a class="slide" href="../#43">→ Dia: Egy fejlesztési feladat az ágens kezében</a>
+      <a class="slide" href="../#43">→ Dia: Egy fejlesztési feladat az Agent kezében</a>
     </div>
   </div>
   <div class="see"><h3>✔ Mit kell látnod</h3><p>Egy rövid story-bemutatót, piros, majd zöld tesztfuttatást (unit és böngészős E2E), egy új <code>HALADAS.md</code>-t, egy <code>🌐 A szerver újraindítva…</code> sort és egy kattintós ellenőrzést. A böngészőben az S1 „Kész, ha…” feltétele teljesül, és Claude <b>nem kezd bele</b> az S2-be.</p></div>
@@ -352,7 +352,7 @@ python3 app.py</pre><button type="button">Másolás</button></div>
     </div>
     <div class="why">
       <h3>💡 Miért</h3>
-      <p>Nem az számít, hogy az ágens <i>azt mondja</i>, kész. Az számít, hogy <b>bizonyítékkal</b> mutatja meg: melyik kritériumot melyik teszt igazolja, és mi lett az eredmény. Ez készíti elő a második kaput.</p>
+      <p>Nem az számít, hogy az Agent <i>azt mondja</i>, kész. Az számít, hogy <b>bizonyítékkal</b> mutatja meg: melyik kritériumot melyik teszt igazolja, és mi lett az eredmény. Ez készíti elő a második kaput.</p>
       <a class="slide" href="../#35">→ Dia: Mikor áll meg a ciklus?</a>
     </div>
   </div>
@@ -424,7 +424,7 @@ python3 app.py</pre><button type="button">Másolás</button></div>
     </div>
     <div class="why">
       <h3>💡 Miért</h3>
-      <p>A dokumentáció a munka része, nem utólagos teher. Az ágens a <b>tényleges kódból</b> és az elfogadott bizonyítékból dolgozik, ezért percek alatt naprakész és pontos dokumentációt ad, képernyőképekkel együtt.</p>
+      <p>A dokumentáció a munka része, nem utólagos teher. Az Agent a <b>tényleges kódból</b> és az elfogadott bizonyítékból dolgozik, ezért percek alatt naprakész és pontos dokumentációt ad, képernyőképekkel együtt.</p>
       <p>A nyomonkövethetőségi mátrix az <b>auditálhatóságot</b> szolgálja: minden üzleti kritériumról megmondja, melyik teszt igazolja és melyik kód valósítja meg. Banki környezetben ez sokat ér.</p>
       <p>Szándékosan csak az <b>elfogadás után</b> készül: elfogadott változatot dokumentálunk, nem félkészet.</p>
     </div>
@@ -445,7 +445,7 @@ python3 app.py</pre><button type="button">Másolás</button></div>
 <section class="step" id="s8">
   <div class="step-head"><div class="step-no">11</div><div><h2>Visszatekintés</h2><div class="meta">15 perc · közösen</div></div></div>
   <ul>
-    <li>Hol kellett beavatkoznod? Mit csinált volna rosszul az ágens, ha nincs spec?</li>
+    <li>Hol kellett beavatkoznod? Mit csinált volna rosszul az Agent, ha nincs spec?</li>
     <li>Mennyi időt vitt el a spec, és mennyit spórolt meg később?</li>
     <li>Mit láttál a „háttérben”: milyen toolokat hívott, mikor kért engedélyt?</li>
     <li>Melyik saját területi feladatotoknál lenne használható ez a folyamat? Hol lenne a két kapu?</li>
@@ -484,7 +484,7 @@ python3 app.py</pre><button type="button">Másolás</button></div>
     <tr><th></th><th>Mai lab</th><th>Teljes kit</th></tr>
     <tr><td><b>Dokumentum</b></td><td>egy <code>SPEC.md</code></td><td><code>.sdlc/prds/</code> (PRD, terv) és <code>.sdlc/tasks/</code> (spec, bizonyíték) sztorinként</td></tr>
     <tr><td><b>Kapuk</b></td><td>2 (spec, elfogadás)</td><td>solution gate, H2 spec, H3 code review, H4 PO-validáció, H5 deploy</td></tr>
-    <tr><td><b>Ellenőrzés</b></td><td>tesztek + <code>BIZONYITEK.md</code></td><td>lint, build, teszt, coverage, CVE- és secret-scan; független review-ágensek</td></tr>
+    <tr><td><b>Ellenőrzés</b></td><td>tesztek + <code>BIZONYITEK.md</code></td><td>lint, build, teszt, coverage, CVE- és secret-scan; független review-Agentek</td></tr>
     <tr><td><b>Változás</b></td><td>a spec módosul</td><td><code>revise-plan</code>: a terv és az érintett specek is frissülnek</td></tr>
   </table>
   <div class="grid">
@@ -516,8 +516,8 @@ python3 app.py</pre><button type="button">Másolás</button></div>
 
     <div class="plus">
       <h3>+2 Képfeltöltés <span class="tag">hatókörbővítés</span></h3>
-      <p>A köszönethez lehessen egy PNG vagy JPG képet csatolni (max. 2 MB). Ez ütközik a spec „Kimarad” részével. Figyeld meg, mit mond erre az ágens.</p>
-      <p class="why-s"><b>Miért:</b> a hatókör bővítése üzleti döntés, nem technikai. A jó ágens jelzi az ütközést, és rákérdez, nem csendben bővít.</p>
+      <p>A köszönethez lehessen egy PNG vagy JPG képet csatolni (max. 2 MB). Ez ütközik a spec „Kimarad” részével. Figyeld meg, mit mond erre az Agent.</p>
+      <p class="why-s"><b>Miért:</b> a hatókör bővítése üzleti döntés, nem technikai. A jó Agent jelzi az ütközést, és rákérdez, nem csendben bővít.</p>
       <details class="help"><summary>🆘 Segítség</summary><div class="inner">
         <div class="code"><span class="lbl">prompt</span><pre>/spec Változáskérés: a köszönethez lehessen egy PNG vagy JPG képet csatolni, legfeljebb 2 MB méretben. A képet csak az láthatja, aki az üzenetet is láthatja.</pre><button type="button">Másolás</button></div>
       </div></details>
@@ -526,7 +526,7 @@ python3 app.py</pre><button type="button">Másolás</button></div>
     <div class="plus">
       <h3>+3 Biztonsági próba: XSS <span class="tag">biztonság</span></h3>
       <p>Küldj egy olyan köszönetet, amelynek a szövege HTML-kódot tartalmaz. A felületen ennek <b>szövegként</b> kell megjelennie, nem szabad lefutnia. Ha lefut, kérj rá tesztet és javítást.</p>
-      <p class="why-s"><b>Miért:</b> az ágens által írt kód is lehet sérülékeny. A <code>CLAUDE.md</code> előírja az escape-elést, de ellenőrizni attól még kell.</p>
+      <p class="why-s"><b>Miért:</b> az Agent által írt kód is lehet sérülékeny. A <code>CLAUDE.md</code> előírja az escape-elést, de ellenőrizni attól még kell.</p>
       <details class="help"><summary>🆘 Segítség</summary><div class="inner">
         <div class="code"><span class="lbl">szöveg</span><pre>Köszi! &lt;b&gt;vastag&lt;/b&gt; &lt;img src=x onerror="alert('XSS')"&gt;</pre><button type="button">Másolás</button></div>
         <p>Jó eredmény: a szöveg betű szerint látszik, és nem ugrik fel ablak.</p>
@@ -535,7 +535,7 @@ python3 app.py</pre><button type="button">Másolás</button></div>
 
     <div class="plus">
       <h3>+4 Hook: automatikus tesztfuttatás <span class="tag">harness</span></h3>
-      <p>Állíts be egy hookot, ami minden fájlmódosítás után magától lefuttatja a teszteket, így az ágens azonnal látja, ha elrontott valamit.</p>
+      <p>Állíts be egy hookot, ami minden fájlmódosítás után magától lefuttatja a teszteket, így az Agent azonnal látja, ha elrontott valamit.</p>
       <p class="why-s"><b>Miért:</b> a hook <b>determinisztikus</b> szabály a harnessben. Nem a modellen múlik, hogy eszébe jut-e tesztelni: mindig lefut.</p>
       <details class="help"><summary>🆘 Segítség</summary><div class="inner">
         <div class="code"><span class="lbl">prompt</span><pre>Állíts be ebben a projektben egy Claude Code hookot a .claude/settings.json-ban: minden fájlszerkesztés vagy -írás után fusson le a python3 -m unittest discover -s tests -q parancs, és az eredményét lásd te is. Mutasd meg a beállítást, mielőtt elmented.</pre><button type="button">Másolás</button></div>
@@ -545,7 +545,7 @@ python3 app.py</pre><button type="button">Másolás</button></div>
     <div class="plus">
       <h3>+5 Független ellenőr: sub-agent <span class="tag">sub-agent</span></h3>
       <p>Kérd meg Claude-ot, hogy egy <b>külön sub-agenttel</b> nézesse át a kódot a <code>SPEC.md</code>-hez képest. Az ellenőr ne javítson, csak jelentsen.</p>
-      <p class="why-s"><b>Miért:</b> a sub-agent saját, tiszta kontextusban dolgozik, és nem „elfogult” a fő ágens munkájával szemben.</p>
+      <p class="why-s"><b>Miért:</b> a sub-agent saját, tiszta kontextusban dolgozik, és nem „elfogult” a fő Agent munkájával szemben.</p>
       <details class="help"><summary>🆘 Segítség</summary><div class="inner">
         <div class="code"><span class="lbl">prompt</span><pre>Indíts egy sub-agentet független ellenőrként: olvassa el a SPEC.md-t és a teljes kódot, és listázza ki az eltéréseket a spectől, a kimaradt szabályokat és a biztonsági kockázatokat (EK- vagy SZ-hivatkozással). Ne javítson semmit, csak jelentsen. Utána foglald össze nekem az eredményt.</pre><button type="button">Másolás</button></div>
       </div></details>
@@ -577,10 +577,10 @@ HEADED=1 .venv/bin/python -m unittest discover -s tests/e2e -v</pre><button type
   <div class="step-head"><div class="step-no">?</div><div><h2>Claude Code puska</h2></div></div>
   <table>
     <tr><th>Mit</th><th>Hogyan</th><th>Mire jó</th></tr>
-    <tr><td>Megszakítás</td><td><b>Esc</b></td><td>Megállítja az ágenst, ha rossz irányba megy</td></tr>
+    <tr><td>Megszakítás</td><td><b>Esc</b></td><td>Megállítja az Agentet, ha rossz irányba megy</td></tr>
     <tr><td>Módváltás</td><td><b>Shift+Tab</b></td><td>Váltás a normál, az automatikus szerkesztés-elfogadó és a terv (plan) mód között</td></tr>
     <tr><td>Fájl a kontextusba</td><td><code>@SPEC.md</code></td><td>Közvetlenül hivatkozol egy fájlra a promptban</td></tr>
-    <tr><td>Saját parancs</td><td><code>! &lt;parancs&gt;</code></td><td>Te futtatsz egy shell parancsot, nem az ágens</td></tr>
+    <tr><td>Saját parancs</td><td><code>! &lt;parancs&gt;</code></td><td>Te futtatsz egy shell parancsot, nem az Agent</td></tr>
     <tr><td>Skillek</td><td><code>/spec</code>, <code>/build</code>, <code>/verify</code>, <code>/docs</code></td><td>A projekt előre megírt munkafolyamatai</td></tr>
     <tr><td>Modellváltás</td><td><code>/model opus</code>, <code>/model sonnet</code></td><td>Spechez Opus (mélyebb gondolkodás), buildhez Sonnet (gyorsabb, olcsóbb). Paraméter nélkül választólistát nyit</td></tr>
     <tr><td>Tömörítés</td><td><code>/compact</code></td><td>Két story között, ha hosszú lett a beszélgetés: összefoglalja, és helyet szabadít fel</td></tr>
@@ -600,7 +600,7 @@ HEADED=1 .venv/bin/python -m unittest discover -s tests/e2e -v</pre><button type
     <tr><td>A böngészős teszt hibát ad: hiányzó könyvtár (<code>lib….so</code>)</td><td>A szkript 4. lépése (<code>install-deps</code>) nem futott le: futtasd újra a szkriptet, és add meg a <code>sudo</code> jelszót</td></tr>
     <tr><td>A spec kérdései sima szövegként, számozott listában jönnek</td><td>Kérd: „A tisztázó kérdéseket az AskUserQuestion eszközzel tedd fel, választható opciókkal, az ajánlottal az első helyen.”</td></tr>
     <tr><td>A spec-kérdések megválaszolása után sokáig nem történik semmi</td><td><b>Esc</b>, majd: „Ne egyben írd meg a specet. Írd ki egy sorban, mit rögzítettél, és szakaszonként töltsd ki, mindegyik előtt egy rövid státuszsorral.”</td></tr>
-    <tr><td>Az ágens kódot akar írni a jóváhagyás előtt, vagy magától kezd bele a következő fázisba</td><td><b>Esc</b>, majd: „Állj meg. Egyszerre csak egy fázist csinálj, és csak akkor, ha kifejezetten kérem (lásd a CLAUDE.md-t).”</td></tr>
+    <tr><td>Az Agent kódot akar írni a jóváhagyás előtt, vagy magától kezd bele a következő fázisba</td><td><b>Esc</b>, majd: „Állj meg. Egyszerre csak egy fázist csinálj, és csak akkor, ha kifejezetten kérem (lásd a CLAUDE.md-t).”</td></tr>
     <tr><td>Claude egy <code>rbi-sdlc-…</code> skillt indít (pl. <code>specify-task</code>, <code>start-prd</code>) a projekt saját skillje helyett</td><td><b>Esc</b>, és használd a slash parancsot: <code>/spec</code>, <code>/build</code>, <code>/verify</code>, <code>/docs</code>. Ha a gépeden telepítve van az <code>rbi-sdlc-fundamentals</code> plugin, a labhoz kapcsold ki (<code>/plugin</code>)</td></tr>
     <tr><td><code>pip install</code>-t akar futtatni</td><td>Utasítsd el: az alkalmazás csak standard libraryt használ, a teszteszközöket a <code>scripts/setup-e2e.sh</code> telepíti</td></tr>
     <tr><td>Körbe-körbe javít</td><td><b>Esc</b>, majd: „Állj meg. Melyik teszt piros, és szerinted mi az oka? Javasolj egy javítást, de még ne hajtsd végre.”</td></tr>

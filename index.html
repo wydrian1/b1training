@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI alapok B-1 vezetőknek</title>
-<meta name="description" content="Kétórás bevezető az LLM-ekről, a harnessről és az ágensekről, B-1 vezetőknek.">
+<meta name="description" content="Kétórás bevezető az LLM-ekről, a harnessről és az Agentekről, B-1 vezetőknek.">
 <script>
   // téma beállítása még rajzolás előtt: mentett választás, különben a rendszer beállítása
   (function () {
@@ -25,7 +25,7 @@
   <div class="logo-title"><img class="logo-on-dark" src="assets/rbi-gable-yellow.png" alt="Raiffeisen"><img class="logo-on-light" src="assets/rbi-gable-squared.png" alt="Raiffeisen"></div>
   <div class="kicker">B-1 vezetői workshop · 2 óra</div>
   <h1>AI alapok<br><span class="hl">B-1 vezetőknek</span></h1>
-  <p class="lead">Az LLM-től az ágensig: mi történik a motorháztető alatt, amikor „az AI dolgozik”?</p>
+  <p class="lead">Az LLM-től az Agentig: mi történik a motorháztető alatt, amikor „az AI dolgozik”?</p>
   <div class="row"><span class="tag">alapfogalmak</span><span class="tag">LLM</span><span class="tag">kontextus · toolok · skillek</span><span class="tag">harness</span><span class="tag">agentic loop</span></div>
   <p class="xs dim" style="margin-top:30px">← → lapozás · S előadói jegyzet · M tartalom · F teljes képernyő</p>
   <aside class="notes"><p>Üdvözlés. Cél: közös szókincs és működési kép. Nem kell programozni tudni; az IT-sebbeknek lesznek „mélyebb” diák (pl. a háttérben futó üzenetek).</p></aside>
@@ -37,8 +37,8 @@
   <div class="body">
     <table class="tbl" style="font-size:20px">
       <tr><th style="width:110px">Idő</th><th>Blokk</th><th>Kulcskérdés</th></tr>
-      <tr><td>0:00</td><td><b>Nyitás</b></td><td class="muted">Miért pont most?</td></tr>
-      <tr><td>0:05</td><td><b>01 · Alapfogalmak</b></td><td class="muted">AI, ML, GenAI, LLM, és mi a különbség a chatbot és az ágens között?</td></tr>
+      <tr><td>0:00</td><td><b>Nyitás</b></td><td class="muted">Mit viszünk haza a mai napból?</td></tr>
+      <tr><td>0:05</td><td><b>01 · Alapfogalmak</b></td><td class="muted">AI, ML, GenAI, LLM, és mi a különbség a chatbot és az Agent között?</td></tr>
       <tr><td>0:20</td><td><b>02 · Hogyan működik az LLM?</b></td><td class="muted">Mit tud, mit nem tud, és melyik modellt válasszuk?</td></tr>
       <tr><td>0:40</td><td><b>03 · A harness és az építőkockái</b></td><td class="muted">Toolok, skillek, kontextus: mitől lesz hasznos?</td></tr>
       <tr><td>1:00</td><td><b>04 · Az agentic loop</b></td><td class="muted">Mi történik egy kérés mögött lépésről lépésre?</td></tr>
@@ -57,7 +57,7 @@
   <div class="body mid">
     <div class="cols c3">
       <div class="card t frag"><div class="ico">🧠</div><h3>Az LLM nem varázslat</h3><p>Egy statisztikai modell, ami szöveget folytat. Önmagában nem lát, nem cselekszik, nem emlékszik.</p></div>
-      <div class="card v frag"><div class="ico">🔁</div><h3>Az ágens = modell + harness + ciklus</h3><p>A „munkát” a modell köré épített alkalmazás végzi el, sok apró lépésben. Ebben a ciklusban van az érték, és a kockázat is.</p></div>
+      <div class="card v frag"><div class="ico">🔁</div><h3>Az Agent = modell + harness + ciklus</h3><p>A „munkát” a modell köré épített alkalmazás végzi el, sok apró lépésben. Ebben a ciklusban van az érték, és a kockázat is.</p></div>
       <div class="card a frag"><div class="ico">🧭</div><h3>A vezetői kérdés: mit bízunk rá?</h3><p>Nem az a kérdés, hogy „AI vagy nem”, hanem hogy hol van az ember a ciklusban, és hogyan ellenőrizzük az eredményt.</p></div>
     </div>
   </div>
@@ -68,7 +68,7 @@
 <section class="slide cover brand" data-title="Alapfogalmak" data-start="5">
   <div class="num">01</div>
   <h1>Alapfogalmak</h1>
-  <p class="lead">Közös szókincs: mit jelent az AI, a gépi tanulás, a generatív AI és az LLM, és hogyan viszonyulnak egymáshoz?</p>
+  <p class="lead">Közös szókincs: mit jelent az AI, a machine learning, a generatív AI és az LLM, és hogyan viszonyulnak egymáshoz?</p>
   <div><span class="tag">kb. 15 perc</span></div>
 </section>
 
@@ -78,25 +78,25 @@
   <div class="split" style="--cols: 540px 1fr">
     <svg viewBox="0 0 560 522" style="width:100%;max-height:540px">
       <g class="frag" data-s="1"><circle cx="280" cy="262" r="255" fill="rgba(99,179,237,.07)" stroke="#63b3ed" stroke-width="2"/><text x="280" y="44" text-anchor="middle" fill="#63b3ed" font-size="20" font-weight="700">Mesterséges intelligencia (AI)</text></g>
-      <g class="frag" data-s="2"><circle cx="280" cy="322" r="195" fill="rgba(79,209,197,.08)" stroke="#4fd1c5" stroke-width="2"/><text x="280" y="160" text-anchor="middle" fill="#4fd1c5" font-size="20" font-weight="700">Gépi tanulás (ML)</text></g>
+      <g class="frag" data-s="2"><circle cx="280" cy="322" r="195" fill="rgba(79,209,197,.08)" stroke="#4fd1c5" stroke-width="2"/><text x="280" y="160" text-anchor="middle" fill="#4fd1c5" font-size="20" font-weight="700">Machine learning (ML)</text></g>
       <g class="frag" data-s="3"><circle cx="280" cy="372" r="145" fill="rgba(104,211,145,.09)" stroke="#68d391" stroke-width="2"/><text x="280" y="260" text-anchor="middle" fill="#68d391" font-size="19" font-weight="700">Mélytanulás</text></g>
       <g class="frag" data-s="4"><circle cx="280" cy="417" r="100" fill="rgba(246,173,85,.1)" stroke="#f6ad55" stroke-width="2"/><text x="280" y="350" text-anchor="middle" fill="#f6ad55" font-size="19" font-weight="700">Generatív AI</text></g>
       <g class="frag" data-s="5"><circle cx="280" cy="462" r="54" fill="rgba(167,139,250,.25)" stroke="#a78bfa" stroke-width="2.5"/><text x="280" y="469" text-anchor="middle" fill="#e9effc" font-size="22" font-weight="800">LLM</text></g>
     </svg>
     <div class="capbox" style="height:260px">
       <div class="cap frag" data-s="1" data-g="c" style="border-left:5px solid var(--blue)"><h3>Mesterséges intelligencia</h3><p>Gyűjtőfogalom: minden, amitől egy gép „intelligensnek” tűnik. A szabályalapú szakértői rendszerek is ide tartoznak.</p></div>
-      <div class="cap frag" data-s="2" data-g="c" style="border-left:5px solid var(--teal)"><h3>Gépi tanulás</h3><p>A gép <b>példákból</b> tanul szabályt, nem mi programozzuk le. Csalásfelismerés, scoring, lemorzsolódás-előrejelzés: ezek a bankban évek óta jelen vannak.</p></div>
+      <div class="cap frag" data-s="2" data-g="c" style="border-left:5px solid var(--teal)"><h3>Machine learning</h3><p>A gép <b>példákból</b> tanul szabályt, nem mi programozzuk le. Csalásfelismerés, scoring, lemorzsolódás-előrejelzés: ezek a bankban évek óta jelen vannak.</p></div>
       <div class="cap frag" data-s="3" data-g="c" style="border-left:5px solid var(--green)"><h3>Mélytanulás</h3><p>Sokrétegű neurális hálók. Kép-, hang- és szövegfelismerés. Sok adat és sok számítási kapacitás (GPU) kell hozzá.</p></div>
       <div class="cap frag" data-s="4" data-g="c" style="border-left:5px solid var(--amber)"><h3>Generatív AI</h3><p>Nem osztályoz, hanem <b>új tartalmat</b> hoz létre: szöveget, képet, kódot, hangot.</p></div>
-      <div class="cap frag" data-s="5" data-g="c" style="border-left:5px solid var(--violet)"><h3>LLM: nagy nyelvi modell</h3><p>Hatalmas mennyiségű szövegen tanított generatív modell. Ma ez a „motor” a chatbotok és az ágensek mögött. A mai nap nagy része erről szól.</p></div>
+      <div class="cap frag" data-s="5" data-g="c" style="border-left:5px solid var(--violet)"><h3>LLM: nagy nyelvi modell</h3><p>Hatalmas mennyiségű szövegen tanított generatív modell. Ma ez a „motor” a chatbotok és az Agentek mögött. A mai nap nagy része erről szól.</p></div>
     </div>
   </div>
   <aside class="notes"><p>Kívülről befelé haladunk, öt lépésben. Fontos üzenet: az „AI” szó a bankban már régóta jelen van (ML-modellek); az új hullám a generatív, azon belül az LLM.</p></aside>
 </section>
 
-<section class="slide" data-title="Szoftver vs. gépi tanulás">
+<section class="slide" data-title="Szoftver vs. machine learning">
   <div class="kicker">01 · Alapfogalmak</div>
-  <h2>Hagyományos szoftver vs. gépi tanulás</h2>
+  <h2>Hagyományos szoftver vs. machine learning</h2>
   <div class="body mid" style="gap:26px">
     <div>
       <h3 class="hl2" style="margin-bottom:10px">Hagyományos szoftver</h3>
@@ -108,7 +108,7 @@
       </div>
     </div>
     <div class="frag">
-      <h3 class="hl" style="margin-bottom:10px">Gépi tanulás</h3>
+      <h3 class="hl" style="margin-bottom:10px">Machine learning</h3>
       <div class="flow">
         <div class="node"><b>Adat</b>sok példa</div><div class="arr">+</div>
         <div class="node"><b>Elvárt válaszok</b>címkék, eredmények</div><div class="arr">→</div>
@@ -139,7 +139,7 @@
         <h3>Generatív (GenAI, LLM)</h3>
         <ul class="small">
           <li><b>Kimenet:</b> új tartalom: szöveg, kód, kép<br><span class="muted">„Írd meg az ügyfélnek, hogy…”</span></li>
-          <li><b>Példák:</b> összefoglalás, levelezés, kódírás, elemzés, ágensek</li>
+          <li><b>Példák:</b> összefoglalás, levelezés, kódírás, elemzés, Agentek</li>
           <li><b>Mérés:</b> nehezebb: „jó-e ez a válasz?”</li>
           <li><b>Általános célú:</b> ugyanaz a modell sok feladatra</li>
         </ul>
@@ -168,8 +168,8 @@
   <aside class="notes"><p>Gyorsan menjünk végig rajta; mindegyikre visszatérünk. Felső sor: maga a modell. Alsó sor: a használata.</p></aside>
 </section>
 
-<section class="slide" data-title="Chatbot vs. ágens">
-  <div class="kicker">01 · Chatbot vs. ágens</div>
+<section class="slide" data-title="Chatbot vs. Agent">
+  <div class="kicker">01 · Chatbot vs. Agent</div>
   <h2>Válaszol vs. elvégzi</h2>
   <div class="body">
     <div class="cols c2">
@@ -188,7 +188,7 @@
         <ul class="small"><li>1 kérdés → 1 válasz</li><li>Az <b>ember a keze</b>: ő hajt végre</li><li>Kimenet: <b>szöveg</b></li></ul>
       </div>
       <div class="card v frag">
-        <h3>🤖 Ágens</h3>
+        <h3>🤖 Agent</h3>
         <svg viewBox="0 0 520 150" style="width:100%;margin:6px 0">
           <rect x="5" y="20" width="100" height="56" rx="10" fill="#131c30" stroke="#63b3ed" stroke-width="2"/><text x="55" y="54" text-anchor="middle" fill="#e9effc" font-size="17">Cél</text>
           <line x1="108" y1="48" x2="148" y2="48" stroke="#9fb1d4" stroke-width="2" marker-end="url(#ar2)"/>
@@ -206,7 +206,7 @@
     </div>
     <div class="callout t frag">Ugyanaz az LLM lehet mindkettő mögött. A különbség az, hogy <b>kap-e eszközöket és ciklust</b>, vagyis a harness. <span class="muted">Erről a 03-as blokkban lesz szó.</span></div>
   </div>
-  <aside class="notes"><p>Chatbotnál az ember a „ciklus”: kérdez, kimásolja, lefuttatja, visszamásolja a hibát. Az ágens ezt a kört maga járja be. Ettől gyorsabb, de ettől is kockázatosabb.</p></aside>
+  <aside class="notes"><p>Chatbotnál az ember a „ciklus”: kérdez, kimásolja, lefuttatja, visszamásolja a hibát. Az Agent ezt a kört maga járja be. Ettől gyorsabb, de ettől is kockázatosabb.</p></aside>
 </section>
 
 <!-- =========================================================== 02 LLM -->
@@ -245,7 +245,7 @@
         <p class="xs dim" style="margin-top:12px">Sok jó folytatás → „lapos” eloszlás</p>
       </div>
     </div>
-    <div class="callout t frag">A modell kiválaszt egy tokent, hozzáfűzi a szöveghez, és <b>az egészet újra beolvasva</b> jósolja a következőt. Egy válasz = több száz egymás utáni jóslás. <span class="dim">(A számok illusztrációk.)</span></div>
+    <div class="callout t frag">A modell kiválaszt egy tokent, hozzáfűzi a szöveghez, és <b>az egészet újra beolvasva</b> jósolja a következőt. Egy válasz = több száz egymás utáni jóslás. A modell futtatását <b>inference</b>-nek, az így legenerált szöveget <b>completion</b>-nek hívják. <span class="dim">(A számok illusztrációk.)</span></div>
   </div>
   <aside class="notes"><p>„Autocomplete szteroidokon.” Az elképesztő az, hogy ebből a primitív célból (következő szó) következtetés, kódírás és tervezés lesz, mert ahhoz, hogy jól jósoljon, a modellnek „meg kell értenie” a szöveget.</p><p>A lapos eloszlásnál jön a véletlen (temperature), erről pár dia múlva.</p></aside>
 </section>
@@ -287,7 +287,7 @@
       <div class="callout">A csúcsmodellek tanítása nagyon drága: becslések szerint tízmilliós–százmilliós dollár nagyságrend. Ezt a gyártók végzik, <b>mi a kész modellt használjuk</b>.</div>
     </div>
   </div>
-  <aside class="notes"><p>Fontos: a 4. lépés az oka annak, hogy az utóbbi 1–2 évben ennyit javultak az ágensek. A modelleket kifejezetten eszközhasználatra és több lépéses feladatokra tanítják.</p><p>A saját modell tanítása nálunk nem reális; a finomhangolás is ritkán éri meg. A kontextus és a toolok adják a testreszabást.</p></aside>
+  <aside class="notes"><p>Fontos: a 4. lépés az oka annak, hogy az utóbbi 1–2 évben ennyit javultak az Agentek. A modelleket kifejezetten eszközhasználatra és több lépéses feladatokra tanítják.</p><p>A saját modell tanítása nálunk nem reális; a finomhangolás is ritkán éri meg. A kontextus és a toolok adják a testreszabást.</p></aside>
 </section>
 
 <section class="slide" data-title="Paraméterek vs. kontextus">
@@ -314,7 +314,7 @@
         </ul>
       </div>
     </div>
-    <div class="callout t frag">Ha a modellnek tudnia kell valamit a mi világunkról, azt <b>a kontextusba kell juttatni</b>: dokumentummal, kereséssel vagy eszközzel. Az ágensek nagyrészt erről szólnak.</div>
+    <div class="callout t frag">Ha a modellnek tudnia kell valamit a mi világunkról, azt <b>a kontextusba kell juttatni</b>: dokumentummal, kereséssel vagy eszközzel. Az Agentek nagyrészt erről szólnak.</div>
   </div>
   <aside class="notes"><p>Gyakori félreértés: „a modell megtanulja, amit mondok neki”. Nem, a használat nem tanítja a modellt. Ha egy szolgáltató a beszélgetéseket tanításra használja, az külön döntés és szerződési kérdés. Nálunk erre való a gateway és a szerződéses keret.</p></aside>
 </section>
@@ -383,7 +383,7 @@
       <div class="node frag" style="flex:.7"><b>Válasz</b>rövid, végiggondolt</div>
     </div>
     <div class="cols c3 frag">
-      <div class="card g"><h3>Mikor éri meg?</h3><p>Többlépéses logika, kód, matek, tervezés, ágens-feladatok.</p></div>
+      <div class="card g"><h3>Mikor éri meg?</h3><p>Többlépéses logika, kód, matek, tervezés, Agent-feladatok.</p></div>
       <div class="card r"><h3>Mi az ára?</h3><p>Lassabb, és a gondolkodás-tokeneket is fizetjük.</p></div>
       <div class="card a"><h3>Állítható</h3><p>Sok eszközben megadható az „effort” szint. Egyszerű kérdésre pazarlás.</p></div>
     </div>
@@ -394,19 +394,20 @@
 <section class="slide" data-title="Modellek">
   <div class="kicker">02 · Modellek</div>
   <h2>Nem egy modell van: méret, sebesség, ár</h2>
-  <div class="body mid">
+  <div class="body mid tight" style="gap:12px">
     <div class="cols c3">
-      <div class="card g"><h3>Kicsi és gyors</h3><p class="muted small">olcsó, alacsony késleltetés</p><ul class="small"><li>osztályozás, kinyerés</li><li>egyszerű összefoglalás</li><li>nagy tömegű, rutin feladat</li></ul></div>
-      <div class="card t frag"><h3>Közepes: a munkaló</h3><p class="muted small">jó ár/érték arány</p><ul class="small"><li>a legtöbb napi munka</li><li>kódolás, ágens-feladatok</li><li>dokumentum-elemzés</li></ul></div>
-      <div class="card v frag"><h3>Nagy (frontier)</h3><p class="muted small">a legokosabb, lassabb és drágább</p><ul class="small"><li>nehéz, többlépéses feladat</li><li>tervezés, architektúra</li><li>ahol a hiba drága</li></ul></div>
+      <div class="card g"><h3>Kicsi és gyors</h3><p class="muted small">olcsó, alacsony késleltetés<br>pl. Claude Haiku 5.5: <b>$0,10 / $0,50</b></p><ul class="small"><li>osztályozás, kinyerés</li><li>egyszerű összefoglalás</li><li>nagy tömegű, rutin feladat</li></ul></div>
+      <div class="card t frag"><h3>Közepes: a munkaló</h3><p class="muted small">jó ár/érték arány<br>pl. Claude Sonnet 5.5: <b>$2 / $10</b></p><ul class="small"><li>a legtöbb napi munka</li><li>kódolás, Agent-feladatok</li><li>dokumentum-elemzés</li></ul></div>
+      <div class="card v frag"><h3>Nagy (frontier)</h3><p class="muted small">a legokosabb, lassabb és drágább<br>pl. Claude Opus 5.5: <b>$4 / $20</b></p><ul class="small"><li>nehéz, többlépéses feladat</li><li>tervezés, architektúra</li><li>ahol a hiba drága</li></ul></div>
     </div>
     <div class="cols c3 frag" style="gap:16px">
       <div class="card"><h3>Modellcsaládok</h3><p>Anthropic (Claude), OpenAI (GPT), Google (Gemini), nyílt súlyú: Meta, Mistral, Qwen… Mindegyiknél vannak méretlépcsők.</p></div>
       <div class="card"><h3>Zárt vs. nyílt súlyú</h3><p>A zártat API-n érjük el. A nyílt súlyú saját infrastruktúrán is futhat, de az üzemeltetés a miénk.</p></div>
       <div class="card"><h3>Multimodális</h3><p>A legtöbb mai modell képet, PDF-et, táblázatot is „lát”, nem csak szöveget.</p></div>
     </div>
+    <div class="callout frag">💸 A legkisebb és a legnagyobb modell között <b>akár 40-szeres</b> az árkülönbség: 20 millió token (kb. 10 000 rövid dokumentum) Haikuval kb. <b>$2</b>, Opusszal kb. <b>$80</b>. <span class="dim">(Input / output, millió tokenenként, listaár.)</span></div>
   </div>
-  <aside class="notes"><p>A konkrét modellnevek fél év alatt elavulnak, ezért kategóriákban érdemes gondolkodni. Jó gyakorlat a „routing”: egyszerű lépésre kis modell, nehézre nagy. Egy ágens is használhat több modellt.</p></aside>
+  <aside class="notes"><p>A konkrét modellnevek fél év alatt elavulnak, ezért kategóriákban érdemes gondolkodni. Jó gyakorlat a „routing”: egyszerű lépésre kis modell, nehézre nagy. Egy Agent is használhat több modellt.</p></aside>
 </section>
 
 <section class="slide" data-title="Modellválasztás">
@@ -452,7 +453,7 @@
       <div class="card r frag"><div class="ico">💭</div><h3>Nincs emlékezete</h3><p>Két hívás között mindent elfelejt. Amit „tud”, azt minden alkalommal újra meg kell kapnia.</p></div>
       <div class="card r frag"><div class="ico">👁️</div><h3>Nincs szeme</h3><p>Nem lát ki a kontextusból. Nem tudja, mi van a rendszereinkben, csak azt, amit odaadunk neki.</p></div>
     </div>
-    <div class="callout t frag">Minden, ami ezen túl van (eszközök, memória, ciklus, engedélyek), <b>a modell köré épített alkalmazás dolga</b>. Erről szól a következő két blokk.</div>
+    <div class="callout t frag">Minden, ami ezen túl van (eszközök, memória, ciklus, permissions), <b>a modell köré épített alkalmazás dolga</b>. Erről szól a következő két blokk.</div>
   </div>
   <aside class="notes"><p>Ez a dia a híd: innen jön a kontextus, a toolok és a harness. Érdemes itt pár másodpercre megállni.</p></aside>
 </section>
@@ -465,42 +466,44 @@
   <div><span class="tag">kb. 20 perc</span></div>
 </section>
 
-<section class="slide" data-title="Ágens = modell + harness">
+<section class="slide" data-title="Agent = modell + harness">
   <div class="kicker">03 · Harness</div>
-  <h2>Ágens = modell + harness</h2>
+  <h2>Agent = modell + harness</h2>
   <div class="body">
     <svg viewBox="0 0 1150 500" style="width:100%;height:100%">
       <defs><marker id="ar5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="#9fb1d4"/></marker></defs>
-      <rect x="0" y="200" width="130" height="80" rx="12" fill="#131c30" stroke="#63b3ed" stroke-width="2"/>
-      <text x="65" y="246" text-anchor="middle" fill="#e9effc" font-size="18" font-weight="700">Felhasználó</text>
-      <line x1="134" y1="240" x2="166" y2="240" stroke="#9fb1d4" stroke-width="2.5" marker-start="url(#ar5)" marker-end="url(#ar5)"/>
-      <rect x="170" y="10" width="640" height="480" rx="18" fill="rgba(79,209,197,.05)" stroke="#4fd1c5" stroke-width="2.5"/>
-      <text x="192" y="44" fill="#4fd1c5" font-size="21" font-weight="800">HARNESS</text>
-      <text x="318" y="44" fill="#9fb1d4" font-size="16">az alkalmazás, ami az LLM-et körülveszi</text>
+      <rect x="0" y="20" width="200" height="90" rx="12" fill="#131c30" stroke="#63b3ed" stroke-width="2"/>
+      <text x="100" y="72" text-anchor="middle" fill="#e9effc" font-size="19" font-weight="700">Felhasználó</text>
+      <line x1="204" y1="65" x2="226" y2="65" stroke="#9fb1d4" stroke-width="2.5" marker-start="url(#ar5)" marker-end="url(#ar5)"/>
+      <rect x="0" y="260" width="200" height="210" rx="14" fill="rgba(246,173,85,.1)" stroke="#f6ad55" stroke-width="2.5"/>
+      <text x="100" y="300" text-anchor="middle" fill="#e9effc" font-size="20" font-weight="800">Eszközök,</text>
+      <text x="100" y="325" text-anchor="middle" fill="#e9effc" font-size="20" font-weight="800">rendszerek</text>
+      <text x="100" y="362" text-anchor="middle" fill="#9fb1d4" font-size="15">fájlok, shell, git</text>
+      <text x="100" y="386" text-anchor="middle" fill="#9fb1d4" font-size="15">web, keresés</text>
+      <text x="100" y="410" text-anchor="middle" fill="#9fb1d4" font-size="15">DB, API-k,</text>
+      <text x="100" y="434" text-anchor="middle" fill="#9fb1d4" font-size="15">MCP-szerverek</text>
+      <line x1="204" y1="365" x2="226" y2="365" stroke="#9fb1d4" stroke-width="2.5" marker-start="url(#ar5)" marker-end="url(#ar5)"/>
+      <rect x="230" y="10" width="600" height="480" rx="18" fill="rgba(79,209,197,.05)" stroke="#4fd1c5" stroke-width="2.5"/>
+      <text x="252" y="44" fill="#4fd1c5" font-size="21" font-weight="800">HARNESS</text>
+      <text x="378" y="44" fill="#9fb1d4" font-size="16">az alkalmazás, ami az LLM-et körülveszi</text>
       <g font-size="14" fill="#9fb1d4">
-        <g class="frag"><rect x="190" y="62" width="295" height="96" rx="12" fill="#131c30" stroke="#2c3d63"/><text x="206" y="92" fill="#e9effc" font-size="18" font-weight="700">Kontextus-építés</text><text x="206" y="117">system prompt, utasítások, előzmény</text><text x="206" y="139">tömörítés, ha betelik</text></g>
-        <g class="frag"><rect x="497" y="62" width="295" height="96" rx="12" fill="#131c30" stroke="#2c3d63"/><text x="513" y="92" fill="#e9effc" font-size="18" font-weight="700">Tool-végrehajtás</text><text x="513" y="117">a kért eszközök tényleges futtatása</text><text x="513" y="139">hibakezelés, időkorlát</text></g>
-        <g class="frag"><rect x="190" y="170" width="295" height="96" rx="12" fill="#131c30" stroke="#f87171"/><text x="206" y="200" fill="#e9effc" font-size="18" font-weight="700">Engedélyek, védőkorlátok</text><text x="206" y="225">mit szabad kérdezés nélkül?</text><text x="206" y="247">jóváhagyás, sandbox, tiltólista</text></g>
-        <g class="frag"><rect x="497" y="170" width="295" height="96" rx="12" fill="#131c30" stroke="#2c3d63"/><text x="513" y="200" fill="#e9effc" font-size="18" font-weight="700">Memória, skillek</text><text x="513" y="225">projekt-tudás, mentett szakértelem</text><text x="513" y="247">betöltés igény szerint</text></g>
-        <g class="frag"><rect x="190" y="278" width="295" height="96" rx="12" fill="#131c30" stroke="#2c3d63"/><text x="206" y="308" fill="#e9effc" font-size="18" font-weight="700">Hookok</text><text x="206" y="333">fix szabályok eseményekre</text><text x="206" y="355">pl. mentés után teszt, lint, ellenőrzés</text></g>
-        <g class="frag"><rect x="497" y="278" width="295" height="96" rx="12" fill="#131c30" stroke="#2c3d63"/><text x="513" y="308" fill="#e9effc" font-size="18" font-weight="700">Sub-agentek</text><text x="513" y="333">párhuzamos munka, külön kontextus</text><text x="513" y="355">csak az összefoglaló jön vissza</text></g>
-        <g class="frag"><rect x="190" y="386" width="602" height="86" rx="12" fill="#131c30" stroke="#2c3d63"/><text x="206" y="416" fill="#e9effc" font-size="18" font-weight="700">Ciklus-vezérlés és megfigyelés</text><text x="206" y="442">lépés- és költségkorlát, naplózás, a felhasználói felület (terminál, web, desktop)</text></g>
+        <g class="frag"><rect x="248" y="62" width="280" height="96" rx="12" fill="#131c30" stroke="#2c3d63"/><text x="264" y="92" fill="#e9effc" font-size="18" font-weight="700">Kontextus-építés</text><text x="264" y="117">system prompt, utasítások, előzmény</text><text x="264" y="139">tömörítés, ha betelik</text></g>
+        <g class="frag"><rect x="540" y="62" width="280" height="96" rx="12" fill="#131c30" stroke="#2c3d63"/><text x="556" y="92" fill="#e9effc" font-size="18" font-weight="700">Tool-végrehajtás</text><text x="556" y="117">a kért eszközök tényleges futtatása</text><text x="556" y="139">hibakezelés, időkorlát</text></g>
+        <g class="frag"><rect x="248" y="170" width="280" height="96" rx="12" fill="#131c30" stroke="#f87171"/><text x="264" y="200" fill="#e9effc" font-size="18" font-weight="700">Permissions, guardrails</text><text x="264" y="225">mit szabad kérdezés nélkül?</text><text x="264" y="247">jóváhagyás, sandbox, tiltólista</text></g>
+        <g class="frag"><rect x="540" y="170" width="280" height="96" rx="12" fill="#131c30" stroke="#2c3d63"/><text x="556" y="200" fill="#e9effc" font-size="18" font-weight="700">Memória, skillek</text><text x="556" y="225">projekt-tudás, mentett szakértelem</text><text x="556" y="247">betöltés igény szerint</text></g>
+        <g class="frag"><rect x="248" y="278" width="280" height="96" rx="12" fill="#131c30" stroke="#2c3d63"/><text x="264" y="308" fill="#e9effc" font-size="18" font-weight="700">Hookok</text><text x="264" y="333">fix szabályok eseményekre</text><text x="264" y="355">pl. mentés után teszt, lint, ellenőrzés</text></g>
+        <g class="frag"><rect x="540" y="278" width="280" height="96" rx="12" fill="#131c30" stroke="#2c3d63"/><text x="556" y="308" fill="#e9effc" font-size="18" font-weight="700">Sub-agentek</text><text x="556" y="333">párhuzamos munka, külön kontextus</text><text x="556" y="355">csak az összefoglaló jön vissza</text></g>
+        <g class="frag"><rect x="248" y="386" width="572" height="86" rx="12" fill="#131c30" stroke="#2c3d63"/><text x="264" y="416" fill="#e9effc" font-size="18" font-weight="700">Ciklus-vezérlés és megfigyelés</text><text x="264" y="442">lépés- és költségkorlát, naplózás, felhasználói felület (terminál, web, desktop)</text></g>
       </g>
-      <line x1="814" y1="185" x2="856" y2="185" stroke="#9fb1d4" stroke-width="2.5" marker-start="url(#ar5)" marker-end="url(#ar5)"/>
-      <rect x="860" y="100" width="290" height="170" rx="14" fill="rgba(167,139,250,.14)" stroke="#a78bfa" stroke-width="2.5"/>
-      <text x="1005" y="144" text-anchor="middle" fill="#e9effc" font-size="24" font-weight="800">LLM (modell)</text>
-      <text x="1005" y="174" text-anchor="middle" fill="#9fb1d4" font-size="16">szöveg be → szöveg ki</text>
-      <text x="1005" y="200" text-anchor="middle" fill="#9fb1d4" font-size="16">a döntéshozó „agy”</text>
-      <text x="1005" y="240" text-anchor="middle" fill="#a78bfa" font-size="15">nálunk: RBI LLM gateway mögött</text>
-      <line x1="814" y1="385" x2="856" y2="385" stroke="#9fb1d4" stroke-width="2.5" marker-start="url(#ar5)" marker-end="url(#ar5)"/>
-      <rect x="860" y="300" width="290" height="170" rx="14" fill="rgba(246,173,85,.1)" stroke="#f6ad55" stroke-width="2.5"/>
-      <text x="1005" y="342" text-anchor="middle" fill="#e9effc" font-size="22" font-weight="800">Eszközök, rendszerek</text>
-      <text x="1005" y="374" text-anchor="middle" fill="#9fb1d4" font-size="16">fájlok, shell, git</text>
-      <text x="1005" y="400" text-anchor="middle" fill="#9fb1d4" font-size="16">web, keresés</text>
-      <text x="1005" y="426" text-anchor="middle" fill="#9fb1d4" font-size="16">DB, API-k, MCP-szerverek</text>
+      <line x1="834" y1="250" x2="876" y2="250" stroke="#9fb1d4" stroke-width="2.5" marker-start="url(#ar5)" marker-end="url(#ar5)"/>
+      <rect x="880" y="160" width="270" height="180" rx="14" fill="rgba(167,139,250,.14)" stroke="#a78bfa" stroke-width="2.5"/>
+      <text x="1015" y="205" text-anchor="middle" fill="#e9effc" font-size="24" font-weight="800">LLM (modell)</text>
+      <text x="1015" y="237" text-anchor="middle" fill="#9fb1d4" font-size="16">szöveg be → szöveg ki</text>
+      <text x="1015" y="263" text-anchor="middle" fill="#9fb1d4" font-size="16">a döntéshozó „agy”</text>
+      <text x="1015" y="305" text-anchor="middle" fill="#a78bfa" font-size="14">nálunk: RBI LLM gateway mögött</text>
     </svg>
   </div>
-  <aside class="notes"><p>Ez a 03-as blokk térképe: a dobozokat (toolok, MCP, skillek, kontextus, sub-agentek) a következő diákon egyenként bontjuk ki, itt még elég a nagy kép.</p><p>Analógia: az LLM a motor, a harness az autó: kormány, fék, műszerfal, biztonsági öv. Ugyanaz a motor más autóban nagyon másképp viselkedik.</p><p>A piros keretes doboz (engedélyek) a vezetők szempontjából a legfontosabb.</p></aside>
+  <aside class="notes"><p>Ez a 03-as blokk térképe: a dobozokat (toolok, MCP, skillek, kontextus, sub-agentek) a következő diákon egyenként bontjuk ki, itt még elég a nagy kép.</p><p>Analógia: az LLM a motor, a harness az autó: kormány, fék, műszerfal, biztonsági öv. Ugyanaz a motor más autóban nagyon másképp viselkedik.</p><p>A piros keretes doboz (permissions, guardrails) a vezetők szempontjából a legfontosabb.</p></aside>
 </section>
 
 <section class="slide" data-title="Ki mit csinál?">
@@ -573,7 +576,7 @@
       <div class="card a"><h3>🌐 Web</h3><p>keresés, oldal letöltése</p></div>
       <div class="card a"><h3>🗄️ Adat</h3><p>SQL, API-k, riportok</p></div>
       <div class="card a"><h3>🎫 Munkafolyamat</h3><p>Jira, Confluence, e-mail, naptár</p></div>
-      <div class="card a"><h3>🤖 Ágens</h3><p>másik ágens indítása (ez is egy tool)</p></div>
+      <div class="card a"><h3>🤖 Agent</h3><p>másik Agent indítása (ez is egy tool)</p></div>
     </div>
     <div class="frag">
       <svg viewBox="0 0 560 330" style="width:100%">
@@ -632,7 +635,7 @@
 
 <section class="slide" data-title="Mi van a kontextusban?">
   <div class="kicker">03 · Kontextus</div>
-  <h2>Mi van egy ágens kontextusában? (egy pillanatkép)</h2>
+  <h2>Mi van egy Agent kontextusában? (egy pillanatkép)</h2>
   <div class="body mid" style="gap:26px">
     <div class="ctxbar">
       <div class="frag" style="flex:0 0 7%;background:var(--teal)">System<br>prompt</div>
@@ -650,19 +653,19 @@
       <div><i style="background:var(--green)"></i><span><b>Tool-eredmények:</b> jellemzően ez a legnagyobb, és gyorsan nő</span></div>
       <div><i style="background:var(--panel2);border:1px dashed var(--dim)"></i><span><b>Ablakméret:</b> modellenként eltér, ma jellemzően 100 ezer – 1 millió token</span></div>
     </div>
-    <div class="callout t frag">A modell <b>csak ezt látja</b>, minden hívásnál. Az ágens minősége nagyban azon múlik, mi kerül ide, és mi marad ki.</div>
+    <div class="callout t frag">A modell <b>csak ezt látja</b>, minden hívásnál. Az Agent minősége nagyban azon múlik, mi kerül ide, és mi marad ki.</div>
   </div>
   <aside class="notes"><p>Az arányok illusztrációk. A lényeg: a felhasználó kérdése a kontextusnak csak egy töredéke. Amit a felhasználó nem lát (system prompt, tool-leírások), az is folyamatosan „ott van”, és fizetjük.</p></aside>
 </section>
 
 <section class="slide" data-title="Sub-agentek">
   <div class="kicker">03 · Sub-agentek</div>
-  <h2>Sub-agentek: ágens, ami ágenseket indít</h2>
+  <h2>Sub-agentek: Agent, ami Agenteket indít</h2>
   <div class="body">
     <svg viewBox="0 0 1150 330" style="width:100%">
       <defs><marker id="ar7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="#9fb1d4"/></marker></defs>
       <rect x="385" y="10" width="380" height="84" rx="14" fill="rgba(79,209,197,.12)" stroke="#4fd1c5" stroke-width="2.5"/>
-      <text x="575" y="45" text-anchor="middle" fill="#e9effc" font-size="21" font-weight="800">Fő ágens (orchestrator)</text>
+      <text x="575" y="45" text-anchor="middle" fill="#e9effc" font-size="21" font-weight="800">Fő Agent (orchestrator)</text>
       <text x="575" y="72" text-anchor="middle" fill="#9fb1d4" font-size="15">tervez, szétosztja a munkát, összerakja</text>
       <g stroke="#9fb1d4" stroke-width="2" fill="none" marker-end="url(#ar7)">
         <path d="M470,96 L210,206"/><path d="M575,96 L575,206"/><path d="M680,96 L940,206"/>
@@ -683,7 +686,7 @@
       <div class="card r frag"><h3>Ár</h3><p>Több token, nagyobb költség · koordinációs hibák · nehezebb követni, mi történt</p></div>
     </div>
   </div>
-  <aside class="notes"><p>A sub-agent indítása is csak egy tool a fő ágens szemszögéből. Ugyanaz a minta, rekurzívan.</p></aside>
+  <aside class="notes"><p>A sub-agent indítása is csak egy tool a fő Agent szemszögéből. Ugyanaz a minta, rekurzívan.</p></aside>
 </section>
 
 <section class="slide" data-title="Kontextus-gazdálkodás">
@@ -704,7 +707,7 @@
       <div class="node"><b>Válasz</b>forrás-hivatkozással</div>
     </div>
   </div>
-  <aside class="notes"><p>RAG = Retrieval-Augmented Generation. A „chat a dokumentumainkkal” típusú megoldások így működnek. Az ágensek ugyanezt teszik dinamikusan: maguk döntik el, mikor és mit keresnek (a keresés egy tool).</p></aside>
+  <aside class="notes"><p>RAG = Retrieval-Augmented Generation. A „chat a dokumentumainkkal” típusú megoldások így működnek. Az Agentek ugyanezt teszik dinamikusan: maguk döntik el, mikor és mit keresnek (a keresés egy tool).</p></aside>
 </section>
 
 <section class="slide" data-title="Prompt, tool, MCP, skill, sub-agent">
@@ -717,7 +720,7 @@
       <tr class="frag"><td class="hl3">Tool</td><td>Egy képesség, amit a modell kérhet</td><td>A leírás mindig, az eredmény hívás után</td><td class="muted"><code>read_file</code>, <code>web_search</code></td></tr>
       <tr class="frag"><td class="hl2">MCP-szerver</td><td>Szabványos csatlakozó, ami toolokat ad</td><td>A tooljai mint toolok</td><td class="muted">Jira-, GitHub-, DB-csatlakozó</td></tr>
       <tr class="frag"><td class="hl5">Skill</td><td>Csomagolt szakértelem, munkafolyamat</td><td>Leírás mindig, tartalom igény szerint</td><td class="muted">„Havi riport a sablon szerint”</td></tr>
-      <tr class="frag"><td class="hl6">Sub-agent</td><td>Segéd-ágens saját kontextussal</td><td>Csak az összefoglalója jön vissza</td><td class="muted">„Nézd át a kódbázist, és foglald össze”</td></tr>
+      <tr class="frag"><td class="hl6">Sub-agent</td><td>Segéd-Agent saját kontextussal</td><td>Csak az összefoglalója jön vissza</td><td class="muted">„Nézd át a kódbázist, és foglald össze”</td></tr>
     </table>
   </div>
   <aside class="notes"><p>Ökölszabály: <b>tool</b> = mit tud megtenni, <b>skill</b> = hogyan csinálja jól, <b>utasítás</b> = mit szabad és mit nem.</p></aside>
@@ -731,12 +734,12 @@
   <div><span class="tag">kb. 15 perc · a nap legfontosabb blokkja</span></div>
 </section>
 
-<section class="slide" data-title="Ágens definíciója és a ciklus">
+<section class="slide" data-title="Agent definíciója és a ciklus">
   <div class="kicker">04 · Agentic loop</div>
-  <h2>Az ágens definíciója és a ciklus</h2>
+  <h2>Az Agent definíciója és a ciklus</h2>
   <div class="split" style="--cols: 1fr 1.25fr">
     <div style="display:flex;flex-direction:column;gap:16px">
-      <div class="callout v" style="font-size:24px">Az ágens egy LLM, amely <b>ciklusban eszközöket használ</b>, amíg el nem éri a célt, vagy le nem állítják.</div>
+      <div class="callout v" style="font-size:24px">Az Agent egy LLM, amely <b>ciklusban eszközöket használ</b>, amíg el nem éri a célt, vagy le nem állítják.</div>
       <ul class="small">
         <li><b class="hl">Cél:</b> a felhasználótól, természetes nyelven</li>
         <li><b class="hl3">Modell:</b> eldönti a következő lépést</li>
@@ -805,7 +808,7 @@
     <div class="tight" style="display:flex;flex-direction:column;gap:10px">
       <div class="card t frag" data-s="2"><h3>1 kérdés = 3 LLM-hívás</h3><p>Minden hívás <b>a lista addigi teljes részét</b> kapja meg. A modell így „emlékszik”.</p></div>
       <div class="card a frag" data-s="4"><h3>A költség halmozódik</h3><p>A bemeneti tokenek dominálnak. A <b>prompt caching</b> (a változatlan eleje gyorsítótárban) sokat enyhít ezen.</p></div>
-      <div class="card r frag" data-s="5"><h3>Átláthatóság</h3><p>Ez a lista a <b>napló</b> is: utólag visszanézhető, mit kért és mit kapott az ágens.</p></div>
+      <div class="card r frag" data-s="5"><h3>Átláthatóság</h3><p>Ez a lista a <b>napló</b> is: utólag visszanézhető, mit kért és mit kapott az Agent.</p></div>
     </div>
   </div>
   <aside class="notes"><p>Az IT-seknek: ez maga az API-kérés „messages” tömbje. A nem IT-seknek: olyan, mint egy e-mail-lánc, amit minden válasz előtt elejétől végéig újraolvas.</p></aside>
@@ -837,9 +840,9 @@
         </ul>
       </div>
     </div>
-    <div class="callout t frag">A legjobb ellenszer a <b>visszajelzés</b>: ha az ágens maga tudja ellenőrizni a munkáját (teszt, build, lekérdezés), sokkal megbízhatóbb.</div>
+    <div class="callout t frag">A legjobb ellenszer a <b>visszajelzés</b>: ha az Agent maga tudja ellenőrizni a munkáját (teszt, build, lekérdezés), sokkal megbízhatóbb.</div>
   </div>
-  <aside class="notes"><p>A „túl korai kész” a leggyakoribb. Ezért kérjük az ágenstől, hogy futtassa le a teszteket, mielőtt késznek mondja a munkát.</p></aside>
+  <aside class="notes"><p>A „túl korai kész” a leggyakoribb. Ezért kérjük az Agenttől, hogy futtassa le a teszteket, mielőtt késznek mondja a munkát.</p></aside>
 </section>
 
 <!-- =========================================================== 05 NÁLUNK ÉS BIZTONSÁG -->
@@ -856,10 +859,10 @@
   <div class="body mid">
     <div class="ladder">
       <div class="step frag"><div class="lv">0</div><div class="nm">Chat</div><div class="ds">Kérdez–felel. Az ember mindent maga hajt végre.</div><div class="hu">RBI YellowGPT</div></div>
-      <div class="step frag"><div class="lv">1</div><div class="nm">Asszisztens</div><div class="ds">Dokumentumokkal, alkalmazásokba építve javasol. Az ember dönt és kattint.</div><div class="hu">O365 Copilot · GitHub Copilot · YellowGPT bővülő funkciói</div></div>
-      <div class="step frag"><div class="lv">2</div><div class="nm">Felügyelt ágens</div><div class="ds">Maga olvas, ír, futtat, de a kockázatos lépéseknél engedélyt kér.</div><div class="hu">Claude Code · opencode · Codex (WSL)</div></div>
-      <div class="step frag"><div class="lv">3</div><div class="nm">Ágens jóváhagyási pontokkal</div><div class="ds">Előre engedélyezett körben önállóan dolgozik, a végén ember ellenőriz.</div><div class="hu">rAIhub · Claude Desktop (hamarosan)</div></div>
-      <div class="step frag"><div class="lv">4</div><div class="nm">Autonóm háttér-ágens</div><div class="ds">Feladatot kap (pl. ticketből), és PR-t vagy riportot ad le. Az ember csak az eredményt nézi.</div><div class="hu dim">még nem nálunk</div></div>
+      <div class="step frag"><div class="lv">1</div><div class="nm">Asszisztens</div><div class="ds">Dokumentumokkal, alkalmazásokba építve javasol. Az ember dönt és kattint.</div><div class="hu">O365 Copilot · YellowGPT bővülő funkciói</div></div>
+      <div class="step frag"><div class="lv">2</div><div class="nm">Felügyelt Agent</div><div class="ds">Maga olvas, ír, futtat, de a kockázatos lépéseknél engedélyt kér.</div><div class="hu">Claude Code · opencode · Codex (WSL) · GitHub Copilot · Claude Desktop (hamarosan)</div></div>
+      <div class="step frag"><div class="lv">3</div><div class="nm">Agent remote workspace-ban</div><div class="ds">Saját, távoli munkakörnyezetben, előre engedélyezett körben önállóan dolgozik, a végén ember ellenőriz.</div><div class="hu">rAIhub</div></div>
+      <div class="step frag"><div class="lv">4</div><div class="nm">Autonóm háttér-Agent</div><div class="ds">Feladatot kap (pl. ticketből), és PR-t vagy riportot ad le. Az ember csak az eredményt nézi.</div><div class="hu dim">hamarosan</div></div>
     </div>
     <div class="callout frag">A kulcskérdés: <b>hol van az ember a ciklusban?</b> Minél feljebb megyünk, annál fontosabb a jogosultság, a naplózás és az automatikus ellenőrzés.</div>
   </div>
@@ -913,7 +916,7 @@
         <path d="M150,185 C175,185 175,255 200,255" stroke="#2c3d63" stroke-width="2" fill="none"/>
         <rect x="200" y="228" width="500" height="54" rx="10" fill="#131c30" stroke="#4fd1c5" stroke-width="2" stroke-dasharray="7 5"/>
         <text x="216" y="251" fill="#e9effc" font-size="17" font-weight="700">Claude Desktop <tspan fill="#f6ad55" font-size="13">hamarosan</tspan></text>
-        <text x="216" y="271" fill="#9fb1d4" font-size="13">asztali alkalmazás: chat + ágens-képességek</text>
+        <text x="216" y="271" fill="#9fb1d4" font-size="13">asztali alkalmazás: chat + Agent-képességek</text>
         <rect x="580" y="243" width="108" height="22" rx="11" fill="rgba(99,179,237,.18)"/><text x="634" y="259" text-anchor="middle" fill="#63b3ed" font-size="12" font-weight="700">üzlet is</text>
         <line x1="700" y1="255" x2="756" y2="228" stroke="#9fb1d4" stroke-width="2" marker-end="url(#ar6)"/>
       </g>
@@ -976,7 +979,7 @@
       <div class="card t frag"><div class="ico">🌐</div><h3>Saját környezet, webről</h3><p>Mindenki saját, konténerizált környezetet kap az OKD-n, böngészőből. Nem kell helyi telepítés vagy WSL.</p><p style="margin-top:8px"><span class="tag">→ szerveroldali harness · sandbox</span></p></div>
       <div class="card v frag"><div class="ico">🔐</div><h3>Szerepkör alapú eszközök</h3><p>Jogosultság és szerepkör alapján kap toolokat és MCP-szervereket. Mindenki csak azt, ami a munkájához kell.</p><p style="margin-top:8px"><span class="tag">→ legkisebb jogosultság</span></p></div>
       <div class="card g frag"><div class="ico">💾</div><h3>Perzisztens környezet</h3><p>Ha később visszalépünk, a fájljaink és a kontextusunk megmarad. A munka folytatható, nem kell újrakezdeni.</p><p style="margin-top:8px"><span class="tag">→ memória · kontextus</span></p></div>
-      <div class="card a frag"><div class="ico">🎛️</div><h3>Kontrollált ágens</h3><p>Központilag beállított keretek: mit futtathat, mihez fér hozzá. Nem a felhasználó gépén múlik a biztonság.</p><p style="margin-top:8px"><span class="tag">→ engedélyek · védőkorlátok</span></p></div>
+      <div class="card a frag"><div class="ico">🎛️</div><h3>Kontrollált Agent</h3><p>Központilag beállított keretek: mit futtathat, mihez fér hozzá. Nem a felhasználó gépén múlik a biztonság.</p><p style="margin-top:8px"><span class="tag">→ permissions · guardrails</span></p></div>
     </div>
     <div class="callout t frag">Amiről ma beszéltünk (sandbox, jogosultság, memória, kontroll), az a rAIhubban <b>egy helyen, központilag kezelve</b> jelenik meg.</div>
   </div>
@@ -985,7 +988,7 @@
 
 <section class="slide" data-title="Biztonság: prompt injection, jogosultság">
   <div class="kicker">05 · Biztonság</div>
-  <h2>A legnagyobb új kockázat: amit az ágens <span class="hl4">olvas</span>, az utasításnak tűnhet</h2>
+  <h2>A legnagyobb új kockázat: amit az Agent <span class="hl4">olvas</span>, az utasításnak tűnhet</h2>
   <div class="split" style="--cols: 1fr 1fr;align-items:start">
     <div style="display:flex;flex-direction:column;gap:10px">
       <div class="card"><p class="small"><b>1.</b> Feladat: „Foglald össze a beérkezett szállítói e-maileket.”</p></div>
@@ -1004,14 +1007,14 @@
       </ul>
     </div>
   </div>
-  <aside class="notes"><p>A prompt injection ma nem teljesen megoldott probléma; a modellek egyre ellenállóbbak, de a védelem tervezési kérdés. Ökölszabály („lethal trifecta”): ha egy ágens egyszerre lát megbízhatatlan tartalmat, hozzáfér érzékeny adathoz, és tud kifelé kommunikálni, az veszélyes.</p></aside>
+  <aside class="notes"><p>A prompt injection ma nem teljesen megoldott probléma; a modellek egyre ellenállóbbak, de a védelem tervezési kérdés. Ökölszabály („lethal trifecta”): ha egy Agent egyszerre lát megbízhatatlan tartalmat, hozzáfér érzékeny adathoz, és tud kifelé kommunikálni, az veszélyes.</p></aside>
 </section>
 
 <!-- =========================================================== 06 FEJLESZTÉS -->
 <section class="slide cover brand" data-title="Hogyan fejleszt az AI?" data-start="85">
   <div class="num">06</div>
   <h1>Hogyan fejleszt az AI?</h1>
-  <p class="lead">A szoftverfejlesztés az a terület, ahol az ágensek a legmesszebbre jutottak. Miért itt, és mit tanulhatunk ebből?</p>
+  <p class="lead">A szoftverfejlesztés az a terület, ahol az Agentek a legmesszebbre jutottak. Miért itt, és mit tanulhatunk ebből?</p>
   <div><span class="tag">kb. 15 perc</span></div>
 </section>
 
@@ -1023,19 +1026,19 @@
       <div class="node frag" style="border-top:4px solid var(--blue)"><b>Kódkiegészítés</b><span class="muted">~2021-től</span><br>a következő sort vagy függvényt javasolja az IDE-ben</div><div class="arr">→</div>
       <div class="node frag" style="border-top:4px solid var(--teal)"><b>Chat a kódról</b><span class="muted">~2023-tól</span><br>magyaráz, ír egy részletet, az ember bemásolja</div><div class="arr">→</div>
       <div class="node frag" style="border-top:4px solid var(--violet)"><b>Coding agent</b><span class="muted">~2024–25-től</span><br>maga olvas, szerkeszt több fájlt, tesztet futtat</div><div class="arr">→</div>
-      <div class="node frag" style="border-top:4px solid var(--amber)"><b>Párhuzamos és háttér-ágensek</b><span class="muted">~2025-től</span><br>több feladat egyszerre, ticketből PR-ig</div>
+      <div class="node frag" style="border-top:4px solid var(--amber)"><b>Párhuzamos és háttér-Agentek</b><span class="muted">~2025-től</span><br>több feladat egyszerre, ticketből PR-ig</div>
     </div>
     <div class="cols c2 frag">
       <div class="callout t"><b>A lépték változik:</b> sor → függvény → feladat → projekt-szelet. Az ember egyre inkább <b>megrendelő és ellenőr</b>.</div>
       <div class="callout"><b>Miért pont a kód?</b> Szöveg, rengeteg tanítóadat, és <b>automatikusan ellenőrizhető</b>: lefordul-e, zöldek-e a tesztek?</div>
     </div>
   </div>
-  <aside class="notes"><p>Az évszámok közelítők. A „miért pont a kód” kérdés fontos tanulság más területekre: ahol gyors, objektív visszajelzés van, ott jól működnek az ágensek.</p></aside>
+  <aside class="notes"><p>Az évszámok közelítők. A „miért pont a kód” kérdés fontos tanulság más területekre: ahol gyors, objektív visszajelzés van, ott jól működnek az Agentek.</p></aside>
 </section>
 
 <section class="slide" data-title="Egy fejlesztési feladat ciklusa">
   <div class="kicker">06 · Fejlesztés</div>
-  <h2>Egy fejlesztési feladat az ágens kezében</h2>
+  <h2>Egy fejlesztési feladat az Agent kezében</h2>
   <div class="body mid" style="gap:22px">
     <svg viewBox="0 0 1150 250" style="width:100%">
       <defs><marker id="ar8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="#9fb1d4"/></marker>
@@ -1052,15 +1055,15 @@
         <line x1="152" y1="85" x2="186" y2="85"/><line x1="342" y1="85" x2="376" y2="85"/><line x1="532" y1="85" x2="566" y2="85"/><line x1="722" y1="85" x2="756" y2="85"/><line x1="912" y1="85" x2="946" y2="85"/>
       </g>
       <path d="M835,132 C835,215 645,215 645,134" fill="none" stroke="#f87171" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#ar9)"/>
-      <text x="740" y="232" text-anchor="middle" fill="#f87171" font-size="16" font-weight="700">piros teszt → javít → újrafuttat (az ágens magától iterál)</text>
+      <text x="740" y="232" text-anchor="middle" fill="#f87171" font-size="16" font-weight="700">piros teszt → javít → újrafuttat (az Agent magától iterál)</text>
     </svg>
     <div class="cols c3 frag">
-      <div class="card t"><h3>Ami a legtöbbet ad</h3><p>Jó tesztek, gyors build, linter. Ahol van automatikus visszajelzés, ott az ágens jól dolgozik.</p></div>
-      <div class="card v"><h3>Utasítás-fájl a repóban</h3><p><code>CLAUDE.md</code> / <code>AGENTS.md</code>: konvenciók, parancsok, tilalmak. Az ágens „belépő dokumentációja”.</p></div>
-      <div class="card a"><h3>Az ember két ponton</h3><p>A terv jóváhagyása és a kész változás review-ja. A közepét az ágens viszi.</p></div>
+      <div class="card t"><h3>Ami a legtöbbet ad</h3><p>Jó tesztek, gyors build, linter. Ahol van automatikus visszajelzés, ott az Agent jól dolgozik.</p></div>
+      <div class="card v"><h3>Utasítás-fájl a repóban</h3><p><code>CLAUDE.md</code> / <code>AGENTS.md</code>: konvenciók, parancsok, tilalmak. Az Agent „belépő dokumentációja”.</p></div>
+      <div class="card a"><h3>Az ember két ponton</h3><p>A terv jóváhagyása és a kész változás review-ja. A közepét az Agent viszi.</p></div>
     </div>
   </div>
-  <aside class="notes"><p>Ez ugyanaz az agentic loop, mint a riportos példánál, csak fejlesztési eszközökkel. A teszt mint „bíró” teszi lehetővé, hogy az ágens maga vegye észre a hibáját.</p><p>WSL-ben futó coding agenteknél (Claude Code, opencode, Codex) ez a mindennapi munkafolyamat.</p></aside>
+  <aside class="notes"><p>Ez ugyanaz az agentic loop, mint a riportos példánál, csak fejlesztési eszközökkel. A teszt mint „bíró” teszi lehetővé, hogy az Agent maga vegye észre a hibáját.</p><p>WSL-ben futó coding agenteknél (Claude Code, opencode, Codex) ez a mindennapi munkafolyamat.</p></aside>
 </section>
 
 <section class="slide" data-title="Faster is not further: RBI tanulságok">
@@ -1100,20 +1103,20 @@
     <div class="flow" style="gap:6px;--fs:16px">
       <div class="node frag" style="border-top:4px solid var(--blue)"><b>Specifikáció</b>teljes, előre megírva, mielőtt bárki épít</div><div class="arr">→</div>
       <div class="node frag" style="border-color:var(--amber);background:var(--amber-t)"><b class="hl2">1. kapu</b>az ember jóváhagyja a specet</div><div class="arr">→</div>
-      <div class="node frag" style="border-top:4px solid var(--violet)"><b>Építés</b>az ágens a kit eszközeivel dolgozik</div><div class="arr">→</div>
-      <div class="node frag" style="border-top:4px solid var(--green)"><b>Kettős ellenőrzés</b>determinisztikus ellenőrzések + 4 független review-ágens</div><div class="arr">→</div>
+      <div class="node frag" style="border-top:4px solid var(--violet)"><b>Építés</b>az Agent a kit eszközeivel dolgozik</div><div class="arr">→</div>
+      <div class="node frag" style="border-top:4px solid var(--green)"><b>Kettős ellenőrzés</b>determinisztikus ellenőrzések + 4 független review-Agent</div><div class="arr">→</div>
       <div class="node frag" style="border-color:var(--amber);background:var(--amber-t)"><b class="hl2">2. kapu</b>az ember validálja a bizonyítékot (pl. tesztfutás felvétele)</div><div class="arr">→</div>
       <div class="node frag" style="flex:.7;border-top:4px solid var(--teal)"><b>Éles</b>emberi felelősséggel</div>
     </div>
     <div class="cols c3 tight" style="gap:16px">
       <div class="card t frag"><h3>Három alapelv</h3><ul class="small"><li>teljes specifikáció előre</li><li>kettős ellenőrzés</li><li>emberi felügyelet a döntéseken</li></ul></div>
-      <div class="card v frag"><h3>Getting started kit</h3><p><b>Skillek, hookok, toolok, ágensek</b> egy csomagban: a 11 core market közös kiindulópontja. <span class="muted">A kész külső keretrendszerek nem váltak be, mert más folyamatát tükrözték.</span></p></div>
-      <div class="card a frag"><h3>Minden fázis Markdownban</h3><p>Input, output, bizonyíték, kontroll: ember és ágens ugyanazt olvassa. A <b>product discovery</b> is része, nem csak a szállítás.</p></div>
+      <div class="card v frag"><h3>Getting started kit</h3><p><b>Skillek, hookok, toolok, Agentek</b> egy csomagban: a 11 core market közös kiindulópontja. <span class="muted">A kész külső keretrendszerek nem váltak be, mert más folyamatát tükrözték.</span></p></div>
+      <div class="card a frag"><h3>Minden fázis Markdownban</h3><p>Input, output, bizonyíték, kontroll: ember és Agent ugyanazt olvassa. A <b>product discovery</b> is része, nem csak a szállítás.</p></div>
     </div>
-    <div class="callout t frag"><b>Software factory, nem „dark factory”:</b> az ágens épít, de a döntés és a felelősség az emberé marad (compliance).</div>
+    <div class="callout t frag"><b>Software factory, nem „dark factory”:</b> az Agent épít, de a döntés és a felelősség az emberé marad (compliance).</div>
     <p class="xs dim" style="font-size:13px">Forrás: <a href="https://training.techtalk.at/blog/faster-is-not-further-what-a-bank-learned-about-ai-adoption/" style="color:var(--muted)">TechTalk blog: „Faster is not further”</a> (Gojko Adzic és Ana Nad, RBI, Agile Tour Vienna 2026)</p>
   </div>
-  <aside class="notes"><p>Ez a mai fogalmak „élesben”: a getting started kit pontosan azokból az építőkockákból áll, amikről a 03-as és 05-ös blokkban beszéltünk (skill, hook, tool, sub-agent). A spec-driven megközelítés lényege, hogy az ágens egy jóváhagyott specifikációból dolgozik, nem egy egysoros promptból.</p><p>A két emberi kapu: (1) a spec jóváhagyása az építés előtt, (2) a bizonyíték validálása élesítés előtt. Élesben a kit több kaput nevez meg (H3 code review, H4 validáció: a PO jóváhagyja a Validation Evidence Packet, H5 deploy, valamint solution gate, Three Amigos, compliance sign-off). A labban kettőre egyszerűsítünk.</p><p>Kettős ellenőrzés a kitben: a <code>build-task</code> determinisztikus ellenőrzéseket futtat (lint, teszt, coverage, CVE- és secret-scan), a <code>review-pr</code> pedig 4 párhuzamos review-ágenst (code, security, scope, test) és egy gap-critic ágenst, ami azt keresi, mit hagytak ki együtt.</p><p>A „11 core market” a TechTalk blogból származik, a kit repóban nem szerepel.</p><p>A labban → élesben:</p><table><tr><th>A labban</th><th>A Getting Started Kitben</th></tr><tr><td><code>docs/uzleti-leiras.md</code></td><td>PRD (<code>start-prd</code> → <code>refine-prd</code>)</td></tr><tr><td><code>/spec</code> → <code>SPEC.md</code> (SZ, EK, storyk)</td><td><code>plan-prd</code> → <code>plan.md</code> (storyk, BAC-ok), <code>specify-task</code> → <code>spec.md</code></td></tr><tr><td>EK-01…</td><td>BAC-1… (Business Acceptance Criteria)</td></tr><tr><td>1. kapu: <code>Státusz: JÓVÁHAGYVA</code></td><td>solution gate, spec-jóváhagyás</td></tr><tr><td><code>/build S1</code></td><td><code>build-task</code> (+ <code>generate-e2e</code>)</td></tr><tr><td>+5 sub-agent ellenőr</td><td><code>review-pr</code>: 4 reviewer + gap-critic (H3, code review)</td></tr><tr><td><code>/verify</code> → <code>BIZONYITEK.md</code></td><td><code>validate-acceptance</code> → Validation Evidence Pack</td></tr><tr><td>2. kapu: elfogadás</td><td>H4: PO-jóváhagyás, utána mehet UAT-ra</td></tr><tr><td>–</td><td><code>mercury-check</code>, H5 deploy</td></tr><tr><td>4. lépés: változáskérés</td><td><code>revise-plan</code></td></tr></table><p>Gyakorlati tapasztalat: a 20–50 repóra szétszórt kontextus lassította a munkát. „Ez nem ágens-probléma, hanem folyamat-probléma”, és az új emberi kollégákat is ugyanígy lassítja.</p></aside>
+  <aside class="notes"><p>Ez a mai fogalmak „élesben”: a getting started kit pontosan azokból az építőkockákból áll, amikről a 03-as és 05-ös blokkban beszéltünk (skill, hook, tool, sub-agent). A spec-driven megközelítés lényege, hogy az Agent egy jóváhagyott specifikációból dolgozik, nem egy egysoros promptból.</p><p>A két emberi kapu: (1) a spec jóváhagyása az építés előtt, (2) a bizonyíték validálása élesítés előtt. Élesben a kit több kaput nevez meg (H3 code review, H4 validáció: a PO jóváhagyja a Validation Evidence Packet, H5 deploy, valamint solution gate, Three Amigos, compliance sign-off). A labban kettőre egyszerűsítünk.</p><p>Kettős ellenőrzés a kitben: a <code>build-task</code> determinisztikus ellenőrzéseket futtat (lint, teszt, coverage, CVE- és secret-scan), a <code>review-pr</code> pedig 4 párhuzamos review-Agentet (code, security, scope, test) és egy gap-critic Agentet, ami azt keresi, mit hagytak ki együtt.</p><p>A „11 core market” a TechTalk blogból származik, a kit repóban nem szerepel.</p><p>A labban → élesben:</p><table><tr><th>A labban</th><th>A Getting Started Kitben</th></tr><tr><td><code>docs/uzleti-leiras.md</code></td><td>PRD (<code>start-prd</code> → <code>refine-prd</code>)</td></tr><tr><td><code>/spec</code> → <code>SPEC.md</code> (SZ, EK, storyk)</td><td><code>plan-prd</code> → <code>plan.md</code> (storyk, BAC-ok), <code>specify-task</code> → <code>spec.md</code></td></tr><tr><td>EK-01…</td><td>BAC-1… (Business Acceptance Criteria)</td></tr><tr><td>1. kapu: <code>Státusz: JÓVÁHAGYVA</code></td><td>solution gate, spec-jóváhagyás</td></tr><tr><td><code>/build S1</code></td><td><code>build-task</code> (+ <code>generate-e2e</code>)</td></tr><tr><td>+5 sub-agent ellenőr</td><td><code>review-pr</code>: 4 reviewer + gap-critic (H3, code review)</td></tr><tr><td><code>/verify</code> → <code>BIZONYITEK.md</code></td><td><code>validate-acceptance</code> → Validation Evidence Pack</td></tr><tr><td>2. kapu: elfogadás</td><td>H4: PO-jóváhagyás, utána mehet UAT-ra</td></tr><tr><td>–</td><td><code>mercury-check</code>, H5 deploy</td></tr><tr><td>4. lépés: változáskérés</td><td><code>revise-plan</code></td></tr></table><p>Gyakorlati tapasztalat: a 20–50 repóra szétszórt kontextus lassította a munkát. „Ez nem Agent-probléma, hanem folyamat-probléma”, és az új emberi kollégákat is ugyanígy lassítja.</p></aside>
 </section>
 
 <section class="slide" data-title="Mi változik a szerepekben?">
@@ -1121,7 +1124,7 @@
   <h2>Mi változik a szerepekben?</h2>
   <div class="body mid">
     <div class="cols c3">
-      <div class="card t frag"><div class="ico">👩‍💻</div><h3>Fejlesztő</h3><ul class="small"><li>kevesebb gépelés, több <b>specifikálás</b></li><li>review, architektúra, döntés</li><li>az ágensek „vezetése”, akár párhuzamosan</li></ul></div>
+      <div class="card t frag"><div class="ico">👩‍💻</div><h3>Fejlesztő</h3><ul class="small"><li>kevesebb gépelés, több <b>specifikálás</b></li><li>review, architektúra, döntés</li><li>az Agentek „vezetése”, akár párhuzamosan</li></ul></div>
       <div class="card v frag"><div class="ico">🏗️</div><h3>IT-csapat, vezető</h3><ul class="small"><li>a szűk keresztmetszet: <b>review és ellenőrzés</b></li><li>felértékelődik a tesztlefedettség, a CI és a dokumentáció</li><li>új mérőszámok kellenek, nem a kódsorok száma</li></ul></div>
       <div class="card a frag"><div class="ico">📊</div><h3>Nem IT-s terület</h3><ul class="small"><li>prototípus, elemzés, script „házon belül”</li><li>gyorsabb kísérletezés</li><li>de: <b>shadow IT</b> kockázat, ezért keret kell</li></ul></div>
     </div>
@@ -1135,7 +1138,7 @@
   <h2>Merre tart? Öt trend, amivel érdemes számolni</h2>
   <div class="body mid">
     <div class="cols c2" style="gap:16px">
-      <div class="card t frag"><h3>📈 Hosszabb önálló feladatok</h3><p>Az ágensek által megbízhatóan végigvitt feladatok hossza gyorsan nő: percekről órákra.</p></div>
+      <div class="card t frag"><h3>📈 Hosszabb önálló feladatok</h3><p>Az Agentek által megbízhatóan végigvitt feladatok hossza gyorsan nő: percekről órákra.</p></div>
       <div class="card v frag"><h3>💸 Olcsóbb token, több token</h3><p>Az egységár esik, de a felhasználás gyorsabban nő. Az összköltség nőhet, ezért kell a budget control.</p></div>
       <div class="card a frag"><h3>🧰 A harness lesz a különbség</h3><p>A modellek közelítenek egymáshoz. Az eszköz, az integráció és a kontroll dönt.</p></div>
       <div class="card g frag"><h3>🔌 Szabványosodás</h3><p>MCP, skillek, utasítás-fájlok: a tudás és a csatlakozók eszközök között hordozhatók.</p></div>
@@ -1157,12 +1160,12 @@
   <div class="kicker">07 · Vezetői szempontok</div>
   <h2>Hol érdemes kezdeni?</h2>
   <div class="matrix">
-    <div class="ylab">Érték / ismétlődés →</div>
+    <div class="ylab"><span>alacsony</span><b>Érték / ismétlődés</b><span>magas</span></div>
     <div class="q frag" style="background:var(--amber-t);border-color:var(--amber)"><h3 class="hl2">Emberrel együtt</h3><p>Értékes, de nehezen ellenőrizhető: döntés-előkészítés, stratégiai elemzés, ügyfélkommunikáció. → AI vázlatol, az ember dönt.</p></div>
     <div class="q frag" style="background:var(--green-t);border-color:var(--green)"><h3 class="hl5">Kezdd itt ✔</h3><p>Értékes és ellenőrizhető: tesztírás, migráció, riport-előállítás, kódmegértés, incidens-elemzés, ticket-összefoglaló.</p></div>
     <div class="q frag" style="background:var(--red-t);border-color:var(--red)"><h3 class="hl4">Kerüld</h3><p>Nehezen ellenőrizhető és nagy kárt okozhat: felügyelet nélküli éles változtatás, jogi kötelezettségvállalás.</p></div>
     <div class="q frag"><h3>Gyors nyerés</h3><p>Kis érték, de könnyű: formázás, fordítás, jegyzetelés. Jó a tanuláshoz és az elfogadáshoz.</p></div>
-    <div></div><div class="xlab">Ellenőrizhetőség →</div>
+    <div class="origin">0</div><div class="xlab"><span>nehéz</span><b>Ellenőrizhetőség</b><span>könnyű</span></div>
   </div>
   <aside class="notes"><p>A fő tengely az ellenőrizhetőség, ezt tanultuk a fejlesztésből. Kérdés a teremnek: a saját területeteken mi esik a „Kezdd itt” negyedbe?</p></aside>
 </section>
@@ -1175,8 +1178,8 @@
       <div class="card r frag"><h3>🔓 Adatkezelés</h3><p>Milyen adat mehet ki a modellhez? → adatbesorolás, gateway, csak whitelistelt eszközök</p></div>
       <div class="card r frag"><h3>👻 Shadow IT / AI</h3><p>Nem engedélyezett eszközök, privát fiókok → legyen jó hivatalos alternatíva</p></div>
       <div class="card r frag"><h3>🎭 Hallucináció</h3><p>Hihető, de hibás kimenet → forrás, ellenőrzés, emberi felelős</p></div>
-      <div class="card r frag"><h3>💉 Prompt injection</h3><p>Rosszindulatú tartalom irányítja az ágenst → jogosultság, jóváhagyás, sandbox</p></div>
-      <div class="card r frag"><h3>💰 Költség-elszállás</h3><p>Ágensek sok tokennel, ciklusban → keretek a gatewayben, mérés</p></div>
+      <div class="card r frag"><h3>💉 Prompt injection</h3><p>Rosszindulatú tartalom irányítja az Agentet → jogosultság, jóváhagyás, sandbox</p></div>
+      <div class="card r frag"><h3>💰 Költség-elszállás</h3><p>Agentek sok tokennel, ciklusban → keretek a gatewayben, mérés</p></div>
       <div class="card r frag"><h3>⚖️ Megfelelés, függőség</h3><p>AI Act, DORA, beszállítói függőség → dokumentálás, több modell elérhetősége</p></div>
     </div>
   </div>
@@ -1190,7 +1193,7 @@
     <div class="cols c2" style="gap:14px 30px">
       <ol class="small" style="padding-left:1.4em">
         <li class="frag"><b>Mi a feladat, és hogyan mérjük a sikert?</b> Mi volt a kiinduló állapot?</li>
-        <li class="frag"><b>Chatbot, asszisztens vagy ágens?</b> Melyik autonómia-szint?</li>
+        <li class="frag"><b>Chatbot, asszisztens vagy Agent?</b> Melyik autonómia-szint?</li>
         <li class="frag"><b>Milyen adat kerül a kontextusba?</b> Milyen besorolású?</li>
         <li class="frag"><b>Milyen eszközökhöz fér hozzá?</b> Olvas vagy ír is?</li>
       </ol>
@@ -1224,13 +1227,13 @@
   <h2>A mai nap egy oldalon</h2>
   <div class="body">
     <table class="tbl" style="font-size:17.5px">
-      <tr><td>LLM</td><td class="muted">Nagy nyelvi modell. A következő tokent jósolja: szöveg be, szöveg ki.</td><td>Tool</td><td class="muted">Függvény, amit a modell kérhet. A harness hajtja végre.</td></tr>
+      <tr><td>LLM</td><td class="muted">Nagy nyelvi modell. A következő tokent jósolja: szöveg be, szöveg ki.</td><td>Tool</td><td class="muted">Eszköz, amit a modell kérhet. A harness hajtja végre.</td></tr>
       <tr><td>Token</td><td class="muted">Szódarab. Ebben mérjük a méretet, az időt és az árat.</td><td>MCP</td><td class="muted">Szabványos csatlakozó eszközökhöz és adatforrásokhoz.</td></tr>
       <tr><td>Kontextus</td><td class="muted">Minden, amit a modell egy hívásban lát. A munkamemóriája.</td><td>Skill</td><td class="muted">Csomagolt szakértelem, igény szerint betöltve.</td></tr>
-      <tr><td>Hallucináció</td><td class="muted">Hihető, de kitalált kimenet.</td><td>Harness</td><td class="muted">A modell köré épített alkalmazás: kontextus, eszközök, engedélyek, ciklus.</td></tr>
-      <tr><td>Reasoning</td><td class="muted">„Gondolkodás”: több token a válasz előtt.</td><td>Ágens</td><td class="muted">LLM, amely ciklusban eszközöket használ a cél eléréséig.</td></tr>
+      <tr><td>Hallucináció</td><td class="muted">Hihető, de kitalált kimenet.</td><td>Harness</td><td class="muted">A modell köré épített alkalmazás: kontextus, eszközök, permissions, ciklus.</td></tr>
+      <tr><td>Reasoning</td><td class="muted">„Gondolkodás”: több token a válasz előtt.</td><td>Agent</td><td class="muted">LLM, amely ciklusban eszközöket használ a cél eléréséig.</td></tr>
       <tr><td>Eval</td><td class="muted">Tesztkészlet az AI-megoldás minőségének méréséhez.</td><td>Agentic loop</td><td class="muted">Kontextus → döntés → cselekvés → megfigyelés → …</td></tr>
-      <tr><td>LLM gateway</td><td class="muted">Vállalati kapu a modellekhez: security, budget, napló.</td><td>Sub-agent</td><td class="muted">Segéd-ágens saját kontextussal. Csak az összefoglaló jön vissza.</td></tr>
+      <tr><td>LLM gateway</td><td class="muted">Vállalati kapu a modellekhez: security, budget, napló.</td><td>Sub-agent</td><td class="muted">Segéd-Agent saját kontextussal. Csak az összefoglaló jön vissza.</td></tr>
     </table>
   </div>
   <aside class="notes"><p>Ez a dia jó „puska” a résztvevőknek; érdemes a linket kiküldeni.</p></aside>
@@ -1241,13 +1244,13 @@
   <h2 style="font-size:46px">Amit érdemes megjegyezni</h2>
   <ul style="max-width:1050px">
     <li class="frag">Az <b>LLM</b> szövegfolytató: nincs keze, nincs memóriája, nem lát ki. <span class="muted">Ezért kell kontextus.</span></li>
-    <li class="frag">Az <b>ágens</b> = modell + harness + ciklus. <span class="muted">A modell kér, a harness hajt végre.</span></li>
+    <li class="frag">Az <b>Agent</b> = modell + harness + ciklus. <span class="muted">A modell kér, a harness hajt végre.</span></li>
     <li class="frag">A <b>kontrollt</b> a harnessben és a gatewayben tervezzük meg. <span class="muted">Jogosultság, jóváhagyás, napló, keret.</span></li>
     <li class="frag">Ott működik a legjobban, ahol az eredmény <b>ellenőrizhető</b>.</li>
     <li class="frag">A vezetői kérdés: <b>hol van az ember a ciklusban?</b></li>
   </ul>
   <h1 class="hl frag" style="margin-top:20px">Kérdések?</h1>
-  <aside class="notes"><p>Visszautalás a nyitó három gondolatra. Utána kérdések. Ha kevés a kérdés, indító kérdés: „Melyik munkafolyamatotokban lenne az ágens a legnagyobb segítség, és mi tartana vissza?”</p></aside>
+  <aside class="notes"><p>Visszautalás a nyitó három gondolatra. Utána kérdések. Ha kevés a kérdés, indító kérdés: „Melyik munkafolyamatotokban lenne az Agent a legnagyobb segítség, és mi tartana vissza?”</p></aside>
 </section>
 
   <div id="hud"><span class="hud-left"><img class="logo-on-dark" src="assets/rbi-gable-yellow.png" alt=""><img class="logo-on-light" src="assets/rbi-gable-squared.png" alt=""><span id="hud-l"></span></span><span id="hud-r"></span></div>

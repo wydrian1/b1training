@@ -1,6 +1,6 @@
 # Levezetői forgatókönyv – Kudos demó (kb. 3 óra 45 perc)
 
-> A [`wydrian1/b1-demo-kudos`](https://github.com/wydrian1/b1-demo-kudos) gyakorló repóhoz tartozik, de szándékosan **nincs benne**: a résztvevők gépén az ágens ne lássa az elvárt eredményeket. A fájlhivatkozások (pl. `docs/uzleti-leiras.md`) a gyakorló repón belül értendők.
+> A [`wydrian1/b1-demo-kudos`](https://github.com/wydrian1/b1-demo-kudos) gyakorló repóhoz tartozik, de szándékosan **nincs benne**: a résztvevők gépén az Agent ne lássa az elvárt eredményeket. A fájlhivatkozások (pl. `docs/uzleti-leiras.md`) a gyakorló repón belül értendők.
 > A résztvevőknek szóló útmutató: [lab guide](https://wydrian1.github.io/b1training/lab/).
 
 ## Cél
@@ -28,9 +28,9 @@ kontextus és `CLAUDE.md`, toolok, skillek, az agentic loop (olvas → szerkeszt
 |---|---|---|---|
 | 0:00 | **Indulás** | `git clone`, `cd`, `bash scripts/setup-e2e.sh`, `claude` | A harness betölti a `CLAUDE.md`-t: ez a „projekt-utasítás” a kontextusban |
 | 0:15 | **Az üzleti igény megértése** | Claude-dal összefoglaltatja a `docs/uzleti-leiras.md`-t, végigvezettet egy példát, rákérdez a hiányokra | Claude mint elemzőtárs. Első tool-használat: maga olvassa a fájlokat. A jóváhagyóknak érteniük kell, mit hagynak jóvá |
-| 0:30 | **Specifikáció** | `/model opus`, `/spec`, válasz a kérdésekre | Skill működés közben: az ágens kérdez, nem találgat. Modellválasztás: a spechez megéri a legerősebb modell |
+| 0:30 | **Specifikáció** | `/model opus`, `/spec`, válasz a kérdésekre | Skill működés közben: az Agent kérdez, nem találgat. Modellválasztás: a spechez megéri a legerősebb modell |
 | 0:55 | **Változáskérés: kategóriák** (kötelező) | `/spec Változáskérés: …` – az 5 kategória helyett a 4 IT-BSO Behavioral Anchor | Az igény változik: a jóváhagyás előtt ez néhány sor a specben, nem kódátírás. A változás végigfut SZ → EK → story → konzisztencia, és bekerül a változásnaplóba. Az üzleti leírás nem változik |
-| 1:05 | **🟡 1. kapu** | `SPEC.md` átnézése, javíttatás, majd **saját kézzel** `Státusz: JÓVÁHAGYVA` | Az ember dönt, az ágens nem hagyhatja jóvá saját magát |
+| 1:05 | **🟡 1. kapu** | `SPEC.md` átnézése, javíttatás, majd **saját kézzel** `Státusz: JÓVÁHAGYVA` | Az ember dönt, az Agent nem hagyhatja jóvá saját magát |
 | 1:15 | **Első story** | `/model sonnet`, `/build S1` | Story = vertikális szelet. Előbb a tesztek (piros), utána a kód (zöld), majd megállás és böngészős ellenőrzés |
 | 1:40 | ☕ Szünet | | |
 | 1:50 | **További storyk** | `/build S2`, `/build S3`, … storynként ellenőrizve | Kis körök, az ember minden story után dönt. S1–S4 = MVP, a többi ráadás. Az agentic loop élőben: tool-hívások, engedélykérések, piros → javít. A `docs/arculat-ui.md` mint kontextus: ettől lesz igényes a felület |
@@ -99,7 +99,7 @@ A story végén a skill újraindítja a helyi szervert az új kóddal (`🌐` so
 /verify
 ```
 
-**Elfogadás** (a résztvevő futtatja, nem az ágens):
+**Elfogadás** (a résztvevő futtatja, nem az Agent):
 
 ```text
 ! sed -i 's/^Elfogadás: FÜGGŐBEN/Elfogadás: ELFOGADVA/' BIZONYITEK.md
@@ -162,7 +162,7 @@ A kitben H1 és H2 néven nincs kapu: a lab két kapuja didaktikai egyszerűsít
 
 ## Visszatekintő kérdések
 
-- Hol kellett beavatkoznod? Mit csinált volna rosszul az ágens, ha nincs spec?
+- Hol kellett beavatkoznod? Mit csinált volna rosszul az Agent, ha nincs spec?
 - Mennyi időt vitt el a spec, és mennyit spórolt meg később?
 - Mit láttál a „háttérben”: milyen toolokat hívott, mikor kért engedélyt?
 - Melyik saját területi feladatotokhoz lenne használható ez a folyamat?
@@ -172,11 +172,11 @@ A kitben H1 és H2 néven nincs kapu: a lab két kapuja didaktikai egyszerűsít
 | Tünet | Teendő |
 |---|---|
 | `claude` nem éri el a modellt | Gateway-beállítás és proxy ellenőrzése; `claude -p "szia"` |
-| Az ágens `pip install`-t akar futtatni | Utasítsd el, és utalj a `CLAUDE.md` technológiai keretére |
+| Az Agent `pip install`-t akar futtatni | Utasítsd el, és utalj a `CLAUDE.md` technológiai keretére |
 | A 8000-es port foglalt | `python3 app.py` helyett a spec szerinti portparaméter, vagy állítsd le a másik folyamatot |
 | Valaki elakad a spec-lépésnél | Adj neki tartalék `SPEC.md`-t, és hagyja jóvá ő maga |
 | Valakinek teljesen elfogy az ideje, vagy a gépe miatt nem tud haladni | **Végső megoldás:** mutasd meg a mintamegoldást ([`wydrian1/b1-demo-kudos-solution`](https://github.com/wydrian1/b1-demo-kudos-solution)): `SPEC.md`, `HALADAS.md`, `BIZONYITEK.md`, `dokumentacio/`, vagy klónozza le, és futtassa (`python3 app.py`). Csak akkor, ha a saját futása már nem menthető: a cél a folyamat megtapasztalása, nem a kész eredmény |
-| Az ágens körbe-körbe javít | Állítsd meg (Esc), kérdezd meg, mit gondol a hibáról, és szűkítsd a feladatot egy EK-ra |
+| Az Agent körbe-körbe javít | Állítsd meg (Esc), kérdezd meg, mit gondol a hibáról, és szűkítsd a feladatot egy EK-ra |
 
 ## Az eredeti igény és a demó megfeleltetése
 
