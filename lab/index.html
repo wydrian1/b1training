@@ -94,12 +94,12 @@
       <ul>
         <li>Nyiss egy WSL terminált, és ellenőrizd, hogy megvan a <b>Python</b> (legalább 3.10), a <b>git</b> és a <b>Claude Code</b>, és hogy Claude válaszol.</li>
         <li>Klónozd a gyakorló repót (<a href="https://github.com/wydrian1/b1-demo-kudos"><code>wydrian1/b1-demo-kudos</code></a>), és futtasd le a <b>telepítőszkriptet</b> (<code>scripts/</code> mappa). Pár percig tart, és kérheti a <code>sudo</code> jelszavadat.</li>
-        <li>Amíg fut, nézz bele a fontos fájlokba:
+        <li>Amíg fut, nézz bele a fontos fájlokba (kattints rájuk, itt is megnyílnak):
           <ul>
-            <li><code>docs/uzleti-leiras.md</code>: az üzleti igény, ebből indulunk</li>
-            <li><code>docs/arculat-ui.md</code>: hogyan nézzen ki a felület</li>
-            <li><code>CLAUDE.md</code>: szabályok az Agentnek</li>
-            <li><code>data/munkatarsak.json</code>: 17 kitalált munkatárs a board tagtól (B) a főosztályvezetőn (B-1) és az osztályvezetőkön (B-2) át az alkalmazottakig. Ez helyettesíti az AD-t.</li>
+            <li><a class="file-link" href="https://github.com/wydrian1/b1-demo-kudos/blob/main/docs/uzleti-leiras.md" data-file="docs/uzleti-leiras.md"><code>docs/uzleti-leiras.md</code></a>: az üzleti igény, ebből indulunk</li>
+            <li><a class="file-link" href="https://github.com/wydrian1/b1-demo-kudos/blob/main/docs/arculat-ui.md" data-file="docs/arculat-ui.md"><code>docs/arculat-ui.md</code></a>: hogyan nézzen ki a felület</li>
+            <li><a class="file-link" href="https://github.com/wydrian1/b1-demo-kudos/blob/main/CLAUDE.md" data-file="CLAUDE.md"><code>CLAUDE.md</code></a>: szabályok az Agentnek</li>
+            <li><a class="file-link" href="https://github.com/wydrian1/b1-demo-kudos/blob/main/data/munkatarsak.json" data-file="data/munkatarsak.json"><code>data/munkatarsak.json</code></a>: 17 kitalált munkatárs a board tagtól (B) a főosztályvezetőn (B-1) és az osztályvezetőkön (B-2) át az alkalmazottakig. Ez helyettesíti az AD-t.</li>
           </ul>
         </li>
         <li>Ha a szkript ✅-et ír, indítsd el Claude Code-ot a mappában, és kérdezd meg, <b>milyen szabályok szerint fog dolgozni</b>.</li>
@@ -616,6 +616,15 @@ HEADED=1 .venv/bin/python -m unittest discover -s tests/e2e -v</pre><button type
 </main>
 </div>
 
+<dialog id="fileDlg" aria-labelledby="fileDlgTitle">
+  <div class="dlg-head">
+    <code id="fileDlgTitle"></code>
+    <a id="fileDlgGh" href="#" target="_blank" rel="noopener">Megnyitás a GitHubon ↗</a>
+    <button type="button" class="btn" id="fileDlgClose" aria-label="Bezárás">✕</button>
+  </div>
+  <div class="dlg-body" id="fileDlgBody"></div>
+</dialog>
+
 <script>
 (function () {
   'use strict';
@@ -657,6 +666,86 @@ HEADED=1 .venv/bin/python -m unittest discover -s tests/e2e -v</pre><button type
       }
     });
   });
+
+  // fájl-előnézet: a gyakorló repó fájljai overlayben, mindig a GitHubon lévő aktuális változat
+  var RAW = 'https://raw.githubusercontent.com/wydrian1/b1-demo-kudos/main/';
+  var dlg = document.getElementById('fileDlg');
+  var dlgBody = document.getElementById('fileDlgBody');
+  function esc(t) {
+    return t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  // egyszerű Markdown-megjelenítő: címsorok, listák, táblázatok, kódblokk, idézet, félkövér, kód, link
+  function inline(t) {
+    return esc(t)
+      .replace(/`([^`]+)`/g, '<code>$1</code>')
+      .replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>')
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+  }
+  function markdown(src) {
+    var lines = src.replace(/\r/g, '').split('\n'), out = [], i = 0;
+    while (i < lines.length) {
+      var l = lines[i];
+      if (/^```/.test(l)) {
+        var code = [];
+        for (i++; i < lines.length && !/^```/.test(lines[i]); i++) code.push(lines[i]);
+        out.push('<pre>' + esc(code.join('\n')) + '</pre>'); i++; continue;
+      }
+      var h = l.match(/^(#{1,4})\s+(.*)/);
+      if (h) { out.push('<h' + (h[1].length + 1) + '>' + inline(h[2]) + '</h' + (h[1].length + 1) + '>'); i++; continue; }
+      if (/^\s*\|/.test(l)) {
+        var rows = [];
+        for (; i < lines.length && /^\s*\|/.test(lines[i]); i++) rows.push(lines[i]);
+        var html = '<table>';
+        rows.forEach(function (r, n) {
+          if (/^\s*\|[\s:|-]+\|\s*$/.test(r)) return;
+          var cells = r.trim().replace(/^\||\|$/g, '').split('|');
+          var tag = n === 0 ? 'th' : 'td';
+          html += '<tr>' + cells.map(function (c) { return '<' + tag + '>' + inline(c.trim()) + '</' + tag + '>'; }).join('') + '</tr>';
+        });
+        out.push(html + '</table>'); continue;
+      }
+      if (/^>\s?/.test(l)) {
+        var q = [];
+        for (; i < lines.length && /^>\s?/.test(lines[i]); i++) q.push(inline(lines[i].replace(/^>\s?/, '')));
+        out.push('<blockquote>' + q.join('<br>') + '</blockquote>'); continue;
+      }
+      if (/^\s*([-*]|\d+\.)\s+/.test(l)) {
+        var ordered = /^\s*\d+\./.test(l), items = [];
+        for (; i < lines.length && /^\s*([-*]|\d+\.)\s+/.test(lines[i]); i++) items.push('<li>' + inline(lines[i].replace(/^\s*([-*]|\d+\.)\s+/, '')) + '</li>');
+        out.push((ordered ? '<ol>' : '<ul>') + items.join('') + (ordered ? '</ol>' : '</ul>')); continue;
+      }
+      if (/^\s*$/.test(l)) { i++; continue; }
+      var para = [];
+      for (; i < lines.length && lines[i].trim() && !/^(#|```|\s*\||>|\s*([-*]|\d+\.)\s)/.test(lines[i]); i++) para.push(inline(lines[i]));
+      out.push('<p>' + para.join(' ') + '</p>');
+    }
+    return out.join('\n');
+  }
+  function openFile(path, gh) {
+    document.getElementById('fileDlgTitle').textContent = path;
+    document.getElementById('fileDlgGh').href = gh;
+    dlgBody.innerHTML = '<p class="meta">Betöltés…</p>';
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+    fetch(RAW + path).then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      return r.text();
+    }).then(function (t) {
+      if (/\.json$/.test(path)) {
+        try { t = JSON.stringify(JSON.parse(t), null, 2); } catch (e) { /* marad az eredeti szöveg */ }
+        dlgBody.innerHTML = '<pre>' + esc(t) + '</pre>';
+      } else {
+        dlgBody.innerHTML = '<div class="md">' + markdown(t) + '</div>';
+      }
+      dlgBody.scrollTop = 0;
+    }).catch(function () {
+      dlgBody.innerHTML = '<p>Most nem sikerült betölteni a fájlt. Nyisd meg a GitHubon a fenti linkkel, vagy a saját gépeden a <code>kudos</code> mappában.</p>';
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('a.file-link'), function (a) {
+    a.addEventListener('click', function (e) { e.preventDefault(); openFile(a.dataset.file, a.href); });
+  });
+  document.getElementById('fileDlgClose').addEventListener('click', function () { dlg.close ? dlg.close() : dlg.removeAttribute('open'); });
+  dlg.addEventListener('click', function (e) { if (e.target === dlg && dlg.close) dlg.close(); });
 
   // témaváltó (közös az előadással)
   var tb = document.getElementById('themeBtn');
