@@ -470,8 +470,30 @@ python3 app.py</pre><button type="button">Másolás</button></div>
     <tr><td>4. lépés: változáskérés</td><td><code>revise-plan</code>: review- vagy validációs lelet, új igény esetén a terv frissül, az érintett specek újrafelülvizsgálatra jelölődnek</td></tr>
     <tr><td>–</td><td><code>capture-rules</code>: a munkamenet közbeni javításokból csapat-szabályok, amelyeket a skillek minden futásnál betöltenek</td></tr>
   </table>
-  <p class="meta">A valódi kit Jira-, Confluence-, Zephyr-, Figma- és Grafana-integrációval dolgozik, a kimenetek a <code>.sdlc/</code> mappában vannak. A labban kettő kaput használtunk a kit több emberi kapuja helyett. Egy teljes, valós példa a <a href="../#46">következő dián</a>: a Kudos alkalmazás a teljes kittel.</p>
-  <a class="slide" href="../#50">→ Dia: Hol érdemes kezdeni?</a>
+  <p class="meta">A valódi kit Jira-, Confluence-, Zephyr-, Figma- és Grafana-integrációval dolgozik, a kimenetek a <code>.sdlc/</code> mappában vannak. A labban kettő kaput használtunk a kit több emberi kapuja helyett. Egy teljes, valós példa alább: a Kudos alkalmazás a teljes kittel.</p>
+  <h3>Ha ugyanezt a teljes SDLC kittel csináltuk volna</h3>
+  <div class="flow">
+    <div class="node"><b>PRD</b><code>start-prd</code>, <code>refine-prd</code></div><div class="arr">→</div>
+    <div class="node"><b>Terv</b><code>plan-prd</code>: sztorik, BAC-ok, tesztek</div><div class="arr">→</div>
+    <div class="node"><b>Spec</b><code>specify-task</code> sztorinként</div><div class="arr">→</div>
+    <div class="node"><b>Build</b><code>build-task</code> + <code>evidence.md</code></div><div class="arr">→</div>
+    <div class="node"><b>Review</b><code>review-pr</code>: 4 reviewer + gap-critic</div><div class="arr">→</div>
+    <div class="node"><b>Validáció</b><code>validate-acceptance</code></div>
+  </div>
+  <table>
+    <tr><th></th><th>Mai lab</th><th>Teljes kit</th></tr>
+    <tr><td><b>Dokumentum</b></td><td>egy <code>SPEC.md</code></td><td><code>.sdlc/prds/</code> (PRD, terv) és <code>.sdlc/tasks/</code> (spec, bizonyíték) sztorinként</td></tr>
+    <tr><td><b>Kapuk</b></td><td>2 (spec, elfogadás)</td><td>solution gate, H2 spec, H3 code review, H4 PO-validáció, H5 deploy</td></tr>
+    <tr><td><b>Ellenőrzés</b></td><td>tesztek + <code>BIZONYITEK.md</code></td><td>lint, build, teszt, coverage, CVE- és secret-scan; független review-ágensek</td></tr>
+    <tr><td><b>Változás</b></td><td>a spec módosul</td><td><code>revise-plan</code>: a terv és az érintett specek is frissülnek</td></tr>
+  </table>
+  <div class="grid">
+    <div class="card y"><h3>Kudos: 3 kör, 3 munkanap</h3><p><b>29 sztori</b>, mindegyikhez specifikáció és bizonyíték-csomag, 5 terv-módosítás menet közben (pl. a vezető a saját területéhez is hozzátartozik, ami egy valódi kipróbálásnál derült ki).</p></div>
+    <div class="card v"><h3>Végállapot</h3><p>Backend <b>199</b>, frontend <b>140</b>, böngészős <b>49</b> teszt, mind sikeres.</p></div>
+    <div class="card a"><h3>Őszinte állapotjelentés</h3><p>A bizonyíték azt is felsorolja, amit <b>nem</b> ellenőriztünk. A Kudosnál a <code>review-pr</code> és a <code>finalise-pr</code> kimaradt, a <code>mercury-check</code> még nem futott.</p></div>
+  </div>
+  <p class="meta">Forrás: Confluence, RA tér, „[WZ] Kudos – SDLC alapú fejlesztés: az igénytől a kiadásig”. A három kör: az alkalmazás (12 sztori, 2026. 10. 22–23.), Kubera-készültség (7 sztori), egy másik demó-leírás különbségei (10 sztori, 2026. 11. 03.).</p>
+  <a class="slide" href="../#49">→ Dia: Hol érdemes kezdeni?</a>
   <div class="done-row"><label><input type="checkbox" data-done="s8"> Kész</label></div>
 </section>
 
