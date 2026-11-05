@@ -75,23 +75,48 @@
 <section class="slide" data-title="AI ⊃ ML ⊃ DL ⊃ GenAI ⊃ LLM">
   <div class="kicker">01 · Alapfogalmak</div>
   <h2>Egymásba ágyazott fogalmak</h2>
-  <div class="split" style="--cols: 540px 1fr">
-    <svg viewBox="0 0 560 522" style="width:100%;max-height:540px">
-      <g class="frag" data-s="1"><circle cx="280" cy="262" r="255" fill="rgba(99,179,237,.07)" stroke="#63b3ed" stroke-width="2"/><text x="280" y="44" text-anchor="middle" fill="#63b3ed" font-size="20" font-weight="700">Mesterséges intelligencia (AI)</text></g>
-      <g class="frag" data-s="2"><circle cx="280" cy="322" r="195" fill="rgba(79,209,197,.08)" stroke="#4fd1c5" stroke-width="2"/><text x="280" y="160" text-anchor="middle" fill="#4fd1c5" font-size="20" font-weight="700">Machine learning (ML)</text></g>
-      <g class="frag" data-s="3"><circle cx="280" cy="372" r="145" fill="rgba(104,211,145,.09)" stroke="#68d391" stroke-width="2"/><text x="280" y="260" text-anchor="middle" fill="#68d391" font-size="19" font-weight="700">Mélytanulás</text></g>
-      <g class="frag" data-s="4"><circle cx="280" cy="417" r="100" fill="rgba(246,173,85,.1)" stroke="#f6ad55" stroke-width="2"/><text x="280" y="350" text-anchor="middle" fill="#f6ad55" font-size="19" font-weight="700">Generatív AI</text></g>
-      <g class="frag" data-s="5"><circle cx="280" cy="462" r="54" fill="rgba(167,139,250,.25)" stroke="#a78bfa" stroke-width="2.5"/><text x="280" y="469" text-anchor="middle" fill="#e9effc" font-size="22" font-weight="800">LLM</text></g>
-    </svg>
-    <div class="capbox" style="height:260px">
-      <div class="cap frag" data-s="1" data-g="c" style="border-left:5px solid var(--blue)"><h3>Mesterséges intelligencia</h3><p>Gyűjtőfogalom: minden, amitől egy gép „intelligensnek” tűnik. A szabályalapú szakértői rendszerek is ide tartoznak.</p></div>
-      <div class="cap frag" data-s="2" data-g="c" style="border-left:5px solid var(--teal)"><h3>Machine learning</h3><p>A gép <b>példákból</b> tanul szabályt, nem mi programozzuk le. Csalásfelismerés, scoring, lemorzsolódás-előrejelzés: ezek a bankban évek óta jelen vannak.</p></div>
-      <div class="cap frag" data-s="3" data-g="c" style="border-left:5px solid var(--green)"><h3>Mélytanulás</h3><p>Sokrétegű neurális hálók. Kép-, hang- és szövegfelismerés. Sok adat és sok számítási kapacitás (GPU) kell hozzá.</p></div>
-      <div class="cap frag" data-s="4" data-g="c" style="border-left:5px solid var(--amber)"><h3>Generatív AI</h3><p>Nem osztályoz, hanem <b>új tartalmat</b> hoz létre: szöveget, képet, kódot, hangot.</p></div>
-      <div class="cap frag" data-s="5" data-g="c" style="border-left:5px solid var(--violet)"><h3>LLM: nagy nyelvi modell</h3><p>Hatalmas mennyiségű szövegen tanított generatív modell. Ma ez a „motor” a chatbotok és az Agentek mögött. A mai nap nagy része erről szól.</p></div>
+  <div class="split" style="--cols: 560px 1fr">
+    <svg viewBox="0 0 620 600" style="width:100%;max-height:560px">
+      <g class="frag" data-s="1"><circle cx="310" cy="300" r="290" fill="rgba(99,179,237,.07)" stroke="#63b3ed" stroke-width="2"/><text x="310" y="46" text-anchor="middle" fill="#63b3ed" font-size="20" font-weight="700">Mesterséges intelligencia (AI)</text><circle cx="186" cy="112" r="38" fill="#131c30" stroke="#63b3ed" stroke-width="1.5" stroke-dasharray="4 3"/><text x="186" y="108.8" text-anchor="middle" fill="#e9effc" font-size="13">Szabály-</text><text x="186" y="124.3" text-anchor="middle" fill="#e9effc" font-size="13">motorok</text><circle cx="310" cy="106" r="38" fill="#131c30" stroke="#63b3ed" stroke-width="1.5" stroke-dasharray="4 3"/><text x="310" y="102.8" text-anchor="middle" fill="#e9effc" font-size="13">Optimali-</text><text x="310" y="118.3" text-anchor="middle" fill="#e9effc" font-size="13">zálás</text><circle cx="434" cy="112" r="38" fill="#131c30" stroke="#63b3ed" stroke-width="1.5" stroke-dasharray="4 3"/><text x="434" y="108.8" text-anchor="middle" fill="#e9effc" font-size="13">Szakértői</text><text x="434" y="124.3" text-anchor="middle" fill="#e9effc" font-size="13">rendszerek</text></g>
+      <g class="frag" data-s="2"><circle cx="310" cy="375" r="215" fill="rgba(104,211,145,.09)" stroke="#68d391" stroke-width="2"/><text x="310" y="194" text-anchor="middle" fill="#68d391" font-size="19" font-weight="700">Machine learning (ML)</text><circle cx="214" cy="254" r="34" fill="#131c30" stroke="#68d391" stroke-width="1.5" stroke-dasharray="4 3"/><text x="214" y="251.0" text-anchor="middle" fill="#e9effc" font-size="12">Döntési</text><text x="214" y="265.4" text-anchor="middle" fill="#e9effc" font-size="12">fák</text><circle cx="310" cy="250" r="34" fill="#131c30" stroke="#68d391" stroke-width="1.5" stroke-dasharray="4 3"/><text x="310" y="254.2" text-anchor="middle" fill="#e9effc" font-size="12">Regresszió</text><circle cx="406" cy="254" r="34" fill="#131c30" stroke="#68d391" stroke-width="1.5" stroke-dasharray="4 3"/><text x="406" y="251.0" text-anchor="middle" fill="#e9effc" font-size="12">Gradient</text><text x="406" y="265.4" text-anchor="middle" fill="#e9effc" font-size="12">boosting</text></g>
+      <g class="frag" data-s="3"><circle cx="310" cy="440" r="150" fill="rgba(167,139,250,.14)" stroke="#a78bfa" stroke-width="2"/><text x="310" y="322" text-anchor="middle" fill="#a78bfa" font-size="17" font-weight="700">Mélytanulás (deep learning)</text><circle cx="237" cy="372" r="30" fill="#131c30" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="4 3"/><text x="237" y="369.4" text-anchor="middle" fill="#e9effc" font-size="10.5">Kép-</text><text x="237" y="382.0" text-anchor="middle" fill="#e9effc" font-size="10.5">felismerés</text><circle cx="310" cy="368" r="30" fill="#131c30" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="4 3"/><text x="310" y="365.4" text-anchor="middle" fill="#e9effc" font-size="10.5">Beszéd-</text><text x="310" y="378.0" text-anchor="middle" fill="#e9effc" font-size="10.5">felismerés</text><circle cx="383" cy="372" r="30" fill="#131c30" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="4 3"/><text x="383" y="369.4" text-anchor="middle" fill="#e9effc" font-size="10.5">Ajánló-</text><text x="383" y="382.0" text-anchor="middle" fill="#e9effc" font-size="10.5">rendszer</text></g>
+      <g class="frag" data-s="4"><circle cx="310" cy="500" r="90" fill="rgba(246,173,85,.1)" stroke="#f6ad55" stroke-width="2"/><text x="310" y="438" text-anchor="middle" fill="#f6ad55" font-size="16" font-weight="700">Generatív AI</text><circle cx="266" cy="470" r="20" fill="#131c30" stroke="#f6ad55" stroke-width="1.5" stroke-dasharray="4 3"/><text x="266" y="473.9" text-anchor="middle" fill="#e9effc" font-size="11">Kép</text><circle cx="310" cy="467" r="20" fill="#131c30" stroke="#f6ad55" stroke-width="1.5" stroke-dasharray="4 3"/><text x="310" y="470.9" text-anchor="middle" fill="#e9effc" font-size="11">Videó</text><circle cx="354" cy="470" r="20" fill="#131c30" stroke="#f6ad55" stroke-width="1.5" stroke-dasharray="4 3"/><text x="354" y="473.9" text-anchor="middle" fill="#e9effc" font-size="11">Hang</text></g>
+      <g class="frag" data-s="5"><circle cx="310" cy="548" r="42" fill="#4fd1c5" stroke="#4fd1c5" stroke-width="2.5"/><text x="310" y="556" text-anchor="middle" class="on-acc" font-size="20" font-weight="800">LLM</text></g>
+      </svg>
+    <div class="capbox" style="height:520px">
+      <div class="cap frag" data-s="1" data-g="c" style="border-left:5px solid var(--blue)"><h3>Mesterséges intelligencia</h3><p>Gyűjtőfogalom: minden, amitől egy gép „intelligensnek” tűnik, akár tanulás nélkül is.</p>
+        <ul class="cap-list">
+          <li><b>Szabálymotorok:</b> ember által megírt „ha… akkor…” szabályok. <span class="ex">Pl. hitelkérelem előszűrése döntési táblával.</span></li>
+          <li><b>Optimalizálás:</b> a legjobb megoldás keresése adott korlátok között. <span class="ex">Pl. ATM-feltöltési útvonalak, műszakbeosztás.</span></li>
+          <li><b>Szakértői rendszerek:</b> szakértői tudás szabálybázisba rendezve, következtetőgéppel. <span class="ex">A 80–90-es évek „AI”-ja, pl. diagnosztikai rendszerek.</span></li>
+        </ul></div>
+      <div class="cap frag" data-s="2" data-g="c" style="border-left:5px solid var(--green)"><h3>Machine learning</h3><p>A gép <b>példákból</b> tanul szabályt, nem mi programozzuk le. A bankban évek óta jelen van.</p>
+        <ul class="cap-list">
+          <li><b>Döntési fák:</b> igen/nem kérdések sorozata (pl. „jövedelem &gt; X?”), a végén egy döntés. Jól magyarázható. <span class="ex">Pl. ügyfélszegmentálás.</span></li>
+          <li><b>Regresszió:</b> számszerű összefüggést illeszt az adatokra, és számot vagy valószínűséget jósol. <span class="ex">Pl. a nemfizetés valószínűsége a scoringban (logisztikus regresszió).</span></li>
+          <li><b>Gradient boosting:</b> sok kis döntési fa egymás után, mindegyik az előzők hibáját javítja. Táblázatos adaton gyakran a legpontosabb. <span class="ex">Pl. csalásfelismerés, lemorzsolódás-előrejelzés.</span></li>
+        </ul></div>
+      <div class="cap frag" data-s="3" data-g="c" style="border-left:5px solid var(--violet)"><h3>Mélytanulás (deep learning)</h3><p>Sokrétegű neurális hálók: a nyers adatból (kép, hang, szöveg) maguk tanulják meg a lényeges jellemzőket. Sok adat és GPU kell hozzá.</p>
+        <ul class="cap-list">
+          <li><b>Képfelismerés:</b> mi van a képen, hol a szöveg. <span class="ex">Pl. dokumentum-OCR, aláírás- és személyazonosság-ellenőrzés.</span></li>
+          <li><b>Beszédfelismerés:</b> hangból szöveg. <span class="ex">Pl. call center hívások leiratozása, hangalapú azonosítás.</span></li>
+          <li><b>Ajánlórendszer:</b> mi érdekelheti az ügyfelet. <span class="ex">Pl. következő legjobb ajánlat (next best offer).</span></li>
+        </ul></div>
+      <div class="cap frag" data-s="4" data-g="c" style="border-left:5px solid var(--amber)"><h3>Generatív AI</h3><p>Nem osztályoz vagy jósol, hanem <b>új tartalmat</b> hoz létre.</p>
+        <ul class="cap-list">
+          <li><b>Kép:</b> leírásból kép (diffúziós modellek). <span class="ex">Pl. Midjourney, DALL·E.</span></li>
+          <li><b>Videó:</b> leírásból vagy forgatókönyvből videó. <span class="ex">Pl. Sora, Veo; nálunk a whitelistelt Colossyan (AI-avatáros képzési videó).</span></li>
+          <li><b>Hang:</b> szövegből beszéd, hangklónozás, zene. <span class="ex">Pl. felolvasó hangok, Suno.</span></li>
+        </ul></div>
+      <div class="cap frag" data-s="5" data-g="c" style="border-left:5px solid var(--teal)"><h3>LLM: nagy nyelvi modell</h3><p>Hatalmas mennyiségű szövegen tanított generatív modell: szöveget és kódot ír, elemez, összefoglal. Ma ez a „motor” a chatbotok és az Agentek mögött, a mai nap nagy része erről szól.</p>
+        <ul class="cap-list">
+          <li><b>Modellcsaládok:</b> <span class="ex">Claude, GPT, Gemini, Llama, Mistral…</span></li>
+          <li><b>Nálunk:</b> <span class="ex">YellowGPT, Claude Code, Copilot, rAIhub.</span></li>
+          <li><b>Határ elmosódik:</b> a mai LLM-ek többsége már képet és PDF-et is „lát” (multimodális).</li>
+        </ul></div>
     </div>
   </div>
-  <aside class="notes"><p>Kívülről befelé haladunk, öt lépésben. Fontos üzenet: az „AI” szó a bankban már régóta jelen van (ML-modellek); az új hullám a generatív, azon belül az LLM.</p></aside>
+  <aside class="notes"><p>Kívülről befelé haladunk, öt lépésben. A szaggatott kis körök a „testvér-kategóriák”: ugyanazon a szinten vannak, de nem tartoznak a belső körbe. Fontos üzenet: az „AI” szó a bankban már régóta jelen van (ML-modellek); az új hullám a generatív, azon belül az LLM.</p></aside>
 </section>
 
 <section class="slide" data-title="Szoftver vs. machine learning">

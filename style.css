@@ -513,3 +513,9 @@ rect[fill="#f6ad55"] + text[fill="#0b1220"] { fill: var(--on-acc); }
   transition: opacity .2s;
 }
 #jump:hover, #jump:focus-visible { opacity: 1; }
+
+/* 5. dia: kör-ábra és magyarázó listák */
+svg .on-acc { fill: var(--on-acc); }
+.cap .cap-list { margin-top: 10px; padding-left: 1.1em; }
+.cap .cap-list li { font-size: 15.5px; line-height: 1.4; margin: 7px 0; color: var(--text); }
+.cap .cap-list .ex { color: var(--muted); }
